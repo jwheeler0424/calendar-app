@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import CalendarDay from './CalendarDay';
+import CalendarDayTitle from './CalendarDayTitle';
+import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 const currentDate = moment().add(2, 'months');
 
@@ -36,19 +38,31 @@ export default class Calendar extends React.Component {
     
         return calendarDays
     }
+    getCalendarDayTitles = () => {
+        return ([0,1,2,3,4,5,6])
+    }
     render() {
         return (
             <div>
                 <h1>Calendar App</h1>
-                <h2>{currentDate.format('MMMM')}</h2>
-                <div className="month-display">
-                    {this.getCalendarDays(currentDate).map((day) => (
-                        <CalendarDay 
-                            date={day.date}
-                            key={day.date.valueOf()}
-                            type={day.type}
-                        />
-                    ))}
+                <div className="calendar">
+                    <button><NavigateBefore /> {moment(currentDate).subtract(1, 'months').format('MMMM')}</button>
+                    <button>{moment(currentDate).add(1, 'months').format('MMMM')} <NavigateNext /></button>
+                    <h2>{currentDate.format('MMMM YYYY')}</h2>
+                    <div className="calendar__day-titles">
+                        {this.getCalendarDayTitles().map((day) => (
+                            <CalendarDayTitle key={moment().day(day).format('dddd')} day={day} />
+                        ))}
+                    </div>
+                    <div className="calendar__month">
+                        {this.getCalendarDays(currentDate).map((day) => (
+                            <CalendarDay 
+                                date={day.date}
+                                key={day.date.valueOf()}
+                                type={day.type}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         );
