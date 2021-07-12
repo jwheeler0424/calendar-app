@@ -6,7 +6,7 @@
     "build:dev": "webpack",
     "build:prod": "webpack --env=production",
     "dev-server": "webpack serve --mode=development",
-    "test": "jest --config=jest.config.json",
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/server.js"
   },
   "dependencies": {
@@ -47,6 +47,8 @@
     "webpack-cli": "^4.7.2"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
