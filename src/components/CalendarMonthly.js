@@ -6,7 +6,7 @@ import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 const currentDate = moment().add(2, 'months');
 
-export default class Calendar extends React.Component {
+export default class CalendarMonthly extends React.Component {
     getCalendarDays = (calendarDate) => {
         const daysInMonth = calendarDate.daysInMonth();
         const monthFirstDay = moment(calendarDate).startOf('month');
@@ -43,26 +43,23 @@ export default class Calendar extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h1>Calendar App</h1>
-                <div className="calendar">
-                    <button><NavigateBefore /> {moment(currentDate).subtract(1, 'months').format('MMMM')}</button>
-                    <button>{moment(currentDate).add(1, 'months').format('MMMM')} <NavigateNext /></button>
-                    <h2>{currentDate.format('MMMM YYYY')}</h2>
-                    <div className="calendar__day-titles">
-                        {this.getCalendarDayTitles().map((day) => (
-                            <CalendarDayTitle key={moment().day(day).format('dddd')} day={day} />
-                        ))}
-                    </div>
-                    <div className="calendar__month">
-                        {this.getCalendarDays(currentDate).map((day) => (
-                            <CalendarDay 
-                                date={day.date}
-                                key={day.date.valueOf()}
-                                type={day.type}
-                            />
-                        ))}
-                    </div>
+            <div className="calendar">
+                <button><NavigateBefore /> {moment(currentDate).subtract(1, 'months').format('MMMM')}</button>
+                <button>{moment(currentDate).add(1, 'months').format('MMMM')} <NavigateNext /></button>
+                <h2>{currentDate.format('MMMM YYYY')}</h2>
+                <div className="calendar__day-titles">
+                    {this.getCalendarDayTitles().map((day) => (
+                        <CalendarDayTitle key={moment().day(day).format('dddd')} day={day} />
+                    ))}
+                </div>
+                <div className="calendar__month">
+                    {this.getCalendarDays(currentDate).map((day) => (
+                        <CalendarDay 
+                            date={day.date}
+                            key={day.date.valueOf()}
+                            type={day.type}
+                        />
+                    ))}
                 </div>
             </div>
         );
