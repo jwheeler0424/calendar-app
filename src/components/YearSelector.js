@@ -8,7 +8,7 @@ export class YearSelector extends React.Component {
         this.state = {
             yearMenuOpen: '',
             currentDate: new Date,
-            todayYear: new Date,
+            viewYear: new Date,
             yearNum: 0
         }
     }
@@ -35,12 +35,12 @@ export class YearSelector extends React.Component {
     }
     setPrevYear = () => {
         const yearNum = this.state.yearNum - 9;
-        this.state.todayYear.setYear(yearNum);
+        this.state.viewYear.setYear(yearNum);
         this.setState(() => ({ yearNum }));
     }
     setNextYear = () => {
         const yearNum = this.state.yearNum + 9;
-        this.state.todayYear.setYear(yearNum);
+        this.state.viewYear.setYear(yearNum);
         this.setState(() => ({ yearNum }));
     }
     selectYear = (e) => {
@@ -51,7 +51,7 @@ export class YearSelector extends React.Component {
         this.closeYearSelectMenu();
     }
     render() {
-        this.getYearRange(this.state.todayYear.getFullYear());
+        this.getYearRange(this.state.viewYear.getFullYear());
         return (
             <div className="year-selector__wrapper">
                 <div className="year-selector__selected" onClick={this.toggleYearSelectMenu}>
