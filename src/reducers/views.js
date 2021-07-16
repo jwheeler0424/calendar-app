@@ -2,8 +2,7 @@ import moment from 'moment';
 
 const viewsReducerDefaultState = {
     activeCalendar: 'monthly',
-    currentDate: moment().startOf('day'),
-    todayDate: moment().startOf('day')
+    currentDate: moment().startOf('day').valueOf()
 };
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {
@@ -29,14 +28,15 @@ const viewsReducer = (state = viewsReducerDefaultState, action) => {
                 activeCalendar: 'yearly'
             }
         case 'SET_CURRENT_DATE':
+            const currentDate = action.currentDate;
             return {
                 ...state,
-                currentDate: action.currentDate
+                currentDate
             }
         case 'SET_TODAY_DATE':
             return {
                 ...state,
-                todayDate: moment().startOf('day')
+                currentDate: moment().startOf('day')
             };
         default:
             return state;

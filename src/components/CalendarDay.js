@@ -1,21 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 
-export default class CalendarDay extends React.Component {
-    selectDate = () => {
-        console.log(this.props.date);
-    }
-    render() {
-        return (
-            <div 
-                className={this.props.type==='current' ? "month-day" : "month-day pre-next"}
-                title={this.props.date.format("MMM Do")}
-                onClick={this.selectDate}
-            >
-                <div className="content">
-                    <div className="day-num">{this.props.date.format("D")}</div>
-                </div>                
-            </div>
-        );
-    }
+const selectDate = (e) => {
+    const date = e.target.parentElement.attributes.date.value;
+    console.log(date);
 }
+
+const CalendarDay = (props) => {
+    return (
+        <div 
+            className={props.type==='current' ? "month-day" : "month-day pre-next"}
+            title={props.date.format("MMM Do")}
+            onClick={selectDate}
+            key={props.date}
+            date={props.date}
+        >
+            <div className="content">
+                <div className="day-num">{props.date.format("D")}</div>
+            </div>                
+        </div>
+    );
+}
+
+export default CalendarDay;

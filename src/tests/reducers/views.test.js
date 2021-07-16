@@ -37,8 +37,8 @@ test('should set currentDate to given date', () => {
     expect(state.currentDate).toEqual(currentDate);
 });
 
-test('should set todayDay to todays date', () => {
+test('should set currentDate to todays date', () => {
     const todayDate = moment().startOf('day');
     const state = viewsReducer(undefined, { type: 'SET_TODAY_DATE' });
-    expect(state.todayDate).toEqual(todayDate);
+    expect(state.currentDate).toEqual(todayDate);
 });

@@ -1,14 +1,16 @@
 import React from 'react';
 import { ExpandMore } from '@material-ui/icons'
+import { connect } from 'react-redux';
+import moment from 'moment';
+import { setCurrentDate } from '../actions/views';
 
 export class MonthSelector extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-
+        
         this.state = {
-            monthMenuOpen: '',
-            currentDate: new Date
-        }
+            monthMenuOpen: ''
+        };
     }
     toggleMonthSelectMenu = () => {
         const monthMenuOpen = this.state.monthMenuOpen === ' open' ? '' : ' open';
@@ -20,9 +22,8 @@ export class MonthSelector extends React.Component {
     }
     selectMonth = (e) => {
         const month = parseInt(e.target.attributes.month.value);
-        const currentDate = this.state.currentDate;
-        currentDate.setMonth(month);
-        this.setState(() => ({ currentDate }));
+        const currentDate = moment(this.props.views.currentDate).month(month);
+        this.props.setCurrentDate(currentDate.valueOf());
         this.closeMonthSelectMenu();
     }
     getMonths = () => {
@@ -36,23 +37,23 @@ export class MonthSelector extends React.Component {
         return (
             <div className="month-selector__wrapper">
                 <div className="month-selector__selected" onClick={this.toggleMonthSelectMenu}>
-                    <span className="month-selector__title">{this.state.currentDate.toLocaleString('default', { month: 'long' })}</span>
+                    <span className="month-selector__title">{moment(this.props.views.currentDate).format('MMMM')}</span>
                     <ExpandMore className="material-icons" />
                 </div>
                 <div className={'month-selector__selector' + this.state.monthMenuOpen}>
                     <div className="month-selector__select">
                         {
                             this.getMonths().map((month) => {
-                                const monthDate = new Date;
-                                monthDate.setMonth(month)
+                                const monthDate = moment();
+                                monthDate.month(month)
                                 return (
                                     <div
-                                        className={monthDate.getMonth() === this.state.currentDate.getMonth() ? 'selected' : ''}
+                                        className={monthDate.month() === moment(this.props.views.currentDate).month() ? 'selected' : ''}
                                         onClick={this.selectMonth}
                                         month={month}
-                                        key={monthDate.toLocaleString('default', { month: 'short' })}
+                                        key={monthDate.format('MMM')}
                                     >
-                                        {monthDate.toLocaleString('default', { month: 'short' })}
+                                        {monthDate.format('MMM')}
                                     </div>
                                 )
                             })
@@ -63,3 +64,13 @@ export class MonthSelector extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    views: state.views
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MonthSelector);

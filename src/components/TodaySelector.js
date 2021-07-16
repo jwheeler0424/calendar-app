@@ -1,25 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 import { CalendarToday } from '@material-ui/icons'
+import { setTodayDate } from '../actions/views';
 
-export class TodaySelector extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            currentDate: new Date
-        };
-    }
-    setTodayDate = () => {
-        const currentDate = new Date;
-        this.setState(() => ({ currentDate }));
-    }
-    render() {
-        const todayDate = new Date;
-        return (
-            <button className="calendaricon-wrapper" onClick={this.setTodayDate}>
-                <CalendarToday className="calendaricon-current" />
-                <span>{todayDate.getDate()}</span>
-            </button>
-        )
-    }
+export const TodaySelector = (props) => {
+    return (
+        <button className="calendar-icon__wrapper" onClick={props.setTodayDate}>
+            <CalendarToday className="calendar-icon__current" />
+            <span>{moment().format('D')}</span>
+        </button>
+    )
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    setTodayDate: () => dispatch(setTodayDate())
+});
+
+export default connect(undefined, mapDispatchToProps)(TodaySelector);
