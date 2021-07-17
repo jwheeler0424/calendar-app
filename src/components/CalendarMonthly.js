@@ -1,14 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
+import { NavigateBefore, NavigateNext } from '@material-ui/icons';
+import { setCurrentDate } from '../actions/views';
 import CalendarDay from './CalendarDay';
-import CalendarDayTitle from './CalendarDayTitle';
-import { NavigateBefore, NavigateNext } from '@material-ui/icons'
+import WeekDayTitle from './WeekDayTitle';
 
-const currentDate = moment().add(2, 'months');
-
-export default class CalendarMonthly extends React.Component {
+export class CalendarMonthly extends React.Component {
     getCalendarDays = (calendarDate) => {
-        const daysInMonth = calendarDate.daysInMonth();
         const monthFirstDay = moment(calendarDate).startOf('month');
         const monthFirstDayDOW = monthFirstDay.day();
         const monthLastDay = moment(calendarDate).endOf('month');
@@ -38,22 +37,32 @@ export default class CalendarMonthly extends React.Component {
     
         return calendarDays
     }
-    getCalendarDayTitles = () => {
+    getWeekDayTitles = () => {
         return ([0,1,2,3,4,5,6])
     }
+    setMonthPrev = () => {
+        const prevMonth = moment(this.props.views.currentDate).subtract(1, 'months').valueOf();
+        this.props.setCurrentDate(prevMonth);
+    }
+    setMonthNext = () => {
+        const nextMonth = moment(this.props.views.currentDate).add(1, 'months').valueOf();
+        this.props.setCurrentDate(nextMonth);
+    }
     render() {
+        const prevMonth = moment(this.props.views.currentDate).subtract(1, 'months');
+        const nextMonth = moment(this.props.views.currentDate).add(1, 'months');
         return (
-            <div className="calendar">
-                <button><NavigateBefore /> {moment(currentDate).subtract(1, 'months').format('MMMM')}</button>
-                <button>{moment(currentDate).add(1, 'months').format('MMMM')} <NavigateNext /></button>
-                <h2>{currentDate.format('MMMM YYYY')}</h2>
-                <div className="calendar__day-titles">
-                    {this.getCalendarDayTitles().map((day) => (
-                        <CalendarDayTitle key={moment().day(day).format('dddd')} day={day} />
+            <div className="calendar-monthly__wrapper">
+                <button onClick={this.setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
+                <button onClick={this.setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
+                <h1>{moment(this.props.views.currentDate).format('MMMM YYYY')}</h1>
+                <div className="calendar-monthly__week-day-titles">
+                    {this.getWeekDayTitles().map((day) => (
+                        <WeekDayTitle key={moment().day(day).format('dddd')} day={day} />
                     ))}
                 </div>
-                <div className="calendar__month">
-                    {this.getCalendarDays(currentDate).map((day) => (
+                <div className="calendar-monthly__month">
+                    {this.getCalendarDays(this.props.views.currentDate).map((day) => (
                         <CalendarDay 
                             date={day.date}
                             key={day.date.valueOf()}
@@ -65,3 +74,13 @@ export default class CalendarMonthly extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    views: state.views
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarMonthly);

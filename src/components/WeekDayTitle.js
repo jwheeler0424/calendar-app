@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-const CalendarDayTitle = (props) => {
+const WeekDayTitle = (props) => {
     return (
         <div>
             {moment().day(props.day).format('ddd')}
@@ -9,4 +9,4 @@ const CalendarDayTitle = (props) => {
     );
 }
 
-export default CalendarDayTitle;
+export default WeekDayTitle;
