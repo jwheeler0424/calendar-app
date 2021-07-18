@@ -1,20 +1,30 @@
-import moment from 'moment';
-
-// title: '',
-// startTime: moment().startOf('hour'),
-// endTime: moment().endOf('hour'),
-// allDay: false,
-// color: 'peacock',
-// location: '',
-// notes: ''
-
 const eventsReducerDefaultState = [];
 
-const expensesReducer = (state = eventsReducerDefaultState, action) => {
+const eventsReducer = (state = eventsReducerDefaultState, action) => {
     switch (action.type) {
+        case 'ADD_EVENT':
+            return [
+                ...state,
+                action.event
+            ];
+        case 'REMOVE_EVENT':
+            return state.filter(({ id }) => id != action.id);
+        case 'EDIT_EVENT':
+            return state.map((event) => {
+                if (event.id === action.id) {
+                    return {
+                        ...event,
+                        ...action.updates
+                    };
+                } else {
+                    return event
+                }
+            });
+        case "SET_EVENTS":
+            return action.events;
         default:
             return state;
     };
 };
 
-export default expensesReducer;
+export default eventsReducer;
