@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render CalendarDay correctly 1`] = `
+<div
+  className="calendar-day"
+  date={"1970-01-01T00:00:00.000Z"}
+  key="0"
+  onClick={[Function]}
+  title="Dec 31st"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="day-num"
+    >
+      31
+    </div>
+  </div>
+</div>
+`;
