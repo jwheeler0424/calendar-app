@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const viewsReducerDefaultState = {
     activeCalendar: 'monthly',
-    currentDate: moment().startOf('day').valueOf()
+    currentDate: 0
 };
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {

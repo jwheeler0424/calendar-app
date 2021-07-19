@@ -11,8 +11,19 @@ import {
     startSetEvents
 } from '../../actions/events';
 import events from '../fixtures/events';
+import database from '../../firebase/firebase';
 
+const uid = 'thisismytestuid';
+const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
+
+beforeEach((done) => {
+    const eventsData = {};
+    events.forEach(({ id, title, startDate, endDate, allDay, color, location, notes }) => {
+        eventsData[id] = { title, startDate, endDate, allDay, color, location, notes };
+    });
+    database.ref(`users/${uid}/events`).set(eventsData).then(() => done());
+});
 
 test('should setup add event object with provided values', () => {
     const action = addEvent(events[2]);
@@ -22,8 +33,8 @@ test('should setup add event object with provided values', () => {
     });
 });
 
-test('should add event to store', () => {
-    const store = createMockStore();
+test('should add event to database and store', (done) => {
+    const store = createMockStore(defaultAuthState);
     const eventData = {
         title: 'Party',
         startDate: 650440540,
@@ -33,20 +44,27 @@ test('should add event to store', () => {
         location: '',
         notes: 'This one is better'
     };
-    store.dispatch(startAddEvent(eventData));
-    const actions = store.getActions();
-    
-    expect(actions[0]).toEqual({
-        type: 'ADD_EVENT',
-        event: {
-            id: expect.any(String),
-            ...eventData
-        }
+
+    store.dispatch(startAddEvent(eventData)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'ADD_EVENT',
+            event: {
+                id: expect.any(String),
+                ...eventData
+            }
+        });
+
+        return database.ref(`users/${uid}/events/${actions[0].event.id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(eventData);
+        done();
     });
+    
 });
 
-test('should add event with defaults to store', () => {
-    const store = createMockStore();
+test('should add event with defaults to database and store', (done) => {
+    const store = createMockStore(defaultAuthState);
     const eventDefaults = {
         title: '',
         startDate: 0,
@@ -57,14 +75,20 @@ test('should add event with defaults to store', () => {
         notes: ''
     };
 
-    store.dispatch(startAddEvent({}));
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-        type: 'ADD_EVENT',
-        event: {
-            id: expect.any(String),
-            ...eventDefaults
-        }
+    store.dispatch(startAddEvent({})).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'ADD_EVENT',
+            event: {
+                id: expect.any(String),
+                ...eventDefaults
+            }
+        });
+
+        return database.ref(`users/${uid}/events/${actions[0].event.id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(eventDefaults);
+        done();
     });
 });
 
@@ -79,18 +103,25 @@ test('should setup edit event action object', () => {
     });
 });
 
-test('should exit expense from store', () => {
-    const store = createMockStore();
+test('should exit expense from firebase', (done) => {
+    const store = createMockStore(defaultAuthState);
     const id = events[0].id;
     const updates = { allDay: true};
 
-    store.dispatch(startEditEvent(id, updates));
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-        type: 'EDIT_EVENT',
-        id,
-        updates
+    store.dispatch(startEditEvent(id, updates)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'EDIT_EVENT',
+            id,
+            updates
+        });
+
+        return database.ref(`users/${uid}/events/${id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val().allDay).toBe(updates.allDay);
+        done();
     });
+    
 });
 
 test('should setup remove event action object', () => {
@@ -101,16 +132,23 @@ test('should setup remove event action object', () => {
     });
 });
 
-test('should remove event from store', () => {
-    const store = createMockStore();
+test('should remove event from firebase', (done) => {
+    const store = createMockStore(defaultAuthState);
     const id = events[1].id;
 
-    store.dispatch(startRemoveEvent({ id }));
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-        type: 'REMOVE_EVENT',
-        id
+    store.dispatch(startRemoveEvent({ id })).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'REMOVE_EVENT',
+            id
+        });
+
+        return database.ref(`users/${uid}/events/${id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBeFalsy();
+        done();
     });
+    
 })
 
 test('should setup set events action object', () => {
@@ -121,12 +159,14 @@ test('should setup set events action object', () => {
     });
 });
 
-test('should fetch events from store', () => {
-    const store = createMockStore();
-    store.dispatch(startSetEvents());
-    const actions = store.getActions();
-    expect(actions[0]).toEqual({
-        type: 'SET_EVENTS',
-        events
+test('should fetch events from firebase', (done) => {
+    const store = createMockStore(defaultAuthState);
+    store.dispatch(startSetEvents()).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'SET_EVENTS',
+            events
+        });
+        done();
     });
-})
+});

@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import events from '../tests/fixtures/events';
+import database from '../firebase/firebase';
 
 // ADD_EVENT
 export const addEvent = (event) => ({
@@ -9,6 +9,7 @@ export const addEvent = (event) => ({
 
 export const startAddEvent = (eventData = {}) => {
     return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const {
             title = '',
             startDate = 0,
@@ -20,10 +21,13 @@ export const startAddEvent = (eventData = {}) => {
         } = eventData;
 
         const event = { title, startDate, endDate, allDay, color, location, notes }
-        dispatch(addEvent({
-            id: uuid(),
-            ...event
-        }));
+
+        return database.ref(`users/${uid}/events`).push(event).then((ref) => {
+            dispatch(addEvent({
+                id: ref.key,
+                ...event
+            }));
+        });
     }
 }
 
@@ -35,7 +39,10 @@ export const removeEvent = ({ id } = {}) => ({
 
 export const startRemoveEvent = ({ id } = {}) => {
     return (dispatch, getState) => {
-        dispatch(removeEvent({ id }));
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/events/${id}`).remove().then((ref) => {
+            dispatch(removeEvent({ id }));
+        });
     }
 }
 
@@ -48,7 +55,10 @@ export const editEvent = (id, updates) => ({
 
 export const startEditEvent = (id, updates) => {
     return (dispatch, getState) => {
-        dispatch(editEvent(id, updates));
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/events/${id}`).update(updates).then((ref) => {
+            dispatch(editEvent(id, updates));
+        });
     }
 }
 
@@ -60,7 +70,18 @@ export const setEvents = (events) => ({
 
 export const startSetEvents = () => {
     return (dispatch, getState) => {
-        
-        dispatch(setEvents(events));
-    }
-}
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/events`).once('value').then((snapshot) => {
+            const eventCollection = [];
+            
+            snapshot.forEach((childSnapshot) => {
+                eventCollection.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+            
+            dispatch(setEvents(eventCollection));
+        });
+    };
+};

@@ -4,6 +4,7 @@ import eventsReducer from '../reducers/events';
 import filtersReducer from '../reducers/filters';
 import holidaysReducer from '../reducers/holidays';
 import viewsReducer from '../reducers/views';
+import authReducer from '../reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
@@ -13,7 +14,8 @@ export default () => {
             events: eventsReducer,
             filters: filtersReducer,
             holidays: holidaysReducer,
-            views: viewsReducer
+            views: viewsReducer,
+            auth: authReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     );
