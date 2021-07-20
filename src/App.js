@@ -1,47 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import AppRouter, { history } from './routers/AppRouter';
-import configureStore from './store/configureStore';
-import { startSetEvents } from './actions/events';
-import { login, logout } from './actions/auth';
-import { setTodayDate } from './actions/views'
-import 'normalize.css/normalize.css';
-import './styles/styles.scss'
-import { firebase } from './firebase/firebase';
-import LoadingPage from './components/LoadingPage';
+import logo from './logo.svg';
+import './App.css';
 
-const store = configureStore();
-
-const jsx = (
-    <Provider store={store}>
-        <AppRouter />
-    </Provider>
-)
-
-let hasRendered = false;
-const renderApp = () => {
-    if (!hasRendered) {
-        ReactDOM.render(jsx, document.getElementById('app'));
-        hasRendered = true;
-    }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
-ReactDOM.render(<LoadingPage />, document.getElementById('app'));
-
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        store.dispatch(login(user.uid));
-        store.dispatch(setTodayDate());
-        store.dispatch(startSetEvents()).then(() => {
-            renderApp();
-            if (history.location.pathname === '/') {
-                history.push('/calendar')
-            }
-        });
-    } else {
-        store.dispatch(logout());
-        renderApp();
-        history.push('/');
-    }
-});
+export default App;
