@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { MoreTime } from '../svg/Icons';
 import { startLogout } from '../actions/auth';
 
 export const Header = ({ startLogout }) => (
@@ -11,7 +12,9 @@ export const Header = ({ startLogout }) => (
                     <h1>Calendar App</h1>
                 </Link>
                 <button className="button button--link" onClick={startLogout}>Logout</button>
-                <Link to="/create">Add Event</Link>
+                <Link to="/create">
+                    <MoreTime />
+                </Link>
             </div>
         </div>
     </header>

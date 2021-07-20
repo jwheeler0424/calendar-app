@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { CalendarToday } from '@material-ui/icons'
+import { CalendarToday } from '../svg/Icons';
 import { setTodayDate } from '../actions/views';
 
 export const TodaySelector = (props) => {

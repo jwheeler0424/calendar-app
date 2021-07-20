@@ -1,7 +1,7 @@
 import React from 'react';
-import { ExpandMore } from '@material-ui/icons'
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { ExpandMore } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
 
 export class MonthSelector extends React.Component {

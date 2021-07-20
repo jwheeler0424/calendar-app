@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { NavigateBefore, NavigateNext, ExpandMore } from '@material-ui/icons';
+import { NavigateBefore, NavigateNext, ExpandMore } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
 
 export class YearSelector extends React.Component { 

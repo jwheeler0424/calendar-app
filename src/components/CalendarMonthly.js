@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { NavigateBefore, NavigateNext } from '@material-ui/icons';
+import { NavigateBefore, NavigateNext } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
 import CalendarDay from './CalendarDay';
 import WeekDayTitle from './WeekDayTitle';
