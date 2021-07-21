@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AddEventPage from './components/AddEventPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AddEventPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
