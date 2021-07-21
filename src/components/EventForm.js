@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
+import { DatePicker, TimePicker } from 'antd';
 import SelectColor from './SelectColor';
 import 'react-dates/lib/css/_datepicker.css';
+import 'antd/dist/antd.css';
 
 const EventForm = (props) => {
     const [title, setTitle] = useState(props.event ? props.event.title : '');
-    const [startDate, setStartDate] = useState(props.event ? props.event.startDate : moment().startOf('day'));
+    const [startDate, setStartDate] = useState(props.event ? props.event.startDate : moment());
     const [startFocused, setStartFocused] = useState(false);
     const [endDate, setEndDate] = useState(props.event ? props.event.endDate : moment().endOf('day'));
     const [endFocused, setEndFocused] = useState(false);
@@ -24,8 +26,10 @@ const EventForm = (props) => {
             </div>
             <div>
                 <span>Start</span>
-                <input type="time" name="start-time" required />
-                <SingleDatePicker 
+                {/* <input type="time" name="start-time" required /> */}
+                <TimePicker defaultValue={startDate} showNow={false} />
+                <DatePicker defaultValue={startDate} format={"MMM Do"} showToday={false} />
+                {/* <SingleDatePicker 
                     date={startDate}
                     onDateChange={(date) => setStartDate(date)}
                     focused={startFocused}
@@ -33,7 +37,7 @@ const EventForm = (props) => {
                     numberOfMonths={1}
                     isOutsideRange={() => false}
                     id="start-date"
-                />
+                /> */}
             </div>
             <div>
                 <span>End</span>
