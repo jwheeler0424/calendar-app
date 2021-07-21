@@ -19,7 +19,7 @@ const EventForm = () => {
             </div>
             <div>
                 <span>Start</span>
-                <input type="time" name="end-time" required />
+                <input type="time" name="start-time" required />
                 <SingleDatePicker 
                     date={startDate}
                     onDateChange={(date) => setStartDate(date)}
