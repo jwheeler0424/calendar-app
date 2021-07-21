@@ -4,18 +4,23 @@ import { SingleDatePicker } from 'react-dates';
 import SelectColor from './SelectColor';
 import 'react-dates/lib/css/_datepicker.css';
 
-const EventForm = () => {
-    const [startDate, setStartDate] = useState(moment().startOf('day'));
+const EventForm = (props) => {
+    const [title, setTitle] = useState(props.event ? props.event.title : '');
+    const [startDate, setStartDate] = useState(props.event ? props.event.startDate : moment().startOf('day'));
     const [startFocused, setStartFocused] = useState(false);
-    const [endDate, setEndDate] = useState(moment().endOf('day'));
+    const [endDate, setEndDate] = useState(props.event ? props.event.endDate : moment().endOf('day'));
     const [endFocused, setEndFocused] = useState(false);
+    const onTitleChange = (e) => {
+        const title = e.target.value;
+        setTitle(title);
+    }
     const onSubmit = (e) => {
         e.preventDefault();
     }
     return (
         <form onSubmit={onSubmit}>
             <div>
-                <input type="text" name="event-title" placeholder="Title" required />
+                <input type="text" name="event-title" value={title} onChange={onTitleChange} placeholder="Title" required />
             </div>
             <div>
                 <span>Start</span>
