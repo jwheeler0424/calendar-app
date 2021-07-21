@@ -1,8 +1,14 @@
-import React from 'react';
-// import moment from 'moment';
+import React, { useState } from 'react';
+import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
 import SelectColor from './SelectColor';
+import 'react-dates/lib/css/_datepicker.css';
 
 const EventForm = () => {
+    const [startDate, setStartDate] = useState(moment().startOf('day'));
+    const [startFocused, setStartFocused] = useState(false);
+    const [endDate, setEndDate] = useState(moment().endOf('day'));
+    const [endFocused, setEndFocused] = useState(false);
     const onSubmit = (e) => {
         e.preventDefault();
     }
@@ -13,13 +19,29 @@ const EventForm = () => {
             </div>
             <div>
                 <span>Start</span>
-                <input type="time" name="start-time" required />
-                <input type="date" name="start-date" required />
+                <input type="time" name="end-time" required />
+                <SingleDatePicker 
+                    date={startDate}
+                    onDateChange={(date) => setStartDate(date)}
+                    focused={startFocused}
+                    onFocusChange={() => setStartFocused(!startFocused)}
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
+                    id="start-date"
+                />
             </div>
             <div>
                 <span>End</span>
                 <input type="time" name="end-time" required />
-                <input type="date" name="end-date" required />
+                <SingleDatePicker 
+                    date={endDate}
+                    onDateChange={(date) => setEndDate(date)}
+                    focused={endFocused}
+                    onFocusChange={() => setEndFocused(!startFocused)}
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
+                    id="end-date"
+                />
             </div>
             <div>
                 <span>Event Color</span>
