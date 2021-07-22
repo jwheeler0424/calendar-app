@@ -1,25 +1,25 @@
-.color-selector__wrapper {
+.color-picker__wrapper {
     position: relative;
 }
-.color-selector__selected {
+.color-picker__selected {
     position: relative;
 }
-.color-selector__title {
+.color-picker__title {
     display: block;
     height: 24px;
     width: 24px;
     position: relative;
 }
-.color-selector__title::before {
+.color-picker__title::before {
     content: ' ';
 }
 
-.color-selector__select div {
+.color-picker__select div {
     display: block;
     height: 24px;
     width: 24px;
     position: relative;
 }
-.color-selector__select div::before {
+.color-picker__select div::before {
     content: ' ';
 }

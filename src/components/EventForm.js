@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { DatePicker, TimePicker } from 'antd';
-import ColorSelector from './ColorSelector';
+import AutocompleteLocation from './AutocompleteLocation';
+import ColorPicker from './ColorPicker';
 import 'react-dates/lib/css/_datepicker.css';
 import 'antd/dist/antd.css';
 
 const EventForm = (props) => {
+    const colorList = [{ 
+        title: 'banana',
+        value: 'rgb(245, 192, 58)' 
+    }, {
+        title: 'basil',
+        value: 'rgb(17, 129, 71)'
+    }, {
+        title: 'blueberry',
+        value: 'rgb(66, 78, 178)'
+    }, {
+        title: 'flamingo',
+        value: 'rgb(228, 124, 116)'
+    }, {
+        title: 'grape',
+        value: 'rgb(142, 26, 167)'
+    }, {
+        title: 'graphite',
+        value: 'rgb(97, 97, 97)'
+    }, {
+        title: 'lavendar',
+        value: 'rgb(122, 132, 201)'
+    }, {
+        title: 'peacock',
+        value: 'rgb(121, 185, 225)'
+    }, {
+        title: 'sage',
+        value: 'rgb(55, 183, 124)'
+    }, {
+        title: 'tangerine',
+        value: 'rgb(242, 81, 37)'
+    }, {
+        title: 'tomato',
+        value: 'rgb(211, 0, 6)'
+    }];
     const getRoundedMinute = () => {
         let minute = moment().minute();
         minute = Math.ceil(minute / 5) * 5;
@@ -47,6 +82,7 @@ const EventForm = (props) => {
                     value={title}
                     onChange={onTitleChange}
                     placeholder="Title"
+                    title="Event Title"
                     required 
                 />
             </div>
@@ -88,7 +124,11 @@ const EventForm = (props) => {
             </div>
             <div>
                 <span>Event Color</span>
-                <ColorSelector color={color} onColorChange={onColorChange} />
+                <ColorPicker
+                    color={color}
+                    colorList={colorList}
+                    onColorChange={onColorChange}
+                />
             </div>
             <div>
                 <input type="radio" name="event-duration" id="event-duration-hourly" value="time" defaultChecked={true} />
@@ -97,7 +137,7 @@ const EventForm = (props) => {
                 <label htmlFor="event-duration-daily" title="Select All Day Duration">All Day</label>
             </div>
             <div>
-                <input type="text" name="event-location" placeholder="Location" title="Event Location" />
+                <AutocompleteLocation />
             </div>
             <button title="Save Event">Save Event</button>
         </form>

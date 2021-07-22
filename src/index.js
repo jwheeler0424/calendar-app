@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'react-dates/initialize';
-import './styles/styles.scss'
+// import './google-maps/initialize';
+import './styles/styles.scss';
 import AddEventPage from './components/AddEventPage';
 
 ReactDOM.render(
