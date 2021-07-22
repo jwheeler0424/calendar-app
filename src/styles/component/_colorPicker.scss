@@ -1,0 +1,25 @@
+.color-selector__wrapper {
+    position: relative;
+}
+.color-selector__selected {
+    position: relative;
+}
+.color-selector__title {
+    display: block;
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+.color-selector__title::before {
+    content: ' ';
+}
+
+.color-selector__select div {
+    display: block;
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+.color-selector__select div::before {
+    content: ' ';
+}
