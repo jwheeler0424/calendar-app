@@ -1,10 +1,24 @@
-import React from 'react';
-// import moment from 'moment';
+import React, { useState } from 'react';
 import EventForm from './EventForm';
+import EventFormModal from './EventFormModal';
 
 const AddEventPage = () => {
+    const [messages, setMessages] = useState([])
+
+    const onSetMessages = (messages) => {
+        setMessages(messages);
+    };
+
+    const handleClearMessages = () => setMessages([]);
+
     return (
-        <EventForm />
+        <> 
+            <EventForm onSetMessages={onSetMessages} />
+            <EventFormModal
+                messages={messages}
+                handleClearMessages={handleClearMessages}
+            />
+        </>
     );
 }
 

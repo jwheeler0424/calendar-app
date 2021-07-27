@@ -1,46 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import moment from 'moment';
 import { DatePicker, TimePicker } from 'antd';
-import AutocompleteLocation from './AutocompleteLocation';
+import eventsReducer from '../reducers/events';
 import ColorPicker from './ColorPicker';
+import LocationInput from './LocationInput';
+import { validateEventForm } from '../utils/formValidators';
 import 'react-dates/lib/css/_datepicker.css';
 import 'antd/dist/antd.css';
 
-const EventForm = (props) => {
-    const colorList = [{ 
-        title: 'banana',
-        value: 'rgb(245, 192, 58)' 
-    }, {
-        title: 'basil',
-        value: 'rgb(17, 129, 71)'
-    }, {
-        title: 'blueberry',
-        value: 'rgb(66, 78, 178)'
-    }, {
-        title: 'flamingo',
-        value: 'rgb(228, 124, 116)'
-    }, {
-        title: 'grape',
-        value: 'rgb(142, 26, 167)'
-    }, {
-        title: 'graphite',
-        value: 'rgb(97, 97, 97)'
-    }, {
-        title: 'lavendar',
-        value: 'rgb(122, 132, 201)'
-    }, {
-        title: 'peacock',
-        value: 'rgb(121, 185, 225)'
-    }, {
-        title: 'sage',
-        value: 'rgb(55, 183, 124)'
-    }, {
-        title: 'tangerine',
-        value: 'rgb(242, 81, 37)'
-    }, {
-        title: 'tomato',
-        value: 'rgb(211, 0, 6)'
-    }];
+const EventForm = (props) => {        
     const getRoundedMinute = () => {
         let minute = moment().minute();
         minute = Math.ceil(minute / 5) * 5;
@@ -49,99 +17,186 @@ const EventForm = (props) => {
         }
         return minute;
     }
+
+    const [events, dispatch] = useReducer(eventsReducer, []);
+
     const [title, setTitle] = useState(props.event ? props.event.title : '');
     const [startDate, setStartDate] = useState(
-        props.event ? props.event.startDate : moment().minute(getRoundedMinute()).startOf('minute')
+        props.event ? moment(props.event.startDate) : moment().minute(getRoundedMinute()).startOf('minute')
     );
     const [endDate, setEndDate] = useState(
-        props.event ? props.event.endDate : moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour')
+        props.event ? moment(props.event.endDate) : moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour')
     );
     const [color, setColor] = useState(
         props.event ? props.event.color : 'peacock'
     );
-    const disabledSeconds = [];
-    for (let i=0; i<60; i++) {
-        disabledSeconds.push(i);
+    const [duration, setDuration] = useState(
+        props.event ? props.event.duration : 'time'
+    );
+    const [location, setLocation] = useState(
+        props.event ? props.event.location : { 
+            description: '',
+            address: '',
+            placeId: '',
+            coordinates: {
+                lat: '',
+                lng: ''
+            }
+        }
+    );
+    const [notes, setNotes] = useState(
+        props.event ? props.event.notes : ''
+    )
+    
+    useEffect(() => {
+        // console.log(events)
+    }, [events]);
+
+    const resetEventForm = () => {
+        setTitle('');
+        setStartDate(moment().minute(getRoundedMinute()).startOf('minute'));
+        setEndDate(moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour'));
+        setColor('peacock');
+        setDuration('time');
+        setLocation({ 
+            description: '',
+            address: '',
+            placeId: '',
+            coordinates: {
+                lat: '',
+                lng: ''
+            }
+        });
+        setNotes('');
     }
-    const onTitleChange = (e) => {
-        const title = e.target.value;
-        setTitle(title);
-    }
-    const onColorChange = (color) => {
-        setColor(color);
-    };
+    
     const onSubmit = (e) => {
         e.preventDefault();
+        const eventFormMessages = validateEventForm(e);
+
+        if (eventFormMessages.length <= 0) {
+            const event = {
+                title,
+                startDate,
+                endDate,
+                duration,
+                color,
+                location,
+                notes
+            };
+            dispatch({
+                type: 'ADD_EVENT',
+                event
+            });
+            // Save Event
+            resetEventForm();
+            // Navigate back to calendar
+        } else {
+            props.onSetMessages(eventFormMessages);
+        }
     }
+    
     return (
         <form onSubmit={onSubmit}>
+            <div id="map"></div>
             <div>
+                <label>Title</label>
                 <input
                     type="text"
                     name="event-title"
+                    id="event-title"
                     value={title}
-                    onChange={onTitleChange}
+                    onChange={e => setTitle(e.target.value)}
                     placeholder="Title"
                     title="Event Title"
-                    required 
                 />
             </div>
             <div>
-                <span>Start</span>
+                <label>Start</label>
                 <TimePicker
                     defaultValue={startDate}
                     value={startDate}
                     showNow={false}
                     format="h:mm a"
-                    hideDisabledOptions={true}
                     minuteStep={5}
                     onChange={time => setStartDate(time)}
+                    id="event-start-time"
                 />
                 <DatePicker
                     defaultValue={startDate}
+                    value={startDate}
                     format={"MMM Do"}
                     showToday={false}
                     onChange={date => setStartDate(date)}
+                    id="event-start-date"
                 />
             </div>
             <div>
-                <span>End</span>
+                <label>End</label>
                 <TimePicker
                     defaultValue={endDate}
                     value={endDate}
                     showNow={false}
                     format="h:mm a"
-                    hideDisabledOptions={true}
                     minuteStep={5}
                     onChange={time => setEndDate(time)}
+                    id="event-end-time"
                 />
                 <DatePicker
                     defaultValue={startDate}
+                    value={endDate}
                     format={"MMM Do"}
                     showToday={false}
                     onChange={date => setEndDate(date)}
+                    id="event-end-date"
                 />
             </div>
             <div>
-                <span>Event Color</span>
+                <label>Color</label>
                 <ColorPicker
                     color={color}
-                    colorList={colorList}
-                    onColorChange={onColorChange}
+                    onColorChange={color => setColor(color)}
                 />
             </div>
             <div>
-                <input type="radio" name="event-duration" id="event-duration-hourly" value="time" defaultChecked={true} />
+                <input
+                    type="radio"
+                    name="event-duration"
+                    id="event-duration-hourly"
+                    value="time"
+                    checked={duration === 'time' ? true : false}
+                    onChange={e => setDuration(e.target.value)} 
+                />
                 <label htmlFor="event-duration-hourly" title="Select Hourly Duration">Time</label>
-                <input type="radio" name="event-duration" id="event-duration-daily" value="day" />
+                <input
+                    type="radio"
+                    name="event-duration"
+                    id="event-duration-daily"
+                    value="day"
+                    checked={duration === 'day' ? true : false}
+                    onChange={e => setDuration(e.target.value)} 
+                />
                 <label htmlFor="event-duration-daily" title="Select All Day Duration">All Day</label>
             </div>
             <div>
-                <AutocompleteLocation />
+                <label>Location</label>
+                <LocationInput
+                    location={location} 
+                    onLocationChange={location => setLocation(location)}
+                />
+            </div>
+            <div>
+                <label>Notes</label>
+                <textarea
+                    name="event-notes"
+                    id="event-notes"
+                    value={notes}
+                    onChange={e => setNotes(e.target.value)}
+                ></textarea>
             </div>
             <button title="Save Event">Save Event</button>
         </form>
     );
 }
 
-export default EventForm;
+export { EventForm as default };
