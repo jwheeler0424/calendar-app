@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EventFormModal correctly 1`] = `
+<Modal
+  ariaHideApp={false}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="modal"
+  closeTimeoutMS={200}
+  contentElement={[Function]}
+  contentLabel="Error!"
+  isOpen={true}
+  overlayElement={[Function]}
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  preventScroll={false}
+  role="dialog"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+>
+  <h3
+    className="modal__title"
+  >
+    Error!
+  </h3>
+  <p
+    className="modal__body"
+  >
+    The following errors occured on Event submission:
+  </p>
+  <ul
+    className="modal__list"
+  >
+    <li
+      key="0"
+    >
+      Please enter a title for the event.
+    </li>
+  </ul>
+  <button
+    className="button"
+  >
+    Okay
+  </button>
+</Modal>
+`;

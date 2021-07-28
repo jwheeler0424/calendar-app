@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ColorPicker correctly 1`] = `
+<div
+  className="color-picker__wrapper"
+>
+  <div
+    className="color-picker__selected"
+    onClick={[Function]}
+    title="Select Event Color"
+  >
+    <span
+      className="color-picker__title"
+      style={
+        Object {
+          "background": "rgb(121, 185, 225)",
+        }
+      }
+    />
+    <ExpandMore
+      className="material-icons"
+    />
+  </div>
+  <div
+    className="color-picker__selector"
+  >
+    <div
+      className="color-picker__select"
+    >
+      <div
+        data-title="banana"
+        data-value="rgb(245, 192, 58)"
+        key="banana"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(245, 192, 58)",
+          }
+        }
+        title="Banana"
+      />
+      <div
+        data-title="basil"
+        data-value="rgb(17, 129, 71)"
+        key="basil"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(17, 129, 71)",
+          }
+        }
+        title="Basil"
+      />
+      <div
+        data-title="blueberry"
+        data-value="rgb(66, 78, 178)"
+        key="blueberry"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(66, 78, 178)",
+          }
+        }
+        title="Blueberry"
+      />
+      <div
+        data-title="flamingo"
+        data-value="rgb(228, 124, 116)"
+        key="flamingo"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(228, 124, 116)",
+          }
+        }
+        title="Flamingo"
+      />
+      <div
+        data-title="grape"
+        data-value="rgb(142, 26, 167)"
+        key="grape"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(142, 26, 167)",
+          }
+        }
+        title="Grape"
+      />
+      <div
+        data-title="graphite"
+        data-value="rgb(97, 97, 97)"
+        key="graphite"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(97, 97, 97)",
+          }
+        }
+        title="Graphite"
+      />
+      <div
+        data-title="lavendar"
+        data-value="rgb(122, 132, 201)"
+        key="lavendar"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(122, 132, 201)",
+          }
+        }
+        title="Lavendar"
+      />
+      <div
+        data-title="peacock"
+        data-value="rgb(121, 185, 225)"
+        key="peacock"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(121, 185, 225)",
+          }
+        }
+        title="Peacock"
+      />
+      <div
+        data-title="sage"
+        data-value="rgb(55, 183, 124)"
+        key="sage"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(55, 183, 124)",
+          }
+        }
+        title="Sage"
+      />
+      <div
+        data-title="tangerine"
+        data-value="rgb(242, 81, 37)"
+        key="tangerine"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(242, 81, 37)",
+          }
+        }
+        title="Tangerine"
+      />
+      <div
+        data-title="tomato"
+        data-value="rgb(211, 0, 6)"
+        key="tomato"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "rgb(211, 0, 6)",
+          }
+        }
+        title="Tomato"
+      />
+    </div>
+  </div>
+</div>
+`;

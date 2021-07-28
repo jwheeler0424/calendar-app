@@ -13,7 +13,7 @@ const LocationInput = (props) => {
         }
     );
     const [description, setDescription] = useState(
-        location ? props.location.description : ''
+        location ? location.description : ''
     );
     
     let map, autocomplete

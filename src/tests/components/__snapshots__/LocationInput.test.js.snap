@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render LocationInput correctly 1`] = `
+<Fragment>
+  <input
+    id="location-autocomplete"
+    onChange={[Function]}
+    placeholder="location"
+    type="text"
+    value=""
+  />
+</Fragment>
+`;

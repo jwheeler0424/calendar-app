@@ -14,7 +14,7 @@ const ColorPicker = (props) => {
     }, [props.color])
 
     const [colorMenuOpen, setColorMenuOpen] = useState('');
-    const toggleColorSelectMenu = () => {
+    const toggleColorSelectMenu = (e) => {
         colorMenuOpen === ' open' ? setColorMenuOpen('') : setColorMenuOpen(' open');
     }
     const selectColor = (e) => {

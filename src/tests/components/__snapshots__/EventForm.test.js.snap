@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EventForm correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    id="map"
+  />
+  <div>
+    <label>
+      Title
+    </label>
+    <input
+      id="event-title"
+      name="event-title"
+      onChange={[Function]}
+      placeholder="Title"
+      title="Event Title"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label>
+      Start
+    </label>
+    <TimePicker
+      defaultValue={"1970-01-01T00:00:00.000Z"}
+      format="h:mm a"
+      id="event-start-time"
+      minuteStep={5}
+      onChange={[Function]}
+      showNow={false}
+      value={"1970-01-01T00:00:00.000Z"}
+    />
+    <Picker
+      defaultValue={"1970-01-01T00:00:00.000Z"}
+      format="MMM Do"
+      id="event-start-date"
+      onChange={[Function]}
+      showToday={false}
+      value={"1970-01-01T00:00:00.000Z"}
+    />
+  </div>
+  <div>
+    <label>
+      End
+    </label>
+    <TimePicker
+      defaultValue={"1970-01-01T00:00:00.000Z"}
+      format="h:mm a"
+      id="event-end-time"
+      minuteStep={5}
+      onChange={[Function]}
+      showNow={false}
+      value={"1970-01-01T00:00:00.000Z"}
+    />
+    <Picker
+      defaultValue={"1970-01-01T00:00:00.000Z"}
+      format="MMM Do"
+      id="event-end-date"
+      onChange={[Function]}
+      showToday={false}
+      value={"1970-01-01T00:00:00.000Z"}
+    />
+  </div>
+  <div>
+    <label>
+      Color
+    </label>
+    <ColorPicker
+      color="peacock"
+      onColorChange={[Function]}
+    />
+  </div>
+  <div>
+    <input
+      checked={true}
+      id="event-duration-hourly"
+      name="event-duration"
+      onChange={[Function]}
+      type="radio"
+      value="time"
+    />
+    <label
+      htmlFor="event-duration-hourly"
+      title="Select Hourly Duration"
+    >
+      Time
+    </label>
+    <input
+      checked={false}
+      id="event-duration-daily"
+      name="event-duration"
+      onChange={[Function]}
+      type="radio"
+      value="day"
+    />
+    <label
+      htmlFor="event-duration-daily"
+      title="Select All Day Duration"
+    >
+      All Day
+    </label>
+  </div>
+  <div>
+    <label>
+      Location
+    </label>
+    <LocationInput
+      location={Object {}}
+      onLocationChange={[Function]}
+    />
+  </div>
+  <div>
+    <label>
+      Notes
+    </label>
+    <textarea
+      id="event-notes"
+      name="event-notes"
+      onChange={[Function]}
+      value=""
+    />
+  </div>
+  <button
+    title="Save Event"
+  >
+    Save Event
+  </button>
+</form>
+`;
+
+exports[`should render EventForm with expense data correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    id="map"
+  />
+  <div>
+    <label>
+      Title
+    </label>
+    <input
+      id="event-title"
+      name="event-title"
+      onChange={[Function]}
+      placeholder="Title"
+      title="Event Title"
+      type="text"
+      value="Meeting"
+    />
+  </div>
+  <div>
+    <label>
+      Start
+    </label>
+    <TimePicker
+      defaultValue={"1973-11-30T00:01:18.000Z"}
+      format="h:mm a"
+      id="event-start-time"
+      minuteStep={5}
+      onChange={[Function]}
+      showNow={false}
+      value={"1973-11-30T00:01:18.000Z"}
+    />
+    <Picker
+      defaultValue={"1973-11-30T00:01:18.000Z"}
+      format="MMM Do"
+      id="event-start-date"
+      onChange={[Function]}
+      showToday={false}
+      value={"1973-11-30T00:01:18.000Z"}
+    />
+  </div>
+  <div>
+    <label>
+      End
+    </label>
+    <TimePicker
+      defaultValue={"1973-11-30T00:01:38.000Z"}
+      format="h:mm a"
+      id="event-end-time"
+      minuteStep={5}
+      onChange={[Function]}
+      showNow={false}
+      value={"1973-11-30T00:01:38.000Z"}
+    />
+    <Picker
+      defaultValue={"1973-11-30T00:01:38.000Z"}
+      format="MMM Do"
+      id="event-end-date"
+      onChange={[Function]}
+      showToday={false}
+      value={"1973-11-30T00:01:38.000Z"}
+    />
+  </div>
+  <div>
+    <label>
+      Color
+    </label>
+    <ColorPicker
+      color="peacock"
+      onColorChange={[Function]}
+    />
+  </div>
+  <div>
+    <input
+      checked={true}
+      id="event-duration-hourly"
+      name="event-duration"
+      onChange={[Function]}
+      type="radio"
+      value="time"
+    />
+    <label
+      htmlFor="event-duration-hourly"
+      title="Select Hourly Duration"
+    >
+      Time
+    </label>
+    <input
+      checked={false}
+      id="event-duration-daily"
+      name="event-duration"
+      onChange={[Function]}
+      type="radio"
+      value="day"
+    />
+    <label
+      htmlFor="event-duration-daily"
+      title="Select All Day Duration"
+    >
+      All Day
+    </label>
+  </div>
+  <div>
+    <label>
+      Location
+    </label>
+    <LocationInput
+      location={Object {}}
+      onLocationChange={[Function]}
+    />
+  </div>
+  <div>
+    <label>
+      Notes
+    </label>
+    <textarea
+      id="event-notes"
+      name="event-notes"
+      onChange={[Function]}
+      value=""
+    />
+  </div>
+  <button
+    title="Save Event"
+  >
+    Save Event
+  </button>
+</form>
+`;

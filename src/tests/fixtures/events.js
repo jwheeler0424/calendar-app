@@ -1,10 +1,19 @@
 import moment from 'moment';
 
 const events = [{
+    id: '0',
+    title: '',
+    startDate: 0,
+    endDate: 0,
+    duration: 'time',
+    color: 'peacock',
+    location: {},
+    notes: ''
+}, {
     id: '1',
     title: 'Meeting',
-    startDate: moment().subtract(4, 'days').valueOf(),
-    endDate: moment().subtract(4, 'days').add(1, 'hours').valueOf(),
+    startDate: 123465678000,
+    endDate: 123465698000,
     duration: 'time',
     color: 'peacock',
     location: {},
@@ -12,8 +21,8 @@ const events = [{
 }, {
     id: '2',
     title: 'Drive',
-    startDate: moment().add(4, 'days').valueOf(),
-    endDate: moment().add(5, 'days').valueOf(),
+    startDate: 123765678000,
+    endDate: 123765698000,
     duration: 'day',
     color: 'basil',
     location: {},
@@ -21,8 +30,8 @@ const events = [{
 }, {
     id: '3',
     title: 'Eat',
-    startDate: moment().valueOf(),
-    endDate: moment().add(1, 'hours').valueOf(),
+    startDate: 6543456345754,
+    endDate: 654345634575400,
     duration: 'time',
     color: 'flamingo',
     location: {},

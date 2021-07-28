@@ -2,6 +2,11 @@ import moment from 'moment';
 import events from '../fixtures/events';
 import eventsReducer from '../../reducers/events';
 
+test('should setup default event values', () => {
+    const state = eventsReducer(undefined, { type: '@@INIT' });
+    expect(state).toEqual([]);
+});
+
 test('should add event', () => {
     const event = {
         id: '4',
@@ -53,7 +58,7 @@ test('should remove event by id', () => {
         id: events[1].id
     };
     const state = eventsReducer(events, action);
-    expect(state).toEqual([events[0], events[2]]);
+    expect(state).toEqual([events[0], events[2], events[3]]);
 });
 
 test('should not remove event if id not found', () => {
