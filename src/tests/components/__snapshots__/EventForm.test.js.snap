@@ -48,21 +48,21 @@ exports[`should render EventForm correctly 1`] = `
       End
     </label>
     <TimePicker
-      defaultValue={"1970-01-01T00:00:00.000Z"}
+      defaultValue={"1970-01-01T01:00:00.000Z"}
       format="h:mm a"
       id="event-end-time"
       minuteStep={5}
       onChange={[Function]}
       showNow={false}
-      value={"1970-01-01T00:00:00.000Z"}
+      value={"1970-01-01T01:00:00.000Z"}
     />
     <Picker
-      defaultValue={"1970-01-01T00:00:00.000Z"}
+      defaultValue={"1970-01-01T01:00:00.000Z"}
       format="MMM Do"
       id="event-end-date"
       onChange={[Function]}
       showToday={false}
-      value={"1970-01-01T00:00:00.000Z"}
+      value={"1970-01-01T01:00:00.000Z"}
     />
   </div>
   <div>
@@ -109,7 +109,17 @@ exports[`should render EventForm correctly 1`] = `
       Location
     </label>
     <LocationInput
-      location={Object {}}
+      location={
+        Object {
+          "address": "",
+          "coordinates": Object {
+            "lat": "",
+            "lng": "",
+          },
+          "description": "",
+          "placeId": "",
+        }
+      }
       onLocationChange={[Function]}
     />
   </div>
@@ -158,21 +168,21 @@ exports[`should render EventForm with expense data correctly 1`] = `
       Start
     </label>
     <TimePicker
-      defaultValue={"1973-11-30T00:01:18.000Z"}
+      defaultValue={"2022-01-01T00:00:00.000Z"}
       format="h:mm a"
       id="event-start-time"
       minuteStep={5}
       onChange={[Function]}
       showNow={false}
-      value={"1973-11-30T00:01:18.000Z"}
+      value={"2022-01-01T00:00:00.000Z"}
     />
     <Picker
-      defaultValue={"1973-11-30T00:01:18.000Z"}
+      defaultValue={"2022-01-01T00:00:00.000Z"}
       format="MMM Do"
       id="event-start-date"
       onChange={[Function]}
       showToday={false}
-      value={"1973-11-30T00:01:18.000Z"}
+      value={"2022-01-01T00:00:00.000Z"}
     />
   </div>
   <div>
@@ -180,21 +190,21 @@ exports[`should render EventForm with expense data correctly 1`] = `
       End
     </label>
     <TimePicker
-      defaultValue={"1973-11-30T00:01:38.000Z"}
+      defaultValue={"2022-01-01T01:00:00.000Z"}
       format="h:mm a"
       id="event-end-time"
       minuteStep={5}
       onChange={[Function]}
       showNow={false}
-      value={"1973-11-30T00:01:38.000Z"}
+      value={"2022-01-01T01:00:00.000Z"}
     />
     <Picker
-      defaultValue={"1973-11-30T00:01:38.000Z"}
+      defaultValue={"2022-01-01T01:00:00.000Z"}
       format="MMM Do"
       id="event-end-date"
       onChange={[Function]}
       showToday={false}
-      value={"1973-11-30T00:01:38.000Z"}
+      value={"2022-01-01T01:00:00.000Z"}
     />
   </div>
   <div>
@@ -241,7 +251,17 @@ exports[`should render EventForm with expense data correctly 1`] = `
       Location
     </label>
     <LocationInput
-      location={Object {}}
+      location={
+        Object {
+          "address": "",
+          "coordinates": Object {
+            "lat": "",
+            "lng": "",
+          },
+          "description": "",
+          "placeId": "",
+        }
+      }
       onLocationChange={[Function]}
     />
   </div>

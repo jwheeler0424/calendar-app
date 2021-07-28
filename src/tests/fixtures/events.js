@@ -3,38 +3,70 @@ import moment from 'moment';
 const events = [{
     id: '0',
     title: '',
-    startDate: 0,
-    endDate: 0,
+    startDate: moment().valueOf(),
+    endDate: moment().add(1, 'hour').valueOf(),
     duration: 'time',
     color: 'peacock',
-    location: {},
+    location: { 
+        description: '',
+        address: '',
+        placeId: '',
+        coordinates: {
+            lat: '',
+            lng: ''
+        }
+    },
     notes: ''
 }, {
     id: '1',
     title: 'Meeting',
-    startDate: 123465678000,
-    endDate: 123465698000,
+    startDate: moment().add(52, 'years').valueOf(),
+    endDate: moment().add(52, 'years').add(1, 'hours').valueOf(),
     duration: 'time',
     color: 'peacock',
-    location: {},
+    location: { 
+        description: '',
+        address: '',
+        placeId: '',
+        coordinates: {
+            lat: '',
+            lng: ''
+        }
+    },
     notes: ''
 }, {
     id: '2',
     title: 'Drive',
-    startDate: 123765678000,
-    endDate: 123765698000,
+    startDate: moment().add(50, 'years').valueOf(),
+    endDate: moment().add(50, 'years').add(1, 'hours').valueOf(),
     duration: 'day',
     color: 'basil',
-    location: {},
+    location: { 
+        description: '',
+        address: '',
+        placeId: '',
+        coordinates: {
+            lat: '',
+            lng: ''
+        }
+    },
     notes: ''
 }, {
     id: '3',
     title: 'Eat',
-    startDate: 6543456345754,
-    endDate: 654345634575400,
+    startDate: moment().add(51, 'years').valueOf(),
+    endDate: moment().add(51, 'years').add(1, 'hours').valueOf(),
     duration: 'time',
     color: 'flamingo',
-    location: {},
+    location: { 
+        description: '',
+        address: '',
+        placeId: '',
+        coordinates: {
+            lat: '',
+            lng: ''
+        }
+    },
     notes: ''
 }];
 
