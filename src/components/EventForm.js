@@ -4,19 +4,11 @@ import { DatePicker, TimePicker } from 'antd';
 import ColorPicker from './ColorPicker';
 import LocationInput from './LocationInput';
 import { validateEventForm } from '../utils/formValidators';
+import getRoundedMinute from '../utils/getRoundedMinute';
 import 'react-dates/lib/css/_datepicker.css';
 import 'antd/dist/antd.css';
 
-const EventForm = (props) => {        
-    const getRoundedMinute = () => {
-        let minute = moment().minute();
-        minute = Math.ceil(minute / 5) * 5;
-        if(minute === 60) {
-            minute = 0;
-        }
-        return minute;
-    }
-
+const EventForm = (props) => {    
     const [title, setTitle] = useState(props.event ? props.event.title : '');
     const [startDate, setStartDate] = useState(
         props.event ? props.event.startDate : moment().minute(getRoundedMinute()).startOf('minute').valueOf()

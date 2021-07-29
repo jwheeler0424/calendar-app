@@ -2,17 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 import EventForm from '../../components/EventForm';
+import getRoundedMinute from '../../utils/getRoundedMinute';
 import events from '../fixtures/events';
-import colorList from '../../colors/colorList';
-
-const getRoundedMinute = () => {
-    let minute = moment().minute();
-    minute = Math.ceil(minute / 5) * 5;
-    if(minute === 60) {
-        minute = 0;
-    }
-    return minute;
-}
+import colors from '../fixtures/colors';
 
 test('should render EventForm correctly', () => {
     const wrapper = shallow(<EventForm event={events[0]} />);
@@ -94,7 +86,7 @@ test('should set new endDate on date change', () => {
 });
 
 test('should set new color on color change', () => {
-    const color = colorList[2];
+    const color = colors[2];
     const wrapper = shallow(<EventForm />);
     wrapper.find('ColorPicker').prop('onColorChange')(color.title);
     expect(wrapper.find('ColorPicker').prop('color')).toBe(color.title);
