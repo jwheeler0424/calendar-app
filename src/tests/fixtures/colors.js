@@ -1,4 +1,4 @@
-const colorList = [{ 
+const colors = [{ 
     title: 'banana',
     value: 'rgb(245, 192, 58)' 
 }, {
@@ -33,4 +33,4 @@ const colorList = [{
     value: 'rgb(211, 0, 6)'
 }];
 
-export { colorList as default };
+export { colors as default };

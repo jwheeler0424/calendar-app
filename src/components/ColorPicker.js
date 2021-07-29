@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { ExpandMore } from '../svg/Icons';
-import colorList from '../colors/colorList';
+import colors from '../tests/fixtures/colors';
 import '../styles/component/_colorPicker.scss';
 
 const ColorPicker = (props) => {
     const [color, setColor] = useState(
-        props.color ? colorList.filter((color) => color.title === props.color)[0] : {
+        props.color ? colors.filter((color) => color.title === props.color)[0] : {
         title: 'peacock',
         value: 'rgb(121, 185, 225)'
     });
     useEffect(() => {
-        setColor(colorList.filter((color) => color.title === props.color)[0]);
+        setColor(colors.filter((color) => color.title === props.color)[0]);
     }, [props.color])
 
     const [colorMenuOpen, setColorMenuOpen] = useState('');
@@ -32,7 +32,7 @@ const ColorPicker = (props) => {
             </div>
             <div className={'color-picker__selector' + colorMenuOpen}>
                 <div className="color-picker__select">
-                    {colorList.map(({ title, value }) => (
+                    {colors.map(({ title, value }) => (
                             <div
                                 key={title}
                                 onClick={selectColor}

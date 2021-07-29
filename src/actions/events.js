@@ -69,7 +69,7 @@ export const startEditEvent = (id, updates) => {
     }
 }
 
-// SET_EVENTS
+// POPULATE_EVENTS
 export const populateEvents = (events) => ({
     type: 'POPULATE_EVENTS',
     events
