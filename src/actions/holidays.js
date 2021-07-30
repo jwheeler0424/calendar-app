@@ -13,7 +13,7 @@ export const startAddHoliday = (holidayData = {}) => {
             name = '',
             month = 0,
             date = 0,
-            display = true
+            display = false
         } = holidayData;
 
         const holiday = { name, month, date, display };
@@ -36,7 +36,7 @@ export const removeHoliday = ({ id } = {}) => ({
 export const startRemoveHoliday = ({ id } = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
-        return database.ref(`users/${uid}/hlidays/${id}`).remove().then((ref) => {
+        return database.ref(`users/${uid}/holidays/${id}`).remove().then((ref) => {
             dispatch(removeHoliday({ id }));
         });
     }
