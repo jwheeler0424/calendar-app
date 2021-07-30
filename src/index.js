@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
+import { login, logout } from './actions/auth';
+import { startPopulateEvents } from './actions/events';
+import { setTodayDate } from './actions/views';
 import reportWebVitals from './reportWebVitals';
 import LoadingPage from './components/LoadingPage';
 import 'react-dates/initialize';
@@ -38,10 +40,13 @@ ReactDOM.render(
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    renderApp();
-    if(history.location.pathname === '/') {
-      history.push('/calendar');
-    }
+    store.dispatch(setTodayDate());
+    store.dispatch(startPopulateEvents()).then(() => {
+        renderApp();
+        if (history.location.pathname === '/') {
+            history.push('/calendar')
+        }
+    });
   } else {
     store.dispatch(logout());
     renderApp();
