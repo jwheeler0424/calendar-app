@@ -20,7 +20,7 @@ const holidaysReducer = (state = holidaysReducerDefaultState, action) => {
                     return holiday;
                 }
             });
-        case 'POPULATE_EVENTS':
+        case 'POPULATE_HOLIDAYS':
             return action.holidays
         default:
             return state;
