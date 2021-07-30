@@ -8,7 +8,7 @@ import authReducer from '../reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 
-export default () => {
+const configureStore = () => {
     const store = createStore(
         combineReducers({
             events: eventsReducer,
@@ -22,3 +22,5 @@ export default () => {
 
     return store;
 }
+
+export { configureStore as default };
