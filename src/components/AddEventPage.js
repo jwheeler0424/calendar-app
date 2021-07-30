@@ -1,11 +1,10 @@
-import React, { useReducer, useState } from 'react';
-import eventsReducer from '../reducers/events';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { startAddEvent } from '../actions/events'
 import EventForm from './EventForm';
 import EventFormModal from './EventFormModal';
 
-const AddEventPage = () => {
-    const [events, dispatch] = useReducer(eventsReducer, []);
-    
+export const AddEventPage = (props) => {
     const [messages, setMessages] = useState([])
 
     const onSetMessages = (messages) => {
@@ -13,7 +12,7 @@ const AddEventPage = () => {
     };
 
     const onSubmit = (event) => {
-        dispatch({
+        props.startAddEvent({
             type: 'ADD_EVENT',
             event
         })
@@ -32,4 +31,8 @@ const AddEventPage = () => {
     );
 }
 
-export default AddEventPage;
+const mapDispatchToProps = (dispatch) => ({
+    startAddEvent: (event) => dispatch(startAddEvent)
+});
+
+export default connect(undefined, mapDispatchToProps)(AddEventPage);

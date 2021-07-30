@@ -1,7 +1,7 @@
-import React, { useHistory } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
@@ -36,7 +36,6 @@ ReactDOM.render(
 );
 
 firebase.auth().onAuthStateChanged((user) => {
-  const history = useHistory();
   if (user) {
     store.dispatch(login(user.uid));
     renderApp();

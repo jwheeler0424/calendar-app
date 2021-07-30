@@ -9,11 +9,6 @@ test('should setup default view values', () => {
     });
 });
 
-test('should set activeCalendar view to daily', () => {
-    const state = viewsReducer(undefined, { type: 'SET_ACTIVE_DAILY' });
-    expect(state.activeCalendar).toBe('daily');
-});
-
 test('should set activeCalendar view to weekly', () => {
     const state = viewsReducer(undefined, { type: 'SET_ACTIVE_WEEKLY' });
     expect(state.activeCalendar).toBe('weekly');

@@ -7,11 +7,6 @@ const viewsReducerDefaultState = {
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {
     switch (action.type) {
-        case 'SET_ACTIVE_DAILY':
-            return {
-                ...state,
-                activeCalendar: 'daily'
-            };
         case 'SET_ACTIVE_WEEKLY':
             return {
                 ...state,

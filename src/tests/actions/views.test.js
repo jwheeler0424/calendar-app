@@ -1,17 +1,11 @@
 import moment from 'moment';
 import {
-    setActiveDaily,
     setActiveWeekly,
     setActiveMonthly,
     setActiveYearly,
     setCurrentDate,
     setTodayDate
 } from '../../actions/views';
-
-test('should generate set active daily action object', () => {
-    const action = setActiveDaily();
-    expect(action).toEqual({ type: 'SET_ACTIVE_DAILY' });
-});
 
 test('should generate set active weekly action object', () => {
     const action = setActiveWeekly();

@@ -1,14 +1,15 @@
-import React, { useHistory } from 'react';
+import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import CalendarDashboardPage from '../components/CalendarDashboard';
+import { createBrowserHistory } from 'history';
+import CalendarDashboardPage from '../components/CalendarDashboardPage';
 import LoginPage from '../components/LoginPage'
-// import Header from '../components/Header';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+const history = createBrowserHistory();
+
 const AppRouter = () => {
-    const history = useHistory();
     return (
         <Router history={history}>
             <div>
@@ -22,4 +23,4 @@ const AppRouter = () => {
     );
 }
 
-export { AppRouter as default };
+export { history, AppRouter as default };

@@ -1,8 +1,3 @@
-// SET_ACTIVE_DAILY
-export const setActiveDaily = () => ({
-    type: 'SET_ACTIVE_DAILY'
-});
-
 // SET_ACTIVE_WEEKLY
 export const setActiveWeekly = () => ({
     type: 'SET_ACTIVE_WEEKLY'
