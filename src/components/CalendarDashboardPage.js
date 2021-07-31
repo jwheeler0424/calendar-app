@@ -1,7 +1,7 @@
 import React from 'react';
 import CalendarSelector from './CalendarSelector';
 import CalendarView from './CalendarView';
-import AddEventPage from './AddEventPage';
+// import AddEventPage from './AddEventPage';
 
 const CalendarDashboardPage = () => {
     return (

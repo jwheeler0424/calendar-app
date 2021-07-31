@@ -1,95 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext, ExpandMore } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
 
-export class YearSelector extends React.Component { 
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            yearMenuOpen: '',
-            viewYear: moment(props.views.currentDate)
-        };
+export const YearSelector = (props) => { 
+    const [yearMenuOpen, setYearMenuOpen] = useState('');
+    const [viewYear, setViewYear] = useState(
+        props.views ? Math.floor(moment(props.views.currentDate).year() / 10) * 10 : Math.floor(moment().year() / 10) * 10
+    );
+    const toggleYearSelectMenu = () => {
+        yearMenuOpen === ' open' ? setYearMenuOpen('') : setYearMenuOpen(' open');
     }
-    toggleYearSelectMenu = () => {
-        const yearMenuOpen = this.state.yearMenuOpen === ' open' ? '' : ' open';
-        this.setState(() => ({ yearMenuOpen }));
-    }
-    closeYearSelectMenu = () => {
-        const yearMenuOpen = '';
-        this.setState(() => ({ yearMenuOpen }));
-    }
-    getYears = () => {
+    const getYears = () => {
         const years = [];
-        const yearNum = this.state.viewYear.year();
 
-        for(let i = yearNum - 4; i <= yearNum + 4; i++) {
-            years.push(i);
+        years.push({
+            type: 'pre',
+            number: viewYear - 1
+        });
+        for(let i = viewYear; i <= viewYear + 10; i++) {
+            years.push({
+                type: 'current',
+                number: i
+            });
         };
+        years.push({
+            type: 'next',
+            number: viewYear + 11
+        });
 
         return years;
     }
-    setPrevYear = () => {
-        const yearNum = this.state.viewYear.year() - 9;
-        const viewYear = this.state.viewYear.year(yearNum);
-        this.setState(() => ({ viewYear }));
+    const setPrevYear = () => {
+        setViewYear(viewYear - 10);
     }
-    setNextYear = () => {
-        const yearNum = this.state.viewYear.year() + 9;
-        const viewYear = this.state.viewYear.year(yearNum);
-        this.setState(() => ({ viewYear }));
+    const setNextYear = () => {
+        setViewYear(viewYear + 10);
     }
-    selectYear = (e) => {
+    const selectYear = (e) => {
         const year = parseInt(e.target.attributes.year.value);
-        const currentDate = moment(this.props.views.currentDate).year(year);
-        this.props.setCurrentDate(currentDate.valueOf());
-        this.closeYearSelectMenu();
+        const currentDate = moment(props.views.currentDate).year(year);
+        props.setCurrentDate(currentDate.valueOf());
+        setYearMenuOpen('');
     }
-    render() {
-        return (
-            <div className="year-selector__wrapper">
-                <div className="year-selector__selected" onClick={this.toggleYearSelectMenu}>
-                    <span className="year-selector__title">{moment(this.props.views.currentDate).year()}</span>
-                    <ExpandMore className="material-icons" />
+    return (
+        <div className="year-selector__wrapper">
+            <div className="year-selector__selected" onClick={toggleYearSelectMenu}>
+                <span className="year-selector__title">{moment(props.views.currentDate).year()}</span>
+                <ExpandMore className="material-icons" />
+            </div>
+            <div className={'year-selector__selector' + yearMenuOpen}>
+                <div className="year-selector__nav">
+                    <button className="year-selector__prev" onClick={setPrevYear}>
+                        <NavigateBefore className="material-icons" />
+                    </button>
+                    <div className="year-selector__range">
+                        {`
+                            ${viewYear}
+                            -
+                            ${viewYear + 10}
+                        `}
+                    </div>
+                    <button className="year-selector__next" onClick={setNextYear}>
+                        <NavigateNext className="material-icons" />
+                    </button>
                 </div>
-                <div className={'year-selector__selector' + this.state.yearMenuOpen}>
-                    <div className="year-selector__nav">
-                        <button className="year-selector__prev" onClick={this.setPrevYear}>
-                            <NavigateBefore className="material-icons" />
-                        </button>
-                        <div className="year-selector__range">
-                            {`
-                                ${this.state.viewYear.year() - 4}
-                                -
-                                ${this.state.viewYear.year() + 4}
-                            `}
-                        </div>
-                        <button className="year-selector__next" onClick={this.setNextYear}>
-                            <NavigateNext className="material-icons" />
-                        </button>
-                    </div>
-                    <div className="year-selector__select">
-                        {
-                            this.getYears().map((year) => {
-                                return (
-                                    <div
-                                        className={year === moment(this.props.views.currentDate).year() ? 'selected' : ''}
-                                        onClick={this.selectYear}
-                                        year={year}
-                                        key={year}
-                                    >
-                                        {year}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
+                <div className="year-selector__select">
+                    {
+                        getYears().map((year, index) => {
+                            let className;
+                            if (year.type !== 'current') {
+                                className = 'pre-next';
+                            } else {
+                                className = year.number === moment(props.views.currentDate).year() ? 'selected' : '';
+                            }
+
+                            return (
+                                <div
+                                    className={className}
+                                    onClick={year.type === 'current' ? selectYear : () => {}}
+                                    year={year.number}
+                                    key={year.number}
+                                >
+                                    {year.number}
+                                </div>
+                            );
+                        })
+                    }
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const mapStateToProps = (state) => ({

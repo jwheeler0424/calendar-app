@@ -4,10 +4,9 @@ import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
 import CalendarDay from './CalendarDay';
-import WeekDayTitle from './WeekDayTitle';
 
-export class CalendarMonthly extends React.Component {
-    getCalendarDays = (calendarDate) => {
+export const CalendarMonthly = (props) => {
+    const getCalendarDays = (calendarDate) => {
         const monthFirstDay = moment(calendarDate).startOf('month');
         const monthFirstDayDOW = monthFirstDay.day();
         const monthLastDay = moment(calendarDate).endOf('month');
@@ -36,43 +35,48 @@ export class CalendarMonthly extends React.Component {
         }
     
         return calendarDays
-    }
-    getWeekDayTitles = () => {
+    };
+
+    const getWeekDayTitles = () => {
         return ([0,1,2,3,4,5,6])
-    }
-    setMonthPrev = () => {
-        const prevMonth = moment(this.props.views.currentDate).subtract(1, 'months').valueOf();
-        this.props.setCurrentDate(prevMonth);
-    }
-    setMonthNext = () => {
-        const nextMonth = moment(this.props.views.currentDate).add(1, 'months').valueOf();
-        this.props.setCurrentDate(nextMonth);
-    }
-    render() {
-        const prevMonth = moment(this.props.views.currentDate).subtract(1, 'months');
-        const nextMonth = moment(this.props.views.currentDate).add(1, 'months');
-        return (
-            <div className="calendar-monthly__wrapper">
-                <button onClick={this.setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
-                <button onClick={this.setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
-                <h1>{moment(this.props.views.currentDate).format('MMMM YYYY')}</h1>
-                <div className="calendar-monthly__week-day-titles">
-                    {this.getWeekDayTitles().map((day) => (
-                        <WeekDayTitle key={moment().day(day).format('dddd')} day={day} />
-                    ))}
-                </div>
-                <div className="calendar-monthly__month">
-                    {this.getCalendarDays(this.props.views.currentDate).map((day) => (
-                        <CalendarDay 
-                            date={day.date}
-                            key={day.date.valueOf()}
-                            type={day.type}
-                        />
-                    ))}
-                </div>
+    };
+
+    const setMonthPrev = () => {
+        const prevMonth = moment(props.views.currentDate).subtract(1, 'months').valueOf();
+        props.setCurrentDate(prevMonth);
+    };
+
+    const setMonthNext = () => {
+        const nextMonth = moment(props.views.currentDate).add(1, 'months').valueOf();
+        props.setCurrentDate(nextMonth);
+    };
+
+    const prevMonth = moment(props.views.currentDate).subtract(1, 'months');
+    const nextMonth = moment(props.views.currentDate).add(1, 'months');
+    
+    return (
+        <div className="calendar-monthly__wrapper">
+            <button onClick={setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
+            <button onClick={setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
+            <h1>{moment(props.views.currentDate).format('MMMM YYYY')}</h1>
+            <div className="calendar-monthly__week-day-titles">
+                {getWeekDayTitles().map((day) => (
+                    <div key={moment().day(day).format('ddd')}>
+                        {moment().day(day).format('ddd')}
+                    </div>
+                ))}
             </div>
-        );
-    }
+            <div className="calendar-monthly__month">
+                {getCalendarDays(props.views.currentDate).map((day) => (
+                    <CalendarDay 
+                        date={day.date}
+                        key={day.date.valueOf()}
+                        type={day.type}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 const mapStateToProps = (state) => ({

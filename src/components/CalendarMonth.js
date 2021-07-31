@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { setActiveMonthly, setCurrentDate } from '../actions/views';
 
-export class CalendarMonth extends React.Component {
-    getMonthDays = (calendarDate) => {
+export const  CalendarMonth = (props) => {
+    const getMonthDays = (calendarDate) => {
         const monthFirstDay = moment(calendarDate).startOf('month');
         const monthFirstDayDOW = monthFirstDay.day();
         const monthLastDay = moment(calendarDate).endOf('month');
@@ -33,8 +33,9 @@ export class CalendarMonth extends React.Component {
         }
     
         return calendarDays
-    }
-    selectMonth = (e) => {
+    };
+
+    const selectMonth = (e) => {
         let date;
         if (e.target.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.attributes.date.value);
@@ -43,34 +44,33 @@ export class CalendarMonth extends React.Component {
         } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
         }
-        this.props.setCurrentDate(date);
-        this.props.setActiveMonthly();
+        props.setCurrentDate(date);
+        props.setActiveMonthly();
     }
-    render() {
-        return (
-            <div 
-                className="calendar-yearly__month"
-                title={this.props.month.format("MMMM - YYYY")}
-                onClick={this.selectMonth}
-                key={this.props.month}
-                date={this.props.month}
-            >
-                <div className="content">
-                    <div className="month-title">{this.props.month.format("MMM")}</div>
-                    <div className="month-days">
-                        {this.getMonthDays(this.props.month.valueOf()).map((day) => (
-                            <div 
-                                className={day.type==='current' ? "calendar-day" : "calendar-day pre-next"}
-                                key={day.date.valueOf()}
-                            >
-                                {day.date.format('D')}
-                            </div>
-                        ))}
-                    </div>
-                </div>                
-            </div>
-        );
-    };
+    
+    return (
+        <div 
+            className="calendar-yearly__month"
+            title={props.month.format("MMMM - YYYY")}
+            onClick={selectMonth}
+            key={props.month}
+            date={props.month}
+        >
+            <div className="content">
+                <div className="month-title">{props.month.format("MMM")}</div>
+                <div className="month-days">
+                    {getMonthDays(props.month.valueOf()).map((day) => (
+                        <div 
+                            className={day.type==='current' ? "calendar-day" : "calendar-day pre-next"}
+                            key={day.date.valueOf()}
+                        >
+                            {day.date.format('D')}
+                        </div>
+                    ))}
+                </div>
+            </div>                
+        </div>
+    );
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentDate } from '../actions/views';
 
-export class CalendarDay extends React.Component {
-    selectDate = (e) => {
+export const CalendarDay = (props) => {
+    const selectDate = (e) => {
         let date;
         if (e.target.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.attributes.date.value);
@@ -12,23 +12,22 @@ export class CalendarDay extends React.Component {
         } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
         }
-        this.props.setCurrentDate(date);
-    }
-    render() {
-        return (
-            <div 
-                className={this.props.type==='current' ? "calendar-day" : "calendar-day pre-next"}
-                title={this.props.date.format("MMM Do")}
-                onClick={this.selectDate}
-                key={this.props.date}
-                date={this.props.date}
-            >
-                <div className="content">
-                    <div className="day-num">{this.props.date.format("D")}</div>
-                </div>                
-            </div>
-        );
-    }
+        props.setCurrentDate(date);
+    };
+    
+    return (
+        <div 
+            className={props.type==='current' ? "calendar-day" : "calendar-day pre-next"}
+            title={props.date.format("MMM Do")}
+            onClick={selectDate}
+            key={props.date}
+            date={props.date}
+        >
+            <div className="content">
+                <div className="day-num">{props.date.format("D")}</div>
+            </div>                
+        </div>
+    );
 }
 
 const mapDispatchToProps = (dispatch) => ({
