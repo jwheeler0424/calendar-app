@@ -6,6 +6,7 @@ test('should setup default view values', () => {
     expect(state).toEqual({
         activeCalendar: 'monthly',
         activeView: 'list',
+        activeLast: '',
         currentDate: 0
     });
 });
@@ -53,6 +54,15 @@ test('should set activeView view to view', () => {
     }
     const state = viewsReducer(undefined, action);
     expect(state.activeView).toBe('view');
+});
+
+test('should set lastView view to add', () => {
+    const action = {
+        type: 'SET_LAST_VIEW',
+        activeView: 'add'
+    }
+    const state = viewsReducer(undefined, action);
+    expect(state.lastView).toBe('add');
 });
 
 test('should set currentDate to given date', () => {

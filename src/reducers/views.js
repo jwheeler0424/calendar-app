@@ -3,6 +3,7 @@ import moment from 'moment';
 const viewsReducerDefaultState = {
     activeCalendar: 'monthly',
     activeView: 'list',
+    lastView: '',
     currentDate: 0
 };
 
@@ -20,6 +21,12 @@ const viewsReducer = (state = viewsReducerDefaultState, action) => {
                 ...state,
                 activeView
             };
+        case 'SET_LAST_VIEW':
+            const lastView = action.lastView;
+            return {
+                ...state,
+                lastView
+            }
         case 'SET_CURRENT_DATE':
             const currentDate = action.currentDate;
             return {

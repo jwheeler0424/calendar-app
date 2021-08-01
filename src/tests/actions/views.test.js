@@ -2,6 +2,7 @@ import moment from 'moment';
 import {
     setActiveCalendar,
     setActiveView,
+    setLastView,
     setCurrentDate,
     setTodayDate
 } from '../../actions/views';
@@ -18,6 +19,14 @@ test('should generate set active view action object', () => {
     const action = setActiveView('add');
     expect(action).toEqual({
         type: 'SET_ACTIVE_VIEW',
+        activeView: 'add'
+    });
+});
+
+test('should generate set last view action object', () => {
+    const action = setLastView('add');
+    expect(action).toEqual({
+        type: 'SET_LAST_VIEW',
         activeView: 'add'
     });
 });

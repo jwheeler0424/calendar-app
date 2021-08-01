@@ -13,7 +13,6 @@ export const EditEventPage = (props) => {
 
     const onSubmit = (event) => {
         props.startEditEvent({
-            type: 'EDIT_EVENT',
             id: props.event.id,
             event
         })

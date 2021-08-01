@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AddEventPage from './AddEventPage';
 import EditEventPage from './EditEventPage';
-import ListEventsPage from './ListEventsPage';
+import EventListPage from './EventListPage';
 
 export const CalendarAction = (props) => {
     switch (props.views.activeView) {
         case 'list':
-            return (<ListEventsPage />);
+            return (<EventListPage />);
         case 'add':
             return (<AddEventPage />);
         case 'edit':

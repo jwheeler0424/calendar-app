@@ -10,6 +10,11 @@ export const setActiveView = (activeView) => ({
     activeView
 });
 
+export const setLastView = (lastView) => ({
+    type: 'SET_LAST_VIEW',
+    lastView
+});
+
 // SET_CURRENT_DATE
 export const setCurrentDate = (currentDate) => ({
     type: 'SET_CURRENT_DATE',

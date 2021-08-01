@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import getVisibleEvents from '../selectors/events';
-import { MoreTime } from '../svg/Icons'
+import { setActiveView, setLastView } from '../actions/views';
+import { MoreTime } from '../svg/Icons';
 
-export const ListEventsPage = (props) => {
+export const EventListPage = (props) => {
+    const addEvent = () => {
+        props.setActiveView('add');
+        props.setLastView('list')
+    }
     return (
         <div className="calendar-list">
-            <button className="add-event">
+            <button className="add-event" onClick={addEvent}>
                 <MoreTime />
             </button>
             <h1>Events for&nbsp;
@@ -26,4 +31,9 @@ const mapStateToProps = (state) => ({
     holidays: getVisibleEvents(state.holidays, state.filters)
 });
 
-export default connect(mapStateToProps)(ListEventsPage);
+const mapDispatchToProps = (dispatch) => ({
+    setActiveView: (activeView) => dispatch(setActiveView(activeView)),
+    setLastView: (lastView) => dispatch(setLastView(lastView))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventListPage);
