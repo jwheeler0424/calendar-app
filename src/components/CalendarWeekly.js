@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters';
 import CalendarDay from './CalendarDay';
 
 export const  CalendarWeekly = (props) => {
@@ -27,12 +28,20 @@ export const  CalendarWeekly = (props) => {
 
     const setWeekPrev = () => {
         const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks').valueOf();
+        const startDate = moment(props.views.currentDate).subtract(1, 'weeks').startOf('day');
+        const endDate = moment(props.views.currentDate).subtract(1, 'weeks').endOf('day');
         props.setCurrentDate(prevWeek);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
     };
 
     const setWeekNext = () => {
         const nextWeek = moment(props.views.currentDate).add(1, 'weeks').valueOf();
+        const startDate = moment(props.views.currentDate).add(1, 'weeks').startOf('day');
+        const endDate = moment(props.views.currentDate).add(1, 'weeks').endOf('day');
         props.setCurrentDate(nextWeek);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
     }
     
     const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks');
@@ -68,7 +77,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarWeekly);

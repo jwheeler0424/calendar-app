@@ -2,26 +2,24 @@ import moment from 'moment';
 
 const viewsReducerDefaultState = {
     activeCalendar: 'monthly',
+    activeView: 'list',
     currentDate: 0
 };
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {
     switch (action.type) {
-        case 'SET_ACTIVE_WEEKLY':
+        case 'SET_ACTIVE_CALENDAR':
+            const activeCalendar = action.activeCalendar;
             return {
                 ...state,
-                activeCalendar: 'weekly'
+                activeCalendar
             };
-        case 'SET_ACTIVE_MONTHLY':
+        case 'SET_ACTIVE_VIEW':
+            const activeView = action.activeView;
             return {
                 ...state,
-                activeCalendar: 'monthly'
+                activeView
             };
-        case 'SET_ACTIVE_YEARLY':
-            return {
-                ...state,
-                activeCalendar: 'yearly'
-            }
         case 'SET_CURRENT_DATE':
             const currentDate = action.currentDate;
             return {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters'
 
 export const CalendarDay = (props) => {
     const selectDate = (e) => {
@@ -12,7 +14,11 @@ export const CalendarDay = (props) => {
         } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
         }
-        props.setCurrentDate(date);
+        const startDate = moment(date).startOf('day');
+        const endDate = moment(date).endOf('day');
+        props.setCurrentDate(moment(date));
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
     };
     
     return (
@@ -30,8 +36,14 @@ export const CalendarDay = (props) => {
     );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+const mapStateToProps = (state) => ({
+    views: state.views
 });
 
-export default connect(undefined, mapDispatchToProps)(CalendarDay);
+const mapDispatchToProps = (dispatch) => ({
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarDay);

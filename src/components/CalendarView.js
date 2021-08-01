@@ -18,7 +18,8 @@ export const CalendarView = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    views: state.views
+    views: state.views,
+    filters: state.filters
 });
 
 export default connect(mapStateToProps)(CalendarView);

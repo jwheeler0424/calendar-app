@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { setActiveMonthly, setCurrentDate } from '../actions/views';
+import { setActiveCalendar, setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters';
 
 export const  CalendarMonth = (props) => {
     const getMonthDays = (calendarDate) => {
@@ -44,8 +45,12 @@ export const  CalendarMonth = (props) => {
         } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
         }
+        const startDate = moment(date).startOf('day');
+        const endDate = moment(date).endOf('day');
         props.setCurrentDate(date);
-        props.setActiveMonthly();
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
+        props.setActiveCalendar('month');
     }
     
     return (
@@ -73,9 +78,15 @@ export const  CalendarMonth = (props) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    setActiveMonthly: () => dispatch(setActiveMonthly()),
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+const mapStateToProps = (state) => ({
+    views: state.views
 });
 
-export default connect(undefined, mapDispatchToProps)(CalendarMonth);
+const mapDispatchToProps = (dispatch) => ({
+    setActiveCalendar: (activeCalendar) => dispatch(setActiveCalendar(activeCalendar)),
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarMonth);

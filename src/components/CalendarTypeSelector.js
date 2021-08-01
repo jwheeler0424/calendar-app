@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    setActiveWeekly,
-    setActiveMonthly,
-    setActiveYearly
+    setActiveCalendar
 } from '../actions/views';
 
 export const CalendarTypeSelector = (props) => {
@@ -17,7 +15,7 @@ export const CalendarTypeSelector = (props) => {
                         "calendar-selector__selector"
                     )
                 }
-                onClick={props.setActiveWeekly}
+                onClick={() => {props.setActiveCalendar('weekly')}}
             >Weekly</button>
             <button 
                 className={
@@ -27,7 +25,7 @@ export const CalendarTypeSelector = (props) => {
                         "calendar-selector__selector"
                     )
                 }
-                onClick={props.setActiveMonthly}
+                onClick={() => {props.setActiveCalendar('monthly')}}
             >Monthly</button>
             <button 
                 className={
@@ -37,7 +35,7 @@ export const CalendarTypeSelector = (props) => {
                         "calendar-selector__selector"
                     )
                 }
-                onClick={props.setActiveYearly}
+                onClick={() => {props.setActiveCalendar('yearly')}}
             >Yearly</button>
         </div>
     );
@@ -48,9 +46,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setActiveWeekly: () => dispatch(setActiveWeekly()),
-    setActiveMonthly: () => dispatch(setActiveMonthly()),
-    setActiveYearly: () => dispatch(setActiveYearly())
+    setActiveCalendar: (activeCalendar) => dispatch(setActiveCalendar(activeCalendar))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarTypeSelector);

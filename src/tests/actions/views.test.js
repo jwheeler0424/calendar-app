@@ -1,25 +1,25 @@
 import moment from 'moment';
 import {
-    setActiveWeekly,
-    setActiveMonthly,
-    setActiveYearly,
+    setActiveCalendar,
+    setActiveView,
     setCurrentDate,
     setTodayDate
 } from '../../actions/views';
 
-test('should generate set active weekly action object', () => {
-    const action = setActiveWeekly();
-    expect(action).toEqual({ type: 'SET_ACTIVE_WEEKLY' });
+test('should generate set active calendar action object', () => {
+    const action = setActiveCalendar('weekly');
+    expect(action).toEqual({
+        type: 'SET_ACTIVE_CALENDAR',
+        activeCalendar: 'weekly'
+    });
 });
 
-test('should generate set active monthly action object', () => {
-    const action = setActiveMonthly();
-    expect(action).toEqual({ type: 'SET_ACTIVE_MONTHLY' });
-});
-
-test('should generate set active yearly action object', () => {
-    const action = setActiveYearly();
-    expect(action).toEqual({ type: 'SET_ACTIVE_YEARLY' });
+test('should generate set active view action object', () => {
+    const action = setActiveView('add');
+    expect(action).toEqual({
+        type: 'SET_ACTIVE_VIEW',
+        activeView: 'add'
+    });
 });
 
 test('should generate set current date action object', () => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { ExpandMore } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters';
 
 export const MonthSelector = (props) => {
     const [monthMenuOpen, setMonthMenuOpen] = useState('');
@@ -14,7 +15,11 @@ export const MonthSelector = (props) => {
     const selectMonth = (e) => {
         const month = parseInt(e.target.attributes.month.value);
         const currentDate = moment(props.views.currentDate).month(month);
-        props.setCurrentDate(currentDate.valueOf());
+        const startDate = moment(props.views.currentDate).month(month).startOf('day');
+        const endDate = moment(props.views.currentDate).month(month).endOf('day');
+        props.setCurrentDate(currentDate);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
         setMonthMenuOpen('');
     };
 
@@ -61,7 +66,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MonthSelector);

@@ -1,16 +1,13 @@
-// SET_ACTIVE_WEEKLY
-export const setActiveWeekly = () => ({
-    type: 'SET_ACTIVE_WEEKLY'
+// SET_ACTIVE_CALENDAR
+export const setActiveCalendar = (activeCalendar) => ({
+    type: 'SET_ACTIVE_CALENDAR',
+    activeCalendar
 });
 
-// SET_ACTIVE_MONTHLY
-export const setActiveMonthly = () => ({
-    type: 'SET_ACTIVE_MONTHLY'
-});
-
-// SET_ACTIVE_YEARLY
-export const setActiveYearly = () => ({
-    type: 'SET_ACTIVE_YEARLY'
+// SET_ACTIVE_VIEW
+export const setActiveView = (activeView) => ({
+    type: 'SET_ACTIVE_VIEW',
+    activeView
 });
 
 // SET_CURRENT_DATE

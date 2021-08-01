@@ -1,14 +1,14 @@
 import React from 'react';
 import CalendarSelector from './CalendarSelector';
 import CalendarView from './CalendarView';
-// import AddEventPage from './AddEventPage';
+import CalendarAction from './CalendarAction';
 
 const CalendarDashboardPage = () => {
     return (
         <>
             <CalendarSelector />
             <CalendarView />
-            {/* <AddEventPage /> */}
+            <CalendarAction />
         </>
     );
 }

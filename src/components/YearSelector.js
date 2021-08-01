@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext, ExpandMore } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters';
 
 export const YearSelector = (props) => { 
     const [yearMenuOpen, setYearMenuOpen] = useState('');
@@ -41,7 +42,11 @@ export const YearSelector = (props) => {
     const selectYear = (e) => {
         const year = parseInt(e.target.attributes.year.value);
         const currentDate = moment(props.views.currentDate).year(year);
-        props.setCurrentDate(currentDate.valueOf());
+        const startDate = moment(props.views.currentDate).year(year).startOf('day');
+        const endDate = moment(props.views.currentDate).year(year).endOf('day');
+        props.setCurrentDate(currentDate);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
         setYearMenuOpen('');
     }
     return (
@@ -99,7 +104,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(YearSelector);

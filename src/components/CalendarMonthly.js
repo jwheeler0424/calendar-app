@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
 import { setCurrentDate } from '../actions/views';
+import { setStartDate, setEndDate } from '../actions/filters';
 import CalendarDay from './CalendarDay';
 
 export const CalendarMonthly = (props) => {
@@ -43,12 +44,20 @@ export const CalendarMonthly = (props) => {
 
     const setMonthPrev = () => {
         const prevMonth = moment(props.views.currentDate).subtract(1, 'months').valueOf();
+        const startDate = moment(props.views.currentDate).subtract(1, 'months').startOf('day');
+        const endDate = moment(props.views.currentDate).subtract(1, 'months').endOf('day');
         props.setCurrentDate(prevMonth);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
     };
 
     const setMonthNext = () => {
         const nextMonth = moment(props.views.currentDate).add(1, 'months').valueOf();
+        const startDate = moment(props.views.currentDate).add(1, 'months').startOf('day');
+        const endDate = moment(props.views.currentDate).add(1, 'months').endOf('day');
         props.setCurrentDate(nextMonth);
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
     };
 
     const prevMonth = moment(props.views.currentDate).subtract(1, 'months');
@@ -84,7 +93,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate))
+    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarMonthly);
