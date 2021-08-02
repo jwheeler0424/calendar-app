@@ -1,12 +1,14 @@
 import moment from 'moment';
 import viewsReducer from '../../reducers/views';
+import events from '../fixtures/events';
 
 test('should setup default view values', () => {
     const state = viewsReducer(undefined, { type: '@@INIT' });
     expect(state).toEqual({
         activeCalendar: 'monthly',
         activeView: 'list',
-        activeLast: '',
+        activeEvent: undefined,
+        lastView: '',
         currentDate: 0
     });
 });
@@ -56,10 +58,20 @@ test('should set activeView view to view', () => {
     expect(state.activeView).toBe('view');
 });
 
+test('should set activeEvent event to event object', () => {
+    const event = events[1];
+    const action = {
+        type: 'SET_ACTIVE_EVENT',
+        activeEvent: event
+    }
+    const state = viewsReducer(undefined, action);
+    expect(state.activeEvent).toEqual(event);
+});
+
 test('should set lastView view to add', () => {
     const action = {
         type: 'SET_LAST_VIEW',
-        activeView: 'add'
+        lastView: 'add'
     }
     const state = viewsReducer(undefined, action);
     expect(state.lastView).toBe('add');

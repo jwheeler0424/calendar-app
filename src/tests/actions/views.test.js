@@ -2,10 +2,12 @@ import moment from 'moment';
 import {
     setActiveCalendar,
     setActiveView,
+    setActiveEvent,
     setLastView,
     setCurrentDate,
     setTodayDate
 } from '../../actions/views';
+import events from '../fixtures/events';
 
 test('should generate set active calendar action object', () => {
     const action = setActiveCalendar('weekly');
@@ -23,11 +25,20 @@ test('should generate set active view action object', () => {
     });
 });
 
+test('should generate set active event action object', () => {
+    const event = events[1]
+    const action = setActiveEvent(event);
+    expect(action).toEqual({
+        type: 'SET_ACTIVE_EVENT',
+        activeEvent: event
+    });
+});
+
 test('should generate set last view action object', () => {
     const action = setLastView('add');
     expect(action).toEqual({
         type: 'SET_LAST_VIEW',
-        activeView: 'add'
+        lastView: 'add'
     });
 });
 

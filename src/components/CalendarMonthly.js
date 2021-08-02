@@ -43,7 +43,7 @@ export const CalendarMonthly = (props) => {
     };
 
     const setMonthPrev = () => {
-        const prevMonth = moment(props.views.currentDate).subtract(1, 'months').valueOf();
+        const prevMonth = moment(props.views.currentDate).subtract(1, 'months');
         const startDate = moment(props.views.currentDate).subtract(1, 'months').startOf('day');
         const endDate = moment(props.views.currentDate).subtract(1, 'months').endOf('day');
         props.setCurrentDate(prevMonth);
@@ -52,7 +52,7 @@ export const CalendarMonthly = (props) => {
     };
 
     const setMonthNext = () => {
-        const nextMonth = moment(props.views.currentDate).add(1, 'months').valueOf();
+        const nextMonth = moment(props.views.currentDate).add(1, 'months');
         const startDate = moment(props.views.currentDate).add(1, 'months').startOf('day');
         const endDate = moment(props.views.currentDate).add(1, 'months').endOf('day');
         props.setCurrentDate(nextMonth);

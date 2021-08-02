@@ -27,7 +27,7 @@ export const  CalendarWeekly = (props) => {
     };
 
     const setWeekPrev = () => {
-        const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks').valueOf();
+        const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks');
         const startDate = moment(props.views.currentDate).subtract(1, 'weeks').startOf('day');
         const endDate = moment(props.views.currentDate).subtract(1, 'weeks').endOf('day');
         props.setCurrentDate(prevWeek);
@@ -36,7 +36,7 @@ export const  CalendarWeekly = (props) => {
     };
 
     const setWeekNext = () => {
-        const nextWeek = moment(props.views.currentDate).add(1, 'weeks').valueOf();
+        const nextWeek = moment(props.views.currentDate).add(1, 'weeks');
         const startDate = moment(props.views.currentDate).add(1, 'weeks').startOf('day');
         const endDate = moment(props.views.currentDate).add(1, 'weeks').endOf('day');
         props.setCurrentDate(nextWeek);

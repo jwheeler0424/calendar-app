@@ -10,6 +10,13 @@ export const setActiveView = (activeView) => ({
     activeView
 });
 
+// SET_ACTIVE_EVENT
+export const setActiveEvent = (activeEvent) => ({
+    type: 'SET_ACTIVE_EVENT',
+    activeEvent
+});
+
+// SET_LAST_VIEW
 export const setLastView = (lastView) => ({
     type: 'SET_LAST_VIEW',
     lastView

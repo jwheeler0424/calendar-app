@@ -23,7 +23,7 @@ export const CalendarYearly = (props) => {
     };
 
     const setYearPrev = () => {
-        const prevYear = moment(props.views.currentDate).subtract(1, 'years').valueOf();
+        const prevYear = moment(props.views.currentDate).subtract(1, 'years');
         const startDate = moment(props.views.currentDate).subtract(1, 'years').startOf('day');
         const endDate = moment(props.views.currentDate).subtract(1, 'years').endOf('day');
         props.setCurrentDate(prevYear);
@@ -32,7 +32,7 @@ export const CalendarYearly = (props) => {
     };
 
     const setYearNext = () => {
-        const nextYear = moment(props.views.currentDate).add(1, 'years').valueOf();
+        const nextYear = moment(props.views.currentDate).add(1, 'years');
         const startDate = moment(props.views.currentDate).add(1, 'years').startOf('day');
         const endDate = moment(props.views.currentDate).add(1, 'years').endOf('day');
         props.setCurrentDate(nextYear);

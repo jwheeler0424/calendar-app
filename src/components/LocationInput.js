@@ -29,6 +29,7 @@ const LocationInput = (props) => {
             script.addEventListener(`load`, onLoad);
             return () => script.removeEventListener(`load`, onLoad)
         } else onLoad()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
