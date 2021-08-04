@@ -5,8 +5,8 @@ const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     return events.filter((event) => {
         const eventStart = moment(event.startDate);
         const eventEnd = moment(event.endDate);
-        const startDateMatch = startDate ? startDate.isSameOrBefore(eventStart, 'day') : true;
-        const endDateMatch = endDate ? endDate.isSameOfAfter(eventEnd, 'day') : true;
+        const startDateMatch = startDate ? startDate.isSameOrAfter(eventStart, 'day') : true;
+        const endDateMatch = endDate ? endDate.isSameOrBefore(eventEnd, 'day') : true;
         const textMatch = event.title.toLowerCase().includes(text.toLowerCase());
 
         return startDateMatch && endDateMatch && textMatch;

@@ -26,11 +26,11 @@ test('should generate set active view action object', () => {
 });
 
 test('should generate set active event action object', () => {
-    const event = events[1]
-    const action = setActiveEvent(event);
+    const activeEvent = events[1];
+    const action = setActiveEvent(activeEvent);
     expect(action).toEqual({
         type: 'SET_ACTIVE_EVENT',
-        activeEvent: event
+        activeEvent
     });
 });
 

@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const LocationInput = (props) => {
     const [location, setLocation] = useState(
-        props.location ? props.location : { 
-            description: '',
-            address: '',
-            placeId: '',
-            coordinates: {
-                lat: '',
-                lng: ''
-            }
-        }
+        props.location ? props.location : ''
     );
     const [description, setDescription] = useState(
         location ? location.description : ''
@@ -33,8 +25,13 @@ const LocationInput = (props) => {
     }, []);
 
     useEffect(() => {
-        setLocation(props.location);
-        setDescription(props.location.description);
+        if (props.location) { 
+            setLocation(props.location);
+            setDescription(props.location.description);
+        } else {
+            setLocation('');
+            setDescription('');
+        }; 
     }, [props.location]);
     
     const onLoad = () => {
@@ -78,12 +75,16 @@ const LocationInput = (props) => {
                         map.setCenter(results[0].geometry.location)
                     
                     });
+                    // "{\"lat\":36.8098739,\"lng\":-119.6887547}"
+                    const coordinateString = JSON.stringify(place.geometry.location);
+                    const coordinateJSON = JSON.parse(coordinateString);
+                    const coordinates = coordinateJSON
                     
                     const location = {
                         description: place.name,
                         address: address,
                         placeId: place.place_id,
-                        coordinates: place.geometry.location
+                        coordinates
                     }
                     setLocation(location);
                     setDescription(location.description);
@@ -100,6 +101,11 @@ const LocationInput = (props) => {
                     setDescription(location.description);
                     props.onLocationChange(location);
                 }
+            } else {
+                const location = '';
+                setLocation(location);
+                setDescription('');
+                props.onLocationChange(location);
             }
         })
     }

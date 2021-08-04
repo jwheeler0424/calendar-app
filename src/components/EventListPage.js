@@ -23,6 +23,7 @@ export const EventListPage = (props) => {
     })
     
     const events = props.events;
+    
     return (
         <div className="calendar-list">
             <button className="add-event" onClick={addEvent}>
@@ -38,7 +39,7 @@ export const EventListPage = (props) => {
             {
                 events.length > 0 ? (
                     events.map((event) => {
-                        return <EventListItem event={event} />
+                        return <EventListItem event={event} key={event.id} />
                     })
                 ) : (
                     <p className="calendar-list__no-event">Currently no events scheduled for this date.</p>

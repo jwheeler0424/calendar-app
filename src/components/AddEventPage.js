@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment'
 import { startAddEvent } from '../actions/events';
 import { setActiveView, setLastView } from '../actions/views';
 import { Close } from '../svg/Icons';
@@ -19,7 +20,9 @@ export const AddEventPage = (props) => {
     };
 
     const onSubmit = (event) => {
-        props.startAddEvent(event)
+        console.log(moment(event.startDate).format(), moment(event.endDate).format());
+        props.startAddEvent(event);
+        props.setActiveView('list');
     };
 
     const handleClearMessages = () => setMessages([]);
@@ -39,7 +42,7 @@ export const AddEventPage = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startAddEvent: (event) => dispatch(startAddEvent),
+    startAddEvent: (event) => dispatch(startAddEvent(event)),
     setActiveView: (activeView) => dispatch(setActiveView(activeView)),
     setLastView: (lastView) => dispatch(setLastView(lastView))
 });

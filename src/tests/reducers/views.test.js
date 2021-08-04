@@ -59,13 +59,13 @@ test('should set activeView view to view', () => {
 });
 
 test('should set activeEvent event to event object', () => {
-    const event = events[1];
+    const activeEvent = events[1];
     const action = {
         type: 'SET_ACTIVE_EVENT',
-        activeEvent: event
+        activeEvent
     }
     const state = viewsReducer(undefined, action);
-    expect(state.activeEvent).toEqual(event);
+    expect(state.activeEvent).toEqual(activeEvent);
 });
 
 test('should set lastView view to add', () => {

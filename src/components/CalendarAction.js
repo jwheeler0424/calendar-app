@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AddEventPage from './AddEventPage';
 import EditEventPage from './EditEventPage';
+import ViewEventPage from './ViewEventPage';
 import EventListPage from './EventListPage';
 
 export const CalendarAction = (props) => {
@@ -13,9 +14,9 @@ export const CalendarAction = (props) => {
         case 'edit':
             return (<EditEventPage />);
         case 'view':
-            return (<></>);
+            return (<ViewEventPage />);
         default:
-            return (<></>);
+            return (<EventListPage />);
     }
 }
 

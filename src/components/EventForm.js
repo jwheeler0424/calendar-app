@@ -23,15 +23,7 @@ const EventForm = (props) => {
         props.event ? props.event.duration : 'time'
     );
     const [location, setLocation] = useState(
-        props.event ? props.event.location : { 
-            description: '',
-            address: '',
-            placeId: '',
-            coordinates: {
-                lat: '',
-                lng: ''
-            }
-        }
+        props.event ? props.event.location : ''
     );
     const [notes, setNotes] = useState(
         props.event ? props.event.notes : ''
@@ -43,16 +35,18 @@ const EventForm = (props) => {
         setEndDate(moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf());
         setColor('peacock');
         setDuration('time');
-        setLocation({ 
-            description: '',
-            address: '',
-            placeId: '',
-            coordinates: {
-                lat: '',
-                lng: ''
-            }
-        });
+        setLocation('');
         setNotes('');
+    }
+
+    const onTimeChange = (time) => {
+        setStartDate(time.valueOf());
+        setEndDate(time.add(1, 'hour').valueOf());
+    }
+
+    const onDateChange = (date) => {
+        setStartDate(date.valueOf())
+        setEndDate(date.add(1, 'hour').valueOf())
     }
     
     const onSubmit = (e) => {
@@ -65,10 +59,18 @@ const EventForm = (props) => {
         const eventFormMessages = validateEventForm(eventFields);
 
         if (eventFormMessages.length <= 0) {
+            let start, end
+            if (duration === 'day') {
+                start = moment(startDate).startOf('day').valueOf();
+                end = moment(endDate).endOf('day').valueOf();
+            } else {
+                start = startDate;
+                end = endDate;
+            }
             const event = {
                 title,
-                startDate,
-                endDate,
+                startDate: start,
+                endDate: end,
                 duration,
                 color,
                 location,
@@ -99,27 +101,27 @@ const EventForm = (props) => {
             </div>
             <div>
                 <label>Start</label>
-                <TimePicker
+                {duration === 'time' && <TimePicker
                     defaultValue={moment(startDate)}
                     value={moment(startDate)}
                     showNow={false}
                     format="h:mm a"
                     minuteStep={5}
-                    onChange={time => setStartDate(time.valueOf())}
+                    onChange={time => onTimeChange(time)}
                     id="event-start-time"
-                />
+                />}
                 <DatePicker
                     defaultValue={moment(startDate)}
                     value={moment(startDate)}
                     format={"MMM Do"}
                     showToday={false}
-                    onChange={date => setStartDate(date.valueOf())}
+                    onChange={date => onDateChange(date)}
                     id="event-start-date"
                 />
             </div>
             <div>
                 <label>End</label>
-                <TimePicker
+                {duration === 'time' && <TimePicker
                     defaultValue={moment(endDate)}
                     value={moment(endDate)}
                     showNow={false}
@@ -127,7 +129,7 @@ const EventForm = (props) => {
                     minuteStep={5}
                     onChange={time => setEndDate(time.valueOf())}
                     id="event-end-time"
-                />
+                />}
                 <DatePicker
                     defaultValue={moment(endDate)}
                     value={moment(endDate)}

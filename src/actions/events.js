@@ -15,15 +15,7 @@ export const startAddEvent = (eventData = {}) => {
             endDate = 0,
             duration = 'time',
             color = 'peacock',
-            location = { 
-                description: '',
-                address: '',
-                placeId: '',
-                coordinates: {
-                    lat: '',
-                    lng: ''
-                }
-            },
+            location = '',
             notes = ''
         } = eventData;
 
