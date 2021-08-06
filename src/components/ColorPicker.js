@@ -17,7 +17,6 @@ const ColorPicker = (props) => {
         colorMenuOpen === ' open' ? setColorMenuOpen('') : setColorMenuOpen(' open');
     }
     const selectColor = (e) => {
-        console.log(e.target.attributes)
         const title = e.target.attributes[1].value;
         const value = e.target.attributes[2].value;
         setColor({ title, value });

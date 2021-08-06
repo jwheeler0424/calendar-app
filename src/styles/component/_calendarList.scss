@@ -23,8 +23,8 @@
 }
 
 .calendar-list__event-list {
-    width: calc(100% - $s-size * 2);
-    margin: 0 $s-size $s-size;
+    width: 100%;
+    margin: 0 0 $s-size;
     padding: $l-size $s-size $m-size;
     border-top: solid 1px $border;
 
@@ -35,4 +35,8 @@
         font-size: $m-font;
         font-weight: 300;
     }
+}
+
+.calendar-list__day-event {
+
 }

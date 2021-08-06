@@ -47,7 +47,7 @@ export const EventListItem = (props) => {
                         </div>
                     ) : (
                         <div className="event-location">
-                            <Place /> {location.description} ({location.address})
+                            <Place /> {location.description} <span>({location.address})</span>
                         </div>
                     )
                 )
