@@ -4,7 +4,7 @@ import moment from 'moment';
 import getVisibleEvents from '../selectors/events';
 import getHolidayList from '../utils/getHolidayList';
 import { setActiveView, setLastView } from '../actions/views';
-import { MoreTime } from '../svg/Icons';
+import { Close, MoreTime } from '../svg/Icons';
 import EventListHoliday from './EventListHoliday';
 import EventListItem from './EventListItem';
 
@@ -22,29 +22,37 @@ export const EventListPage = (props) => {
         return holidayDay >= start && holidayDay <= end && holiday.display
     })
     
+    const closeList = () => {
+        props.setActiveView('');
+        props.setLastView('');
+    }
+
     const events = props.events;
     
     return (
-        <div className="calendar-list">
-            <button className="add-event" onClick={addEvent}>
+        <div className="calendar-list__wrapper">
+            <button className="button button--close" onClick={closeList}>
+                <Close />
+            </button>
+            <button className="button button--add" onClick={addEvent}>
                 <MoreTime />
             </button>
-            <h1>Events for&nbsp;
-                <span className="calendar-list__event-month">{props.views.currentDate.format('MMMM')}</span>
-            </h1>
+            <h1 className="calendar-list__title">Events for {props.views.currentDate.format('MMMM')}</h1>
             <div className="calendar-list__event-day">
                 {props.views.currentDate.date()}
             </div>
-            {holiday && <EventListHoliday holiday={holiday} />}
-            {
-                events.length > 0 ? (
-                    events.map((event) => {
-                        return <EventListItem event={event} key={event.id} />
-                    })
-                ) : (
-                    <p className="calendar-list__no-event">Currently no events scheduled for this date.</p>
-                )
-            }
+            <div className="calendar-list__event-list">
+                {holiday && <EventListHoliday holiday={holiday} />}
+                {
+                    events.length > 0 ? (
+                        events.map((event) => {
+                            return <EventListItem event={event} key={event.id} />
+                        })
+                    ) : (
+                        <p className="calendar-list__no-event">Currently no events scheduled for this date.</p>
+                    )
+                }
+            </div>
         </div>
     );
 }

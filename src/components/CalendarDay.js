@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { setCurrentDate } from '../actions/views';
+import { setCurrentDate, setActiveView, setLastView } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters'
 
 export const CalendarDay = (props) => {
@@ -19,6 +19,8 @@ export const CalendarDay = (props) => {
         props.setCurrentDate(moment(date));
         props.setStartDate(startDate);
         props.setEndDate(endDate);
+        props.setLastView('');
+        props.setActiveView('list');
     };
     
     return (
@@ -29,7 +31,7 @@ export const CalendarDay = (props) => {
             key={props.date}
             date={props.date}
         >
-            <div className="content">
+            <div className={props.date.format('MMDDYY') === moment().format('MMDDYY') ? 'content current-day' : 'content'}>
                 <div className="day-num">{props.date.format("D")}</div>
             </div>                
         </div>
@@ -41,8 +43,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    setActiveView: (activeView) => dispatch(setActiveView(activeView)),
     setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+    setLastView: (lastView) => dispatch(setLastView(lastView)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 

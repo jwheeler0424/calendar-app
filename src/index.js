@@ -10,6 +10,7 @@ import { setTodayDate } from './actions/views';
 import reportWebVitals from './reportWebVitals';
 import LoadingPage from './components/LoadingPage';
 import 'react-dates/initialize';
+import 'antd/dist/antd.css';
 import './styles/styles.scss';
 
 const store = configureStore();

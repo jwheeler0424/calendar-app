@@ -75,7 +75,7 @@ const LocationInput = (props) => {
                         map.setCenter(results[0].geometry.location)
                     
                     });
-                    // "{\"lat\":36.8098739,\"lng\":-119.6887547}"
+                    
                     const coordinateString = JSON.stringify(place.geometry.location);
                     const coordinateJSON = JSON.parse(coordinateString);
                     const coordinates = coordinateJSON
@@ -118,7 +118,6 @@ const LocationInput = (props) => {
         <>
             <input
                 type="text"
-                placeholder="location"
                 onChange={onLocationChange}
                 value={description}
                 id="location-autocomplete"

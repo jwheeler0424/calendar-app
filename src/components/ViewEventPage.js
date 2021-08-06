@@ -102,12 +102,12 @@ export const ViewEventPage = (props) => {
 
     return (
         <div className="calendar-view">
-            <button onClick={closeView}><Close /></button>
-            <button onClick={deleteEvent}><DeleteForever /></button>
-            <button onClick={editEvent}><AutoFixHigh /></button>
+            <button onClick={closeView} className="button button--close"><Close /></button>
+            <button onClick={deleteEvent} className="button button--delete"><DeleteForever /></button>
+            <button onClick={editEvent} className="button button--edit"><AutoFixHigh /></button>
             <h1 className="calendar-view__title">Event Details</h1>
             <div className="calendar-view__event-details">
-                <h2 className="event-title"><span className={`${color} event-bullt`}></span> {title}</h2>
+                <h2 className="event-title"><span className={`${color} event-bullet`}></span> {title}</h2>
                 <div className="event-date__view"><Schedule /> 
                     <div className="event-date__text">{
                         duration === 'day' ? (

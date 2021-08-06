@@ -6,12 +6,12 @@ import { setCurrentDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 
 export const YearSelector = (props) => { 
-    const [yearMenuOpen, setYearMenuOpen] = useState('');
+    
     const [viewYear, setViewYear] = useState(
         props.views ? Math.floor(moment(props.views.currentDate).year() / 10) * 10 : Math.floor(moment().year() / 10) * 10
     );
     const toggleYearSelectMenu = () => {
-        yearMenuOpen === ' open' ? setYearMenuOpen('') : setYearMenuOpen(' open');
+        props.yearMenuOpen === ' open' ? props.onYearMenuChange('') : props.onYearMenuChange(' open');
     }
     const getYears = () => {
         const years = [];
@@ -20,7 +20,7 @@ export const YearSelector = (props) => {
             type: 'pre',
             number: viewYear - 1
         });
-        for(let i = viewYear; i <= viewYear + 10; i++) {
+        for(let i = viewYear; i <= viewYear + 9; i++) {
             years.push({
                 type: 'current',
                 number: i
@@ -28,7 +28,7 @@ export const YearSelector = (props) => {
         };
         years.push({
             type: 'next',
-            number: viewYear + 11
+            number: viewYear + 10
         });
 
         return years;
@@ -47,7 +47,7 @@ export const YearSelector = (props) => {
         props.setCurrentDate(currentDate);
         props.setStartDate(startDate);
         props.setEndDate(endDate);
-        setYearMenuOpen('');
+        props.onYearMenuChange('');
     }
     return (
         <div className="year-selector__wrapper">
@@ -55,7 +55,7 @@ export const YearSelector = (props) => {
                 <span className="year-selector__title">{moment(props.views.currentDate).year()}</span>
                 <ExpandMore className="material-icons" />
             </div>
-            <div className={'year-selector__selector' + yearMenuOpen}>
+            <div className={'year-selector__selector' + props.yearMenuOpen}>
                 <div className="year-selector__nav">
                     <button className="year-selector__prev" onClick={setPrevYear}>
                         <NavigateBefore className="material-icons" />
@@ -73,7 +73,7 @@ export const YearSelector = (props) => {
                 </div>
                 <div className="year-selector__select">
                     {
-                        getYears().map((year, index) => {
+                        getYears().map((year) => {
                             let className;
                             if (year.type !== 'current') {
                                 className = 'pre-next';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { ExpandMore } from '../svg/Icons';
@@ -6,10 +6,9 @@ import { setCurrentDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 
 export const MonthSelector = (props) => {
-    const [monthMenuOpen, setMonthMenuOpen] = useState('');
     
     const toggleMonthSelectMenu = () => {
-        monthMenuOpen === ' open' ? setMonthMenuOpen('') : setMonthMenuOpen(' open');
+        props.monthMenuOpen === ' open' ? props.onMonthMenuChange('') : props.onMonthMenuChange(' open');
     };
 
     const selectMonth = (e) => {
@@ -20,7 +19,7 @@ export const MonthSelector = (props) => {
         props.setCurrentDate(currentDate);
         props.setStartDate(startDate);
         props.setEndDate(endDate);
-        setMonthMenuOpen('');
+        props.onMonthMenuChange('');
     };
 
     const getMonths = () => {
@@ -37,7 +36,7 @@ export const MonthSelector = (props) => {
                 <span className="month-selector__title">{moment(props.views.currentDate).format('MMMM')}</span>
                 <ExpandMore className="material-icons" />
             </div>
-            <div className={'month-selector__selector' + monthMenuOpen}>
+            <div className={'month-selector__selector' + props.monthMenuOpen}>
                 <div className="month-selector__select">
                     {
                         getMonths().map((month) => {

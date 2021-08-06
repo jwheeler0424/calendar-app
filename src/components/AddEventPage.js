@@ -29,9 +29,10 @@ export const AddEventPage = (props) => {
 
     return (
         <div className="calendar-add">
-            <button onClick={closeAdd}>
+            <button onClick={closeAdd} className="button button--close">
                 <Close />
             </button>
+            <h1 className="calendar-add__title">Schedule Event</h1>
             <EventForm onSubmit={onSubmit} onSetMessages={onSetMessages} />
             <EventFormModal
                 messages={messages}

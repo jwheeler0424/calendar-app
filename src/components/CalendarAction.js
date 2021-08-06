@@ -16,7 +16,7 @@ export const CalendarAction = (props) => {
         case 'view':
             return (<ViewEventPage />);
         default:
-            return (<EventListPage />);
+            return (<></>);
     }
 }
 

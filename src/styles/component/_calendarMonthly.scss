@@ -1,0 +1,69 @@
+.calendar-monthly__title {
+    display: flex;
+    font-size: $l-font;
+    margin: 0;
+    padding: $s-size 0;
+    position: relative;
+    justify-content: space-around;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.calendar-monthly__weekday-titles {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 0 $s-size;
+    div {
+        font-size: $xxs-font;
+        padding: 0;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 0 0 $xxxs-size 0;
+    }
+}
+
+.calendar-monthly__month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 2fr;
+    grid-auto-rows: 2fr;
+    margin: 0 $s-size $s-size;
+    border-top: solid 1px $border;
+    border-left: solid 1px $border;
+}
+
+.calendar-day {
+    align-items: center;
+    border-bottom: solid 1px $border;
+    border-right: solid 1px $border;
+    display: flex;
+    font-size: $xxs-font;
+    padding-top: 125%;
+    position: relative;
+    justify-content: center;
+    width: 1fr;
+}
+
+.content {
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.day-num {
+    position: relative;
+    padding: 0 $xxxs-size;
+}
+
+.current-day {
+    color: $peacock;
+    border-top: solid 2px $peacock;
+
+    .day-num {
+        margin-top: -2px;
+        font-weight: bold;
+    }
+}

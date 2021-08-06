@@ -1,0 +1,254 @@
+// Color Select Menu
+.color-selector__selected {
+    background: white;
+    position: relative;
+    display: flex;
+    width: fit-content;
+    padding: 1px $xxxs-size 0 $s-size;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #e8e8e8;
+    border-radius: $xxxs-size;
+    color: #999;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    svg {
+        fill: $peacock;
+    }
+}
+
+.color-selector__title {
+    display: block;
+    margin: $xs-size $xxs-size $xs-size 0;
+    height: $s-icon;
+    width: $l-icon;
+    border-radius: $s-size;
+}
+
+.color-selector__selector {
+    position: absolute;
+    width: fit-content;
+    margin-top: 1px;
+    left: 0;
+    border-radius: $xxxs-size;
+    background: white;
+    border: solid 1px #e8e8e8;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 500ms ease-in-out;
+    z-index: 999;
+}
+
+.color-selector__selector.open {
+    transform: scaleY(100%);
+    .color-selector__select {
+        opacity: 1;
+        transition: opacity 350ms ease-in-out 150ms;
+    }
+}
+
+.color-selector__select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $s-size;
+    padding: $s-size;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out -100ms;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: $m-icon;
+        width: $xl-icon;
+        border-radius: $s-size;
+        cursor: pointer;
+        border: solid 1px #e8e8e8;
+    }
+    div:hover {
+        background: #e8e8e8;
+    }
+    div.selected::before {
+        content: ' ';
+        height: $xxs-size;
+        width: $s-size;
+        border-radius: $xs-size;
+        background: white;
+        color: white;
+    }
+}
+
+// Month Select Menu
+.month-selector__selected {
+    background: white;
+    position: relative;
+    display: flex;
+    width: fit-content;
+    padding: $xs-size $xs-size $xs-size $s-size;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #e8e8e8;
+    color: #999;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    svg {
+        fill: $peacock;
+    }
+}
+
+.month-selector__title {
+    margin-right: $s-size;
+    width: 8ch;
+}
+
+.month-selector__selector {
+    position: absolute;
+    width: fit-content;
+    margin-top: 1px;
+    left: -25%;
+    border-radius: $xxs-size;
+    background: white;
+    border: solid 1px #e8e8e8;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 500ms ease-in-out;
+    z-index: 999;
+}
+
+.month-selector__selector.open {
+    transform: scaleY(100%);
+    .month-selector__select {
+        opacity: 1;
+        transition: opacity 350ms ease-in-out 150ms;
+    }
+}
+
+.month-selector__select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $s-size;
+    padding: $s-size;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out -100ms;
+
+    div {
+        text-align: center;
+        font-size: $s-size;
+        text-transform: uppercase;
+        border-radius: $xxs-size;
+        padding: $xs-size $s-size;
+        cursor: pointer;
+        border: solid 1px #e8e8e8;
+    }
+    div:hover {
+        background: #e8e8e8;
+    }
+    div.selected {
+        background: $peacock;
+        color: white;
+    }
+}
+
+// Year Select Menu
+.year-selector__selected {
+    background: white;
+    position: relative;
+    display: flex;
+    width: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #e8e8e8;
+    color: #999;
+    padding: $xs-size $xs-size $xs-size $s-size;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    svg {
+        fill: $peacock;
+    }
+}
+
+.year-selector__title {
+    margin-right: $m-size;
+}
+
+.year-selector__selector {
+    position: absolute;
+    width: fit-content;
+    margin-top: 1px;
+    border-radius: $xxs-size;
+    background: white;
+    border: solid 1px #e8e8e8;
+    right: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 500ms ease-in-out;
+    z-index: 999;
+}
+
+.year-selector__selector.open {
+    transform: scaleY(100%);
+    .year-selector__select {
+        opacity: 1;
+        transition: opacity 350ms ease-in-out 150ms;
+    }
+}
+
+.year-selector__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: $l-size;
+    padding: $xxs-size 0;
+    
+    button {
+        display: flex;
+        background: none;
+        padding: 0;
+        margin: 0;
+        border: none;
+        align-items: center;
+
+        svg {
+            fill: $peacock;
+        }
+    }
+}
+
+.year-selector__select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $s-size;
+    padding: $s-size;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out -100ms;
+    
+    div {
+        text-align: center;
+        font-size: $s-size;
+        text-transform: uppercase;
+        border-radius: $xxs-size;
+        padding: $xs-size $s-size;
+        cursor: pointer;
+        border: solid 1px #e8e8e8;
+    }
+    div:hover {
+        background: #e8e8e8;
+    }
+    div.selected {
+        background: $peacock;
+        color: white;
+    }
+
+    .pre-next {
+        cursor: default;
+        border-color: #eee;
+        color: #ddd;
+    }
+    .pre-next:hover {
+        background: none;
+    }
+}

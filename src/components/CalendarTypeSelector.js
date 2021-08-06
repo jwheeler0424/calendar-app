@@ -6,13 +6,13 @@ import {
 
 export const CalendarTypeSelector = (props) => {
     return (
-        <div className="calendar-selector__wrapper">
+        <div className="type-selector__wrapper">
             <button 
                 className={
                     props.views.activeCalendar === 'weekly' ? (
-                        "calendar-selector__active"
+                        "button button--type__active"
                     ) : (
-                        "calendar-selector__selector"
+                        "button button--type"
                     )
                 }
                 onClick={() => {props.setActiveCalendar('weekly')}}
@@ -20,9 +20,9 @@ export const CalendarTypeSelector = (props) => {
             <button 
                 className={
                     props.views.activeCalendar === 'monthly' ? (
-                        "calendar-selector__active"
+                        "button button--type__active"
                     ) : (
-                        "calendar-selector__selector"
+                        "button button--type"
                     )
                 }
                 onClick={() => {props.setActiveCalendar('monthly')}}
@@ -30,9 +30,9 @@ export const CalendarTypeSelector = (props) => {
             <button 
                 className={
                     props.views.activeCalendar === 'yearly' ? (
-                        "calendar-selector__active"
+                        "button button--type__active"
                     ) : (
-                        "calendar-selector__selector"
+                        "button button--type"
                     )
                 }
                 onClick={() => {props.setActiveCalendar('yearly')}}

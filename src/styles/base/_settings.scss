@@ -1,5 +1,7 @@
 // App Colors
-
+$lightgrey: #cccccc;
+$border: #e8e8e8;
+$closer: rgb(225, 121, 121);
 
 // Calendar Colors
 $banana: rgb(245, 192, 58);
@@ -14,9 +16,42 @@ $sage: rgb(55, 183, 124);
 $tangerine: rgb(242, 81, 37);
 $tomato: rgb(211, 0, 6);
 
+// Breaks
+$tablet: 48rem;
+$desktop: 110rem;
 
 // Spacing
+$xxxs-size: 0.3rem;
+$xxs-size: 0.6rem;
+$xs-size: 0.8rem;
 $s-size: 1.2rem;
 $m-size: 1.6rem;
 $l-size: 3.2rem;
 $xl-size: 4.8rem;
+
+// Container
+.content-container {
+    position: relative;
+    width: 92%;
+    margin: 0 auto;
+}
+
+// Icon Size
+$xxxs-icon: 0.6rem;
+$xxs-icon: 0.8rem;
+$xs-icon: 1.2rem;
+$s-icon: 1.6rem;
+$m-icon: 2.0rem;
+$l-icon: 2.4rem;
+$xl-icon: 2.8rem;
+$xxl-icon: 3.0rem;
+
+// Font Size
+$xxs-font: 1.0rem;
+$xs-font: 1.2rem;
+$s-font: 1.4rem;
+$reg-font: 1.6rem;
+$m-font: 2.0rem;
+$l-font: 2.4rem;
+$xl-font: 2.8rem;
+$xxl-font: 3.2rem;

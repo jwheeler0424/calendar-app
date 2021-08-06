@@ -1,0 +1,25 @@
+.header {
+    position: relative;
+    width: 100%;
+    background: darken($peacock, 50%);
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: $s-size 0;
+
+    h1 {
+        color: white;
+        font-size: $m-font;
+        font-weight: 300;
+        padding: 0;
+        margin: 0;
+        margin-top: -$xxxs-size;
+    }
+    h1:hover {
+        color: #ccc;
+    }
+}

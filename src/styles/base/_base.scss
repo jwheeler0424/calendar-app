@@ -1,10 +1,14 @@
 html {
-    font-size: 62.5%
+    font-size: 62.5%;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: $m-size;
+}
+
+*, *:after, *:before {
+    box-sizing: border-box;
 }
 
 button {
@@ -13,4 +17,10 @@ button {
 
 button:disabled {
     cursor: default;
+}
+
+.spacer{
+    position: relative;
+    width: 100%;
+    height: $s-size;
 }

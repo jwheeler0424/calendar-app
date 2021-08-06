@@ -1,0 +1,81 @@
+.calendar-active__wrapper {
+    border: solid 1px #e8e8e8;
+    position: relative;
+}
+
+.calendar-monthly__wrapper {
+    display: block;
+    background: white;
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.hide-mobile {
+    display: none;
+}
+
+.calendar-list__wrapper {
+    display: block;
+    background: white;
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.calendar-selector__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: $s-size;
+    margin: $m-size auto;
+    background-color: #f8f8f8;
+    border: solid 1px #e8e8e8;
+    color: #999;
+}
+
+.color-selector__wrapper {
+    position: relative;
+    font-size: $s-size;
+    color: #999;
+    margin: 0;
+}
+
+.date-selector__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.month-selector__wrapper {
+    position: relative;
+    height: 100%;
+    font-size: $s-size;
+    color: #999;
+    margin: 0 0 0 -1px;
+}
+
+.type-selector__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-self: end;
+    height: 100%;
+    margin-top: $s-size;
+    width: fit-content;
+}
+
+.year-selector__wrapper {
+    position: relative;
+    height: 100%;
+    font-size: $s-size;
+    color: #999;
+    margin: 0 0 0 -1px;
+}

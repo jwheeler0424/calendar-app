@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ExpandMore } from '../svg/Icons';
 import colors from '../tests/fixtures/colors';
-import '../styles/component/_colorPicker.scss';
 
 const ColorPicker = (props) => {
     const [color, setColor] = useState(
@@ -18,24 +17,27 @@ const ColorPicker = (props) => {
         colorMenuOpen === ' open' ? setColorMenuOpen('') : setColorMenuOpen(' open');
     }
     const selectColor = (e) => {
-        const title = e.target.attributes[0].value;
-        const value = e.target.attributes[1].value;
+        console.log(e.target.attributes)
+        const title = e.target.attributes[1].value;
+        const value = e.target.attributes[2].value;
         setColor({ title, value });
         props.onColorChange(title);
+        setColorMenuOpen('');
     }
     
     return (
-        <div className="color-picker__wrapper">
-            <div className="color-picker__selected" onClick={toggleColorSelectMenu} title="Select Event Color">
-                <span className="color-picker__title" style={{background: color.value}}></span>
+        <div className="color-selector__wrapper">
+            <div className="color-selector__selected" onClick={toggleColorSelectMenu} title="Select Event Color">
+                <span className="color-selector__title" style={{background: color.value}}></span>
                 <ExpandMore className="material-icons" />
             </div>
-            <div className={'color-picker__selector' + colorMenuOpen}>
-                <div className="color-picker__select">
+            <div className={'color-selector__selector' + colorMenuOpen}>
+                <div className="color-selector__select">
                     {colors.map(({ title, value }) => (
                             <div
                                 key={title}
                                 onClick={selectColor}
+                                className={color.title === title ? 'selected' : ''}
                                 style={{background: value}}
                                 data-title={title}
                                 data-value={value}

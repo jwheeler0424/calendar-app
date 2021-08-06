@@ -1,0 +1,38 @@
+.calendar-list__title {
+    margin: 0 auto;
+    padding: $xl-size $m-size $m-size;
+    position: relative;
+    width: 80%;
+    font-size: $m-font;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.calendar-list__event-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto $l-size;
+    height: $xl-size;
+    width: $xl-size;
+    border: solid 1px $peacock;
+    border-radius: 50%;
+    color: $peacock;
+    font-size: $s-font;
+}
+
+.calendar-list__event-list {
+    width: calc(100% - $s-size * 2);
+    margin: 0 $s-size $s-size;
+    padding: $l-size $s-size $m-size;
+    border-top: solid 1px $border;
+
+    p {
+        text-align: center;
+        font-style: italic;
+        color: #ccc;
+        font-size: $m-font;
+        font-weight: 300;
+    }
+}

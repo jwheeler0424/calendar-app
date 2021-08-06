@@ -64,11 +64,11 @@ export const CalendarMonthly = (props) => {
     const nextMonth = moment(props.views.currentDate).add(1, 'months');
     
     return (
-        <div className="calendar-monthly__wrapper">
-            <button onClick={setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
-            <button onClick={setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
-            <h1>{moment(props.views.currentDate).format('MMMM YYYY')}</h1>
-            <div className="calendar-monthly__week-day-titles">
+        <div className={props.views.activeView ? 'calendar-monthly__wrapper hide-mobile' : 'calendar-monthly__wrapper'}>
+            <button className="button button--nav-prev" onClick={setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
+            <button className="button button--nav-next" onClick={setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
+            <h1 className="calendar-monthly__title">{moment(props.views.currentDate).format('MMMM YYYY')}</h1>
+            <div className="calendar-monthly__weekday-titles">
                 {getWeekDayTitles().map((day) => (
                     <div key={moment().day(day).format('ddd')}>
                         {moment().day(day).format('ddd')}

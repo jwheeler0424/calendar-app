@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const viewsReducerDefaultState = {
     activeCalendar: 'monthly',
-    activeView: 'list',
+    activeView: '',
     activeEvent: undefined,
     lastView: '',
     currentDate: 0

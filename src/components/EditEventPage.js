@@ -36,9 +36,10 @@ export const EditEventPage = (props) => {
 
     return (
         <div className="calendar-edit"> 
-            <button onClick={closeEdit}>
+            <button onClick={closeEdit} className="button button--close">
                 <Close />
             </button>
+            <h1 className="calendar-edit__title">Update Event</h1>
             <EventForm event={props.event} onSubmit={onSubmit} onSetMessages={onSetMessages} />
             <EventFormModal
                 messages={messages}

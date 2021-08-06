@@ -14,9 +14,9 @@ export const TodaySelector = (props) => {
         props.setEndDate(endDate);
     }
     return (
-        <button className="calendar-icon__wrapper" onClick={setToday}>
-            <CalendarToday className="calendar-icon__current" />
-            <span>{moment().format('D')}</span>
+        <button className="button button--today" onClick={setToday}>
+            <CalendarToday />
+            <span>{moment().format('DD')}</span>
         </button>
     )
 };
