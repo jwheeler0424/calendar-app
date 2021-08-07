@@ -27,7 +27,7 @@ export const EventListItem = (props) => {
     return (
         <div className={`calendar-list__day-event ${color}`}>
             <div className="event-title" onClick={viewEvent}>
-                <div className="event-color"></div>
+                <div className="event-bullet"></div>
                 {title}
             </div>
             <div className="event-buttons-time">

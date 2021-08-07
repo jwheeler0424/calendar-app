@@ -3,6 +3,27 @@
     position: relative;
 }
 
+.calendar-form__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - $s-size * 2);
+    margin: 0 $s-size 0;
+    padding: $m-size 0 0;
+    border-top: solid 1px $border;
+}
+.calendar-form__wrapper {
+    > div {
+        margin: 0 0 $s-size 0;
+    }
+    input {
+        color: #999;
+    }
+    ::placeholder {
+        color: #ccc;
+        font-style: italic;
+    }
+}
+
 .calendar-monthly__wrapper {
     display: block;
     background: white;

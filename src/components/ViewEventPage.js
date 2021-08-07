@@ -106,38 +106,44 @@ export const ViewEventPage = (props) => {
             <button onClick={deleteEvent} className="button button--delete"><DeleteForever /></button>
             <button onClick={editEvent} className="button button--edit"><AutoFixHigh /></button>
             <h1 className="calendar-view__title">Event Details</h1>
-            <div className="calendar-view__event-details">
-                <h2 className="event-title"><span className={`${color} event-bullet`}></span> {title}</h2>
+            <div className={`calendar-view__event-details ${color}`}>
+                <h2 className="event-title"><div className="event-bullet"></div> {title}</h2>
                 <div className="event-date__view"><Schedule /> 
                     <div className="event-date__text">{
                         duration === 'day' ? (
                             startDay !== endDay ? (
                                 <>
-                                    <span className="start-date"><em>{moment(startDate).format('ddd, MMM D')}</em></span>
+                                    <div className="start-date">
+                                        <div className="date">{moment(startDate).format('ddd, MMM D')}</div>
+                                    </div>
                                     <ArrowForward />
-                                    <span className="end-date"><em>{moment(endDate).format('ddd, MMM D')}</em></span>
+                                    <div className="end-date">
+                                        <div className="date">{moment(endDate).format('ddd, MMM D')}</div>
+                                    </div>
                                 </>
                             ) : (
-                                <span className="start-date"><em>{moment(startDate).format('ddd, MMM D')}</em></span>
+                                <div className="start-date">
+                                    <div className="date">{moment(startDate).format('ddd, MMM D')}</div>
+                                </div>
                             )
                         ) : (
                             startDay !== endDay ? (
                                 <>
-                                    <span className="start-date">
-                                        <em>{moment(startDate).format('ddd, MMM D')}</em><br />
-                                        {moment(startDate).format('h:mm a')}
-                                    </span>
+                                    <div className="start-date">
+                                        <div className="date">{moment(startDate).format('ddd, MMM D')}</div>
+                                        <div className="time">{moment(startDate).format('h:mma')} - {moment(endDate).format('h:mma')}</div>
+                                    </div>
                                     <ArrowForward />
-                                    <span className="end-date">
-                                        <em>{moment(endDate).format('ddd, MMM D')}</em><br />
-                                        {moment(endDate).format('h:mm a')}
-                                    </span>
+                                    <div className="end-date">
+                                        <div className="date">{moment(endDate).format('ddd, MMM D')}</div>
+                                        <div className="time">{moment(startDate).format('h:mma')} - {moment(endDate).format('h:mm a')}</div>
+                                    </div>
                                 </>
                             ) : (
-                                <span className="start-date">
-                                    <em>{moment(startDate).format('ddd, MMM D')}</em><br />
-                                    {moment(startDate).format('h:mm a')} - {moment(endDate).format('h:mm a')}
-                                </span>
+                                <div className="start-date">
+                                    <div className="date">{moment(startDate).format('ddd, MMM D')}</div>
+                                    <div className="time">{moment(startDate).format('h:mma')} - {moment(endDate).format('h:mma')}</div>
+                                </div>
                             )
                         )
                     }</div>

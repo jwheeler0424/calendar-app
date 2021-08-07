@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
 import { DatePicker, TimePicker } from 'antd';
 import ColorPicker from './ColorPicker';
 import LocationInput from './LocationInput';
 import { validateEventForm } from '../utils/formValidators';
 import getRoundedMinute from '../utils/getRoundedMinute';
 
-const EventForm = (props) => {    
+export const EventForm = (props) => {    
     const [title, setTitle] = useState(props.event ? props.event.title : '');
+    console.log(props.currentDate)
     const [startDate, setStartDate] = useState(
-        props.event ? props.event.startDate : moment().minute(getRoundedMinute()).startOf('minute').valueOf()
+        props.event ? props.event.startDate : props.currentDate.minute(getRoundedMinute()).startOf('minute').valueOf()
     );
     const [endDate, setEndDate] = useState(
-        props.event ? props.event.endDate : moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf()
+        props.event ? props.event.endDate : props.currentDate.minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf()
     );
     const [color, setColor] = useState(
         props.event ? props.event.color : 'peacock'
@@ -29,8 +31,8 @@ const EventForm = (props) => {
 
     const resetEventForm = () => {
         setTitle('');
-        setStartDate(moment().minute(getRoundedMinute()).startOf('minute').valueOf());
-        setEndDate(moment().minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf());
+        setStartDate(props.currentDate.minute(getRoundedMinute()).startOf('minute').valueOf());
+        setEndDate(props.currentDate.minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf());
         setColor('peacock');
         setDuration('time');
         setLocation('');
@@ -199,4 +201,8 @@ const EventForm = (props) => {
     );
 }
 
-export { EventForm as default };
+const mapStateToProps = (state) => ({
+    currentDate: state.views.currentDate
+});
+
+export default connect(mapStateToProps)(EventForm);

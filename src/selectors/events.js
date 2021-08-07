@@ -13,9 +13,9 @@ const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     }).sort((a, b) => {
         switch (sortBy) {
             case 'date':
-                return a.startDate < b.startDate ? 1 : -1;
+                return a.startDate < b.startDate ? -1 : 1;
             default: 
-                return a.startDate < b.startDate ? 1 : -1;
+                return a.startDate < b.startDate ? -1 : 1;
         }
     });
 }

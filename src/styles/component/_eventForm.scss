@@ -1,6 +1,6 @@
 .calendar-add__title {
     margin: 0 auto;
-    padding: $xl-size $m-size $m-size;
+    padding: $xxl-size $m-size $l-size;
     position: relative;
     width: 80%;
     font-size: $m-font;
@@ -10,33 +10,12 @@
 
 .calendar-edit__title {
     margin: 0 auto;
-    padding: $xl-size $m-size $m-size;
+    padding: $xxl-size $m-size $l-size;
     position: relative;
     width: 80%;
-    font-size: $s-font;
+    font-size: $m-font;
     text-align: center;
     text-transform: uppercase;
-}
-
-.calendar-form__wrapper {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - $s-size * 2);
-    margin: 0 $s-size 0;
-    padding: $m-size 0 0;
-    border-top: solid 1px $border;
-}
-.calendar-form__wrapper {
-    > div {
-        margin: 0 0 $s-size 0;
-    }
-    input {
-        color: #999;
-    }
-    ::placeholder {
-        color: #ccc;
-        font-style: italic;
-    }
 }
 
 input:active,

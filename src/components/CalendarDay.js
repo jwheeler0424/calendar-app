@@ -14,11 +14,12 @@ export const CalendarDay = (props) => {
         } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
             date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
         }
-        const startDate = moment(date).startOf('day');
-        const endDate = moment(date).endOf('day');
-        props.setCurrentDate(moment(date));
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
+        const currentDate = moment(date);
+        props.setCurrentDate(currentDate);
+        props.setStartDate(moment(date));
+
+        props.setEndDate(moment(date).endOf('day'));
+        console.log(props.views.currentDate)
         props.setLastView('');
         props.setActiveView('list');
     };

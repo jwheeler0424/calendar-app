@@ -10,6 +10,8 @@
     text-transform: uppercase;
     svg {
         fill: $peacock;
+        height: $m-icon;
+        width: $m-icon;
     }
 }
 .button:active {

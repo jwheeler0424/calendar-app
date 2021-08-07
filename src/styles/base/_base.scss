@@ -18,3 +18,7 @@ button {
 button:disabled {
     cursor: default;
 }
+
+#root > div {
+    padding-bottom: $s-size;
+}
