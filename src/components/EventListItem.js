@@ -25,32 +25,32 @@ export const EventListItem = (props) => {
     }
 
     return (
-        <div className="calendar-list__day-event">
-            <button onClick={editEvent}><AutoFixHigh /></button>
-            <button onClick={deleteEvent}><DeleteForever /></button>
-            <div className={`event-color ${color}`}></div>
-            <div className="event-title" onClick={viewEvent}>{title}</div>
-            { // Showing event duration
-                duration === 'time' ? (
-                    <div className="event-time">
-                        <Schedule /> {moment(startDate).format('h:mm a')} -  {moment(endDate).format('h:mm a')}
-                    </div>
-                ) : (
-                    <div className="event-time"><Schedule /> All Day</div>
-                )
-            }
-            { // Showing event location if provided with map if address provided
-                location && (
-                    location.address === '' ? (
-                        <div className="event-location">
-                            <Place /> {location.description}
+        <div className={`calendar-list__day-event ${color}`}>
+            <div className="event-title" onClick={viewEvent}>
+                <div className="event-color"></div>
+                {title}
+            </div>
+            <div className="event-buttons-time">
+                <div className="event-buttons">
+                    <button onClick={editEvent} className="button button--edit"><AutoFixHigh /></button>
+                    <button onClick={deleteEvent} className="button button--delete"><DeleteForever /></button>
+                </div>
+                { // Showing event duration
+                    duration === 'time' ? (
+                        <div className="event-time">
+                            <Schedule /> {moment(startDate).format('h:mm a')} -  {moment(endDate).format('h:mm a')}
                         </div>
                     ) : (
-                        <div className="event-location">
-                            <Place /> {location.description} <span>({location.address})</span>
-                        </div>
+                        <div className="event-time"><Schedule /> All Day</div>
                     )
-                )
+                }
+            </div>
+            
+            { // Showing event location if provided with map if address provided
+                location && 
+                <div className="event-location">
+                    <Place /> {location.description}
+                </div>
             }
         </div>
     );

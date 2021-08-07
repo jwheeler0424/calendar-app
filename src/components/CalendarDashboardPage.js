@@ -12,7 +12,6 @@ const CalendarDashboardPage = (props) => {
                 <CalendarView />
                 {props.views.activeView && <CalendarAction />}
             </div>
-            <div className="spacer"></div>
         </main>
     );
 }

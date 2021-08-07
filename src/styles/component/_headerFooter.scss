@@ -23,3 +23,23 @@
         color: #ccc;
     }
 }
+
+.footer {
+    position: relative;
+    width: 100%;
+    margin: $s-size 0;
+}
+
+.footer__content {
+    align-items: center;
+    background: #eee;
+    border: solid 1px $border;
+    color: #aaa;
+    display: flex;
+    font-size: $xxs-font;
+    font-weight: 400;
+    justify-content: flex-end;
+    letter-spacing: $xxxxs-size;
+    padding: $s-size;
+    text-transform: uppercase;
+}

@@ -49,7 +49,7 @@ export const EventListPage = (props) => {
                             return <EventListItem event={event} key={event.id} />
                         })
                     ) : (
-                        <p className="calendar-list__no-event">Currently no events scheduled for this date.</p>
+                        <div className="calendar-list__no-event">Currently no events scheduled for this date.</div>
                     )
                 }
             </div>

@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 0 auto $l-size;
+    margin: 0 auto $xxs-size;
     height: $xl-size;
     width: $xl-size;
     border: solid 1px $peacock;
@@ -23,11 +23,12 @@
 }
 
 .calendar-list__event-list {
-    width: 100%;
-    margin: 0 0 $s-size;
-    padding: $l-size $s-size $m-size;
-    border-top: solid 1px $border;
-
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0 $s-size;
+    padding: 0 0 $m-size;
+    
+    width: calc(100% - $s-size * 2);
     p {
         text-align: center;
         font-style: italic;
@@ -38,5 +39,174 @@
 }
 
 .calendar-list__day-event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: $l-size;
+    padding: $l-size 0 0;
+    border-top: solid 1px $border;
+    .button {
+        padding: $xxs-size;
+        svg {
+            height: $m-icon;
+            width: $m-icon;
+        }
+    }
+}
 
+.calendar-list__no-event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: $l-size;
+    padding: $l-size 0;
+    border-top: solid 1px $border;
+    color: #ccc;
+    font-style: italic;
+    font-size: $m-font;
+    text-align: center;
+    font-weight: 300;
+}
+
+.event-title {
+    align-items: center;
+    border-bottom: solid 1px $border;
+    color: #666;
+    display: flex;
+    justify-content: flex-start;
+    padding: $xxxs-size 0;
+}
+
+.event-color {
+    display: block;
+    position: relative;
+    width: $s-icon;
+    height: $s-icon;
+    margin-right: $xs-size;
+    border-radius: 50%;
+}
+
+.event-buttons-time {
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.event-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+        top: 0;
+    }
+}
+
+.event-time, .event-location {
+    align-items: center;
+    color: #666;
+    display: flex;
+    font-size: $s-font;
+    justify-content: flex-start;
+    margin-top: $xxxs-size;
+
+    svg {
+        fill: #666;
+        height: $m-icon;
+        margin-right: $xxs-size;
+        width: $m-icon;
+    }
+}
+
+.event-location {
+    margin: $xxs-size 0;
+}
+
+.banana {
+    .event-title {
+        border-color: $banana;
+    }
+    .event-color {
+        background: $banana;
+    }
+}
+.basil {
+    .event-title {
+        border-color: $basil;
+    }
+    .event-color {
+        background: $basil;
+    }
+}
+.blueberry {
+    .event-title {
+        border-color: $blueberry;
+    }
+    .event-color {
+        background: $blueberry;
+    }
+}
+.flamingo {
+    .event-title {
+        border-color: $flamingo;
+    }
+    .event-color {
+        background: $flamingo;
+    }
+}
+.grape {
+    .event-title {
+        border-color: $grape;
+    }
+    .event-color {
+        background: $grape;
+    }
+}
+.graphite {
+    .event-title {
+        border-color: $graphite;
+    }
+    .event-color {
+        background: $graphite;
+    }
+}
+.lavendar {
+    .event-title {
+        border-color: $lavendar;
+    }
+    .event-color {
+        background: $lavendar;
+    }
+}
+.peacock {
+    .event-title {
+        border-color: $peacock;
+    }
+    .event-color {
+        background: $peacock;
+    }
+}
+.sage {
+    .event-title {
+        border-color: $sage;
+    }
+    .event-color {
+        background: $sage;
+    }
+}
+.tangerine {
+    .event-title {
+        border-color: $tangerine;
+    }
+    .event-color {
+        background: $tangerine;
+    }
+}
+.tomato {
+    .event-title {
+        border-color: $tomato;
+    }
+    .event-color {
+        background: $tomato;
+    }
 }
