@@ -2,24 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { setCurrentDate, setActiveView, setLastView } from '../actions/views';
-import { setStartDate, setEndDate } from '../actions/filters'
+import { setStartDate, setEndDate } from '../actions/filters';
 
 export const CalendarDay = (props) => {
-    const selectDate = (e) => {
-        let date;
-        if (e.target.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.attributes.date.value);
-        } else if (e.target.parentElement.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.parentElement.attributes.date.value);
-        } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
-        }
-        const currentDate = moment(date);
+    const selectDate = (date) => {
+        const currentDate = moment().set({'date': date.date(), 'month': date.month(), 'year': date.year()});
+        const startDate = moment(date.valueOf());
+        const endDate = moment(date.valueOf()).endOf('day');
         props.setCurrentDate(currentDate);
-        props.setStartDate(moment(date));
-
-        props.setEndDate(moment(date).endOf('day'));
-        console.log(props.views.currentDate)
+        props.setStartDate(startDate);
+        props.setEndDate(endDate);
         props.setLastView('');
         props.setActiveView('list');
     };
@@ -28,7 +20,7 @@ export const CalendarDay = (props) => {
         <div 
             className={props.type==='current' ? "calendar-day" : "calendar-day pre-next"}
             title={props.date.format("MMM Do")}
-            onClick={selectDate}
+            onClick={() => selectDate(props.date)}
             key={props.date}
             date={props.date}
         >
@@ -46,8 +38,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     setActiveView: (activeView) => dispatch(setActiveView(activeView)),
     setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
-    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setLastView: (lastView) => dispatch(setLastView(lastView)),
+    setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
 

@@ -5,7 +5,7 @@ const viewsReducerDefaultState = {
     activeView: '',
     activeEvent: undefined,
     lastView: '',
-    currentDate: moment()
+    currentDate: 0
 };
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {

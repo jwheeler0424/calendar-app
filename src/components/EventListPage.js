@@ -9,14 +9,16 @@ import EventListHoliday from './EventListHoliday';
 import EventListItem from './EventListItem';
 
 export const EventListPage = (props) => {
+    const dateValue = props.views.currentDate.valueOf();
+
     const addEvent = () => {
         props.setActiveView('add');
         props.setLastView('list')
     }
     
     const holiday = getHolidayList(props.views.currentDate.year()).find((holiday) => {
-        const start = props.views.currentDate.startOf('day').valueOf();
-        const end = props.views.currentDate.endOf('day').valueOf();
+        const start = moment(dateValue).startOf('day').valueOf();
+        const end = moment(dateValue).endOf('day').valueOf();
         const holidayDay = moment().date(holiday.date).month(holiday.month).year(props.views.currentDate.year()).valueOf();
 
         return holidayDay >= start && holidayDay <= end && holiday.display

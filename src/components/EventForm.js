@@ -9,12 +9,11 @@ import getRoundedMinute from '../utils/getRoundedMinute';
 
 export const EventForm = (props) => {    
     const [title, setTitle] = useState(props.event ? props.event.title : '');
-    console.log(props.currentDate)
     const [startDate, setStartDate] = useState(
-        props.event ? props.event.startDate : props.currentDate.minute(getRoundedMinute()).startOf('minute').valueOf()
+        props.event ? props.event.startDate : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).startOf('minute').valueOf()
     );
     const [endDate, setEndDate] = useState(
-        props.event ? props.event.endDate : props.currentDate.minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf()
+        props.event ? props.event.endDate : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf()
     );
     const [color, setColor] = useState(
         props.event ? props.event.color : 'peacock'
