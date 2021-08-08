@@ -154,22 +154,31 @@ export const ViewEventPage = (props) => {
                         <div className="event-location__text">
                             {
                                 location.address ? (
-                                    <><em>{location.description}</em><br />
-                                    {location.address}</>
+                                    <>
+                                        <div className="description">{location.description}</div>
+                                        {location.description !== location.address.split(',')[0] &&
+                                            <div className="address">{location.address}</div>
+                                        }
+                                    </>
                                 ) : (
-                                    <em>{location.description}</em>
+                                    <div className="description">{location.description}</div>
                                 )
                             }
                         </div>
                     </div>
                 }
                 {location.address && 
-                    <div id="map" style={{width:'200px', height:'200px'}}></div>
+                    <div id="map" className="event-location__map"></div>
                 }
-                <div className="event-notes__view">
-                    <Notes />
-                    <div className="event-notes_text">{notes}</div>
-                </div>
+                {notes && 
+                    <div className="event-notes__view">
+                        <Notes />
+                        <div className="event-notes__text">
+                            <div className="title">Notes</div>
+                            <div className="notes">{notes}</div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     );

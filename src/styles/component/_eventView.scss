@@ -15,8 +15,11 @@
     padding: 0 0 $m-size;
     width: calc(100% - $s-size * 2);
 }
-
-.event-date__view, .event-location__view {
+.event-title {
+    font-size: $m-font;
+    font-weight: 400;
+}
+.event-date__view, .event-location__view, .event-notes__view {
     align-items: flex-start;
     color: $grey;
     display: flex;
@@ -25,6 +28,7 @@
     margin-top: $xxxs-size;
 
     svg {
+        padding: 0;
         fill: $grey;
         height: $m-icon;
         margin-right: $xxs-size;
@@ -57,5 +61,56 @@
     .time {
         all: unset;
         font-size: $xxs-font;
+    }
+}
+
+.event-location__text {
+    align-items: flex-start;
+    color: $grey;
+    display: flex;
+    margin-bottom: $s-size;
+    flex-direction: column;
+
+    .description {
+        all: unset;
+        font-size: $s-font;
+        font-weight: bold;
+    }
+    .address {
+        all: unset;
+        font-size: $xxs-font;
+    }
+}
+
+.event-location__map {
+    border: solid 1px $lightgrey;
+    border-radius: $xxxs-size;
+    height: $s-map;
+    width: 100%;
+}
+
+.event-notes__view {
+    margin-top: $s-size;
+    svg {
+        height: $xxl-icon;
+        margin: 0 $xs-size 0 0;
+        width: $xxl-icon;
+    }
+}
+.event-notes__text {
+    align-items: flex-start;
+    color: $grey;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        all: unset;
+        font-size: $s-font;
+        font-weight: bold;
+        margin-top: $xxxs-size;
+    }
+    .notes {
+        all: unset;
+        font-size: $s-font;
     }
 }
