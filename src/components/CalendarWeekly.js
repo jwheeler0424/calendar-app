@@ -22,10 +22,6 @@ export const  CalendarWeekly = (props) => {
         return calendarDays
     };
 
-    const getWeekDayTitles = () => {
-        return ([0,1,2,3,4,5,6])
-    };
-
     const setWeekPrev = () => {
         const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks');
         const startDate = moment(props.views.currentDate).subtract(1, 'weeks').startOf('day');
