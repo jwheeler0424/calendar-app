@@ -49,23 +49,23 @@ export const  CalendarWeekly = (props) => {
 
     return (
         <div className="calendar-weekly__wrapper">
-            <button onClick={setWeekPrev}><NavigateBefore /> {prevWeek.format('wo')} Week</button>
-            <button onClick={setWeekNext}>{nextWeek.format('wo')} Week <NavigateNext /></button>
-            <h1>{moment(props.views.currentDate).format('wo')} Week</h1>
-            <div className="calendar-weekly__week-day-titles">
-                {getWeekDayTitles().map((day) => (
-                    <div key={moment().day(day).format('ddd')}>
-                        {moment().day(day).format('ddd')}
-                    </div>
-                ))}
-            </div>
-            <div className="calendar-weekly__week">
+            <button className="button button--nav-prev" onClick={setWeekPrev}><NavigateBefore /> {prevWeek.format('wo')} Week</button>
+            <button className="button button--nav-next" onClick={setWeekNext}>{nextWeek.format('wo')} Week <NavigateNext /></button>
+            <h1 className="calendar-weekly__title">
+                {moment(props.views.currentDate.valueOf()).startOf('week').format('MMM Do')}
+                &nbsp;-&nbsp;
+                {moment(props.views.currentDate.valueOf()).endOf('week').format('MMM Do')}
+            </h1>
+            <div className="calender-weekly__view">
                 {getCalendarDays(props.views.currentDate).map((day) => (
-                    <CalendarDay 
-                        date={day.date}
-                        key={day.date.valueOf()}
-                        type={day.type}
-                    />
+                    <div className="calendar-weekly__weekday">
+                        <div className="weekday-title">{day.date.format('dddd')}</div>
+                        <CalendarDay 
+                            date={day.date}
+                            key={day.date.valueOf()}
+                            type={day.type}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

@@ -1,4 +1,4 @@
-.calendar-monthly__title {
+.calendar-weekly__title {
     display: flex;
     font-size: $m-font;
     margin: 0;
@@ -8,38 +8,39 @@
     width: 100%;
 }
 
-.calendar-monthly__weekday-titles {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    margin: 0 $s-size;
-    div {
-        font-size: $xxs-font;
-        padding: 0;
-        text-align: center;
-        text-transform: uppercase;
-        padding: 0 0 $xxxs-size 0;
-    }
+.calender-weekly__view {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $s-size;
+    width: 100%;
 }
 
-.calendar-monthly__month {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 2fr;
-    grid-auto-rows: 2fr;
-    margin: 0 $s-size $s-size;
-    border-top: solid 1px $border;
-    border-left: solid 1px $border;
-    
+
+
+.calendar-weekly__weekday {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: $s-size;
+
+    .weekday-title {
+        color: #999;
+        font-size: $s-font;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        text-align: center;
+        text-transform: uppercase;
+        padding: $s-size $s-size 0 0;
+    }
+
     .calendar-day {
         align-items: center;
-        border-bottom: solid 1px $border;
-        border-right: solid 1px $border;
+        border: solid 1px $border;
         display: flex;
         font-size: $xxs-font;
-        padding-top: 125%;
+        padding-top: 80%;
         position: relative;
         justify-content: center;
-        width: 1fr;
+        width: 100%;
     }
     
     .content {
@@ -53,7 +54,9 @@
     
     .day-num {
         position: relative;
-        padding: 0 $xxxs-size;
+        padding: $xs-size;
+        font-size: $s-font;
+        margin-left: 2px;
     }
     
     .pre-next {
@@ -62,12 +65,11 @@
     
     .current-day {
         color: $peacock;
-        border-top: solid 2px $peacock;
+        border-left: solid 2px $peacock;
     
         .day-num {
-            margin-top: -2px;
+            margin-left: 0px;
             font-weight: bold;
         }
     }
 }
-
