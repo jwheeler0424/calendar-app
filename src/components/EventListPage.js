@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import getVisibleEvents from '../selectors/events';
+import { getVisibleEvents } from '../selectors/events';
 import getHolidayList from '../utils/getHolidayList';
 import { setActiveView, setLastView } from '../actions/views';
 import { Close, MoreTime } from '../svg/Icons';

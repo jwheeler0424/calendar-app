@@ -49,20 +49,34 @@
         right: 0;
         bottom: 0;
         left: 0;
+        overflow: hidden;
     }
     
     .day-num {
         position: relative;
         padding: 0 $xxxs-size;
     }
+
+    .day-event {
+        border-radius: 50%;
+        height: $xs-icon;
+        overflow: hidden;
+        margin: 11% auto $xl-size;
+        text-indent: $l-size;
+        width: $xs-icon;
+    }
     
     .pre-next {
         color: #ccc;
+
+        .day-event {
+            opacity: .3;
+        }
     }
     
     .current-day {
-        color: $peacock;
-        border-top: solid 2px $peacock;
+        color: $main;
+        border-top: solid 2px $main;
     
         .day-num {
             margin-top: -2px;

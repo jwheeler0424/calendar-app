@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { setActiveCalendar, setCurrentDate } from '../actions/views';
+import { setActiveCalendar, setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
+import { getDayEvents } from '../selectors/events';
+import getHolidayList from '../utils/getHolidayList';
 
 export const  CalendarMonth = (props) => {
     const getMonthDays = (calendarDate) => {
@@ -36,55 +38,70 @@ export const  CalendarMonth = (props) => {
         return calendarDays
     };
 
-    const selectMonth = (e) => {
-        let date;
-        if (e.target.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.attributes.date.value);
-        } else if (e.target.parentElement.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.parentElement.attributes.date.value);
-        } else if (e.target.parentElement.parentElement.parentElement.attributes.date) {
-            date = parseInt(e.target.parentElement.parentElement.parentElement.attributes.date.value);
-        }
-        const startDate = moment(date).startOf('day');
-        const endDate = moment(date).endOf('day');
-        props.setCurrentDate(date);
+    const selectMonth = (date) => {
+        const calendarDate = moment(date.valueOf());
+        const startDate = moment(date.valueOf());
+        const endDate = moment(date.valueOf()).endOf('day');
+        
+        props.setCalendarDate(calendarDate);
         props.setStartDate(startDate);
         props.setEndDate(endDate);
-        props.setActiveCalendar('month');
+        props.setActiveCalendar('monthly');
     }
     
     return (
         <div 
-            className="calendar-yearly__month"
+            className="calendar-month"
             title={props.month.format("MMMM - YYYY")}
-            onClick={selectMonth}
+            onClick={() => selectMonth(props.month)}
             key={props.month}
             date={props.month}
         >
-            <div className="content">
-                <div className="month-title">{props.month.format("MMM")}</div>
-                <div className="month-days">
-                    {getMonthDays(props.month.valueOf()).map((day) => (
+            <div className="month-days">
+                {getMonthDays(props.month.valueOf()).map((day) => {
+                    const holiday = getHolidayList(day.date.year()).find((holiday) => {
+                        const start = moment(day.date).startOf('day').valueOf();
+                        const end = moment(day.date).endOf('day').valueOf();
+                        const holidayDay = moment().date(holiday.date).month(holiday.month).year(day.date.year()).valueOf();
+                
+                        return holidayDay >= start && holidayDay <= end && holiday.display
+                    });
+                    const events = getDayEvents(props.events, day.date);
+                    return (
                         <div 
                             className={day.type==='current' ? "calendar-day" : "calendar-day pre-next"}
                             key={day.date.valueOf()}
                         >
-                            {day.date.format('D')}
+                            {holiday && <div className="holiday"></div>}
+                            <div 
+                                className={day.date.format('MMDDYYYY') === moment().format('MMDDYYYY') ? (
+                                    'content current-day'
+                                ) : (
+                                    'content'
+                                )}
+                            >
+                                {day.date.format('D')}
+                            </div>
+                            {events.length > 0 && <div className={events[0].color}>
+                                <div className="day-event"></div>
+                            </div>}
                         </div>
-                    ))}
-                </div>
-            </div>                
+                    )
+                }
+                )}
+            </div>                 
         </div>
     );
 };
 
 const mapStateToProps = (state) => ({
-    views: state.views
+    views: state.views,
+    events: state.events
 });
 
 const mapDispatchToProps = (dispatch) => ({
     setActiveCalendar: (activeCalendar) => dispatch(setActiveCalendar(activeCalendar)),
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });

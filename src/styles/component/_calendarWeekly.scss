@@ -15,8 +15,6 @@
     width: 100%;
 }
 
-
-
 .calendar-weekly__weekday {
     display: flex;
     align-items: flex-start;
@@ -24,12 +22,18 @@
 
     .weekday-title {
         color: #999;
-        font-size: $s-font;
+        font-size: $xs-font;
+        line-height: $xs-font;
+        letter-spacing: 0;
         writing-mode: vertical-rl;
         text-orientation: upright;
         text-align: center;
         text-transform: uppercase;
         padding: $s-size $s-size 0 0;
+    }
+    .current-date {
+        color: $main;
+        font-weight: bold;
     }
 
     .calendar-day {
@@ -59,13 +63,16 @@
         margin-left: 2px;
     }
     
-    .pre-next {
-        color: #ccc;
+    .day-event {
+        color: white;
+        font-size: $xs-font;
+        padding: $xxxs-size $s-size;
+        word-break: break-all;
     }
     
     .current-day {
-        color: $peacock;
-        border-left: solid 2px $peacock;
+        color: $main;
+        border-left: solid 2px $main;
     
         .day-num {
             margin-left: 0px;

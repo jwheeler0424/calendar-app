@@ -22,6 +22,12 @@ export const setLastView = (lastView) => ({
     lastView
 });
 
+// SET_CALENDAR_DATE
+export const setCalendarDate = (calendarDate) => ({
+    type: 'SET_CALENDAR_DATE',
+    calendarDate
+});
+
 // SET_CURRENT_DATE
 export const setCurrentDate = (currentDate) => ({
     type: 'SET_CURRENT_DATE',

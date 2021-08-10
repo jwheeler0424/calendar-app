@@ -2,20 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
-import { setCurrentDate } from '../actions/views';
+import { setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 import CalendarDay from './CalendarDay';
 
 export const  CalendarWeekly = (props) => {
     const getCalendarDays = (calendarDate) => {
-        const weekFirstDay = moment(calendarDate).startOf('week');
-        const weekLastDay = moment(calendarDate).endOf('week');
         const calendarDays = [];
         
-        for(let i=weekFirstDay.date(); i<=weekLastDay.date(); i++) {
+        for(let i=0; i<=6; i++) {
             calendarDays.push({
                 type: 'current',
-                date: moment(calendarDate).date(i).startOf('day')
+                date: moment(calendarDate.valueOf()).startOf('week').add(i, 'days').startOf('day')
             });
         }
     
@@ -23,39 +21,35 @@ export const  CalendarWeekly = (props) => {
     };
 
     const setWeekPrev = () => {
-        const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks');
-        const startDate = moment(props.views.currentDate).subtract(1, 'weeks').startOf('day');
-        const endDate = moment(props.views.currentDate).subtract(1, 'weeks').endOf('day');
-        props.setCurrentDate(prevWeek);
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
+        const prevWeek = moment(props.views.calendarDate.valueOf()).subtract(1, 'weeks');
+        props.setCalendarDate(prevWeek);
     };
 
     const setWeekNext = () => {
-        const nextWeek = moment(props.views.currentDate).add(1, 'weeks');
-        const startDate = moment(props.views.currentDate).add(1, 'weeks').startOf('day');
-        const endDate = moment(props.views.currentDate).add(1, 'weeks').endOf('day');
-        props.setCurrentDate(nextWeek);
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
+        const nextWeek = moment(props.views.calendarDate.valueOf()).add(1, 'weeks');
+        props.setCalendarDate(nextWeek);
     }
     
-    const prevWeek = moment(props.views.currentDate).subtract(1, 'weeks');
-    const nextWeek = moment(props.views.currentDate).add(1, 'weeks');
+    const prevWeek = moment(props.views.calendarDate).subtract(1, 'weeks');
+    const nextWeek = moment(props.views.calendarDate).add(1, 'weeks');
 
     return (
-        <div className="calendar-weekly__wrapper">
+        <div className={props.views.activeView ? 'calendar-weekly__wrapper hide-mobile' : 'calendar-weekly__wrapper'}>
             <button className="button button--nav-prev" onClick={setWeekPrev}><NavigateBefore /> {prevWeek.format('wo')} Week</button>
             <button className="button button--nav-next" onClick={setWeekNext}>{nextWeek.format('wo')} Week <NavigateNext /></button>
             <h1 className="calendar-weekly__title">
-                {moment(props.views.currentDate.valueOf()).startOf('week').format('MMM Do')}
+                {moment(props.views.calendarDate.valueOf()).startOf('week').format('MMM Do')}
                 &nbsp;-&nbsp;
-                {moment(props.views.currentDate.valueOf()).endOf('week').format('MMM Do')}
+                {moment(props.views.calendarDate.valueOf()).endOf('week').format('MMM Do')}
             </h1>
             <div className="calender-weekly__view">
-                {getCalendarDays(props.views.currentDate).map((day) => (
-                    <div className="calendar-weekly__weekday">
-                        <div className="weekday-title">{day.date.format('dddd')}</div>
+                {getCalendarDays(props.views.calendarDate).map((day) => (
+                    <div className="calendar-weekly__weekday" key={day.date.format('MMDDYYYY')}>
+                        {moment().format('MMDDYYYY') === moment(day.date.valueOf()).format('MMDDYYYY') ? (
+                            <div className="weekday-title current-date">{day.date.format('dddd')}</div>
+                        ) : (
+                            <div className="weekday-title">{day.date.format('dddd')}</div>
+                        )}
                         <CalendarDay 
                             date={day.date}
                             key={day.date.valueOf()}
@@ -73,7 +67,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });

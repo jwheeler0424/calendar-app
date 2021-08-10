@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 // Get visible events
-const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
+export const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     return events.filter((event) => {
         const eventStart = moment(event.startDate);
         const eventEnd = moment(event.endDate);
@@ -20,4 +20,15 @@ const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     });
 }
 
-export default getVisibleEvents;
+export const getDayEvents = (events, date) => {
+    return events.filter((event) => {
+        const eventStart = moment(event.startDate);
+        const eventEnd = moment(event.endDate);
+        const startDateMatch = date ? date.isSameOrAfter(eventStart, 'day') : true;
+        const endDateMatch = date ? date.isSameOrBefore(eventEnd, 'day') : true;
+
+        return startDateMatch && endDateMatch
+    }).sort((a, b) => {
+        return a.startDate < b.startDate ? -1 : 1;
+    });
+};

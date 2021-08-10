@@ -5,7 +5,8 @@ const viewsReducerDefaultState = {
     activeView: '',
     activeEvent: undefined,
     lastView: '',
-    currentDate: 0
+    calendarDate: moment(),
+    currentDate: moment()
 };
 
 const viewsReducer = (state = viewsReducerDefaultState, action) => {
@@ -34,6 +35,12 @@ const viewsReducer = (state = viewsReducerDefaultState, action) => {
                 ...state,
                 lastView
             }
+        case 'SET_CALENDAR_DATE':
+            const calendarDate = action.calendarDate;
+            return {
+                ...state,
+                calendarDate
+            }
         case 'SET_CURRENT_DATE':
             const currentDate = action.currentDate;
             return {
@@ -43,6 +50,7 @@ const viewsReducer = (state = viewsReducerDefaultState, action) => {
         case 'SET_TODAY_DATE':
             return {
                 ...state,
+                calendarDate: moment().startOf('day'),
                 currentDate: moment().startOf('day')
             };
         default:

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
-import { setCurrentDate } from '../actions/views';
+import { setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 import CalendarMonth from './CalendarMonth';
 
@@ -23,38 +23,42 @@ export const CalendarYearly = (props) => {
     };
 
     const setYearPrev = () => {
-        const prevYear = moment(props.views.currentDate).subtract(1, 'years');
-        const startDate = moment(props.views.currentDate).subtract(1, 'years').startOf('day');
-        const endDate = moment(props.views.currentDate).subtract(1, 'years').endOf('day');
-        props.setCurrentDate(prevYear);
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
+        const prevYear = moment(props.views.calendarDate.valueOf()).subtract(1, 'years');
+        props.setCalendarDate(prevYear);
     };
 
     const setYearNext = () => {
-        const nextYear = moment(props.views.currentDate).add(1, 'years');
-        const startDate = moment(props.views.currentDate).add(1, 'years').startOf('day');
-        const endDate = moment(props.views.currentDate).add(1, 'years').endOf('day');
-        props.setCurrentDate(nextYear);
-        props.setStartDate(startDate);
-        props.setEndDate(endDate);
+        const nextYear = moment(props.views.calendarDate.valueOf()).add(1, 'years');
+        props.setCalendarDate(nextYear);
     };
 
-    const prevYear = moment(props.views.currentDate).subtract(1, 'years');
-    const nextYear = moment(props.views.currentDate).add(1, 'years');
+    const prevYear = moment(props.views.calendarDate).subtract(1, 'years');
+    const nextYear = moment(props.views.calendarDate).add(1, 'years');
     
     return (
         <div className="calendar-yearly__wrapper">
-            <button onClick={setYearPrev}><NavigateBefore /> {prevYear.format('YYYY')}</button>
-            <button onClick={setYearNext}>{nextYear.format('YYYY')} <NavigateNext /></button>
-            <h1>{moment(props.views.currentDate).format('YYYY')}</h1>
-            <div className="calendar-yearly__year">
-                {getCalendarMonths(props.views.currentDate).map((month) => (
-                    <CalendarMonth 
-                        month={month.date}
-                        key={month.date.valueOf()}
-                        type={month.type}
-                    />
+            <button className="button button--nav-prev" onClick={setYearPrev}><NavigateBefore /> {prevYear.format('YYYY')}</button>
+            <button className="button button--nav-next" onClick={setYearNext}>{nextYear.format('YYYY')} <NavigateNext /></button>
+            <h1 className="calendar-yearly__title">{moment(props.views.calendarDate).format('YYYY')}</h1>
+            <div className="calendar-yearly__view">
+                {getCalendarMonths(props.views.calendarDate).map((month) => (
+                    <div 
+                        className={
+                            moment().startOf('month').format('MMDDYYYY') === moment(month.date.valueOf()).format('MMDDYYYY') ? (
+                                "calendar-yearly__month current-month"
+                            ) : (
+                                "calendar-yearly__month"
+                            )
+                        }
+                        key={month.date.format('MMMM')}
+                    > 
+                        <div className="month-title">{month.date.format('MMMM')}</div>
+                        <CalendarMonth 
+                            month={month.date}
+                            key={month.date.valueOf()}
+                            type={month.type}
+                        />
+                    </div>
                 ))}
             </div>
         </div>
@@ -66,7 +70,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext } from '../svg/Icons';
-import { setCurrentDate } from '../actions/views';
+import { setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 import CalendarDay from './CalendarDay';
 
@@ -43,23 +43,23 @@ export const CalendarMonthly = (props) => {
     };
 
     const setMonthPrev = () => {
-        const prevMonth = moment(props.views.currentDate).subtract(1, 'months');
-        props.setCurrentDate(prevMonth);
+        const prevMonth = moment(props.views.calendarDate.valueOf()).subtract(1, 'months');
+        props.setCalendarDate(prevMonth);
     };
 
     const setMonthNext = () => {
-        const nextMonth = moment(props.views.currentDate).add(1, 'months');
-        props.setCurrentDate(nextMonth);
+        const nextMonth = moment(props.views.calendarDate.valueOf()).add(1, 'months');
+        props.setCalendarDate(nextMonth);
     };
 
-    const prevMonth = moment(props.views.currentDate).subtract(1, 'months');
-    const nextMonth = moment(props.views.currentDate).add(1, 'months');
+    const prevMonth = moment(props.views.calendarDate).subtract(1, 'months');
+    const nextMonth = moment(props.views.calendarDate).add(1, 'months');
     
     return (
         <div className={props.views.activeView ? 'calendar-monthly__wrapper hide-mobile' : 'calendar-monthly__wrapper'}>
             <button className="button button--nav-prev" onClick={setMonthPrev}><NavigateBefore /> {prevMonth.format('MMMM')}</button>
             <button className="button button--nav-next" onClick={setMonthNext}>{nextMonth.format('MMMM')} <NavigateNext /></button>
-            <h1 className="calendar-monthly__title">{moment(props.views.currentDate).format('MMMM YYYY')}</h1>
+            <h1 className="calendar-monthly__title">{moment(props.views.calendarDate).format('MMMM YYYY')}</h1>
             <div className="calendar-monthly__weekday-titles">
                 {getWeekDayTitles().map((day) => (
                     <div key={moment().day(day).format('ddd')}>
@@ -68,7 +68,7 @@ export const CalendarMonthly = (props) => {
                 ))}
             </div>
             <div className="calendar-monthly__month">
-                {getCalendarDays(props.views.currentDate).map((day) => (
+                {getCalendarDays(props.views.calendarDate).map((day) => (
                     <CalendarDay 
                         date={day.date}
                         key={day.date.valueOf()}
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
