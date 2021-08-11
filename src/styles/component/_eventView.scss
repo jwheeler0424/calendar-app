@@ -114,3 +114,32 @@
         font-size: $s-font;
     }
 }
+
+@media only screen and (min-width: $mobile) {
+    .calendar-view__event-details {
+        margin: $xxxs-size $m-size 0;
+        width: calc(100% - $m-size * 2);
+    }
+
+    .event-date__text {
+        margin-bottom: $m-size;
+    }
+    .start-date, .end-date {
+        .date {
+            font-size: $s-font;
+            font-weight: bold;
+        }
+        .time {
+            all: unset;
+            font-size: $xs-font;
+        }
+    }
+
+    .event-location__text {
+        margin-bottom: $m-size;
+    
+        .address {
+            font-size: $xs-font;
+        }
+    }
+}

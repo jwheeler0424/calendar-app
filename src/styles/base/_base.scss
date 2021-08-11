@@ -22,3 +22,9 @@ button:disabled {
 #root > div {
     padding-bottom: $s-size;
 }
+
+@media only screen and (min-width: $mobile) {
+    #root > div {
+        padding-bottom: $m-size;
+    }
+}

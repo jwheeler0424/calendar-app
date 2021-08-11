@@ -54,7 +54,6 @@
     }
 
     .calendar-day {
-        all: unset;
         align-items: center;
         border-bottom: solid 1px $border;
         border-right: solid 1px $border;
@@ -67,13 +66,16 @@
     }
 
     .holiday {
-        background: $main;
-        border-radius: 50%;
-        height: $xxxs-size;
-        position: absolute;
-        top: $xxxxs-size;
-        left: $xxxxs-size;
-        width: $xxxs-size;
+
+        .day-event {
+            background: $main;
+            border-radius: 50%;
+            height: $xxxs-size;
+            position: absolute;
+            top: $xxxxs-size;
+            left: $xxxxs-size;
+            width: $xxxs-size;
+        }
     }
     .day-event {
         border-radius: 50%;
@@ -86,6 +88,10 @@
     
     .pre-next {
         color: #ccc;
+
+        .day-event {
+            opacity: .3;
+        }
     }
     
     .current-day {
@@ -97,7 +103,7 @@
         font-weight: bold;
         height: $m-icon;
         justify-content: center;
-        margin: 0;
+        margin: -$xxs-size 0;
         padding-bottom: 1px;
         width: $m-icon;
     }
@@ -110,4 +116,47 @@
 .current-month .month-title {
     color: $main;
     font-weight: bold;
+}
+
+@media only screen and (min-width: $mobile) {
+    .calendar-yearly__title {
+        padding: $m-size;
+    }
+
+    .calendar-yearly__view {
+        padding: 0 $m-size;
+    }
+
+    .calendar-yearly__month {
+        margin-bottom: $m-size;
+
+        .month-title {
+            font-size: $s-font;
+            padding: $s-size $m-size 0 0;
+        }
+        .calendar-day {
+            padding: $s-size 0;
+        }
+        .holiday {
+
+            .day-event {
+                height: $xxs-size;
+                top: $xxxs-size;
+                left: $xxxs-size;
+                width: $xxs-size;
+            }
+        }
+        .day-event {
+            height: $xxs-size;
+            bottom: $xxxs-size;
+            right: $xxxs-size;
+            width: $xxs-size;
+        }
+
+        .current-day {
+            height: $l-icon;
+            margin: -$s-size 0;
+            width: $l-icon;
+        }
+    }
 }

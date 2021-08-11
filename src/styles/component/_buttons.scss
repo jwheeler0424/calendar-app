@@ -160,3 +160,9 @@
     font-size: $xs-font;
     margin-left: -1px;
 }
+
+@media only screen and (min-width: $mobile) {
+    .button--link {
+        font-size: $s-font;
+    }
+}

@@ -72,7 +72,9 @@ export const  CalendarMonth = (props) => {
                             className={day.type==='current' ? "calendar-day" : "calendar-day pre-next"}
                             key={day.date.valueOf()}
                         >
-                            {holiday && <div className="holiday"></div>}
+                            {holiday && <div className="holiday">
+                                <div className="day-event"></div>
+                            </div>}
                             <div 
                                 className={day.date.format('MMDDYYYY') === moment().format('MMDDYYYY') ? (
                                     'content current-day'

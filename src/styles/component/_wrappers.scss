@@ -10,8 +10,7 @@
     margin: 0 $s-size 0;
     padding: $m-size 0 0;
     border-top: solid 1px $border;
-}
-.calendar-form__wrapper {
+
     > div {
         margin: 0 0 $s-size 0;
     }
@@ -99,4 +98,24 @@
     font-size: $s-size;
     color: #999;
     margin: 0 0 0 -1px;
+}
+
+@media only screen and (min-width: $mobile) {
+    .calendar-form__wrapper {
+        width: calc(100% - $m-size * 2);
+        margin: 0 $m-size 0;
+        padding: $m-size 0 0;
+    
+        > div {
+            margin: 0 0 $m-size 0;
+        }
+    }
+
+    .calendar-selector__wrapper {
+        padding: $m-size;
+    }
+
+    .type-selector__wrapper {
+        margin-top: $m-size;
+    }
 }

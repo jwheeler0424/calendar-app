@@ -113,3 +113,9 @@
 .event-location {
     margin: $xxs-size 0;
 }
+
+@media only screen and (min-width: $mobile) {
+    .calendar-list__event-list {
+        margin: 0 $m-size;
+    }
+}

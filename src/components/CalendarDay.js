@@ -4,6 +4,7 @@ import moment from 'moment';
 import { setCalendarDate, setCurrentDate, setActiveView, setLastView } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 import { getDayEvents } from '../selectors/events';
+import { MoreHorizontal } from '../svg/Icons';
 import getHolidayList from '../utils/getHolidayList';
 
 export const CalendarDay = (props) => {
@@ -50,6 +51,7 @@ export const CalendarDay = (props) => {
                         <div className="day-event">{event.title}</div>
                     </div>
                 ))}
+                {(holiday && events.length >= 2) || events.length >= 3 ? <MoreHorizontal /> : <></>}
             </div>                
         </div>
     );

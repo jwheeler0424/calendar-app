@@ -54,6 +54,13 @@
         right: 0;
         bottom: 0;
         left: 0;
+
+        svg {
+            fill: $grey;
+            position: absolute;
+            bottom: 0;
+            right: $xxs-size;
+        }
     }
     
     .day-num {
@@ -77,6 +84,25 @@
         .day-num {
             margin-left: 0px;
             font-weight: bold;
+        }
+    }
+}
+
+@media only screen and (min-width: $mobile) {
+    .calendar-weekly__title {
+        padding: $m-size 0;
+    }
+
+    .calender-weekly__view {
+        padding: 0 $m-size;
+    }
+
+    .calendar-weekly__weekday {
+        margin-bottom: $m-size;
+
+        .weekday-title {
+            font-size: $s-font;
+            padding: $s-size $m-size 0 0;
         }
     }
 }

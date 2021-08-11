@@ -39,7 +39,7 @@
         padding-top: 125%;
         position: relative;
         justify-content: center;
-        width: 1fr;
+        width: 100%;
     }
     
     .content {
@@ -50,6 +50,10 @@
         bottom: 0;
         left: 0;
         overflow: hidden;
+
+        svg {
+            display: none;
+        }
     }
     
     .day-num {
@@ -81,6 +85,55 @@
         .day-num {
             margin-top: -2px;
             font-weight: bold;
+        }
+    }
+}
+
+@media only screen and (min-width: $mobile) {
+    .calendar-monthly__title {
+        padding: $m-size 0;
+    }
+    
+    .calendar-monthly__weekday-titles {
+        margin: 0 $m-size;
+    }
+
+    .calendar-monthly__month {
+        margin: 0 $m-size $m-size;
+
+        .content {
+            svg {
+                display: block;
+                fill: $grey;
+                height: $s-icon;
+                margin-bottom: -$s-font;
+                position: absolute;
+                bottom: $xxs-font;
+                right: -$xxxxs-icon;
+            }
+        }
+
+        .day-event {
+            border-radius: 0;
+            color: white;
+            font-size: $xxxxs-font;
+            height: auto;
+            line-height: $xxxxs-icon;
+            margin: 0;
+            overflow: hidden;
+            padding: $xxxxs-size $xxxxs-size $xxxs-size;
+            text-indent: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .calendar-monthly__month {
+        .day-event {
+            line-height: $xxxxs-font;
         }
     }
 }

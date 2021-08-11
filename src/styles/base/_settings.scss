@@ -22,8 +22,9 @@ $tangerine: rgb(242, 81, 37);
 $tomato: rgb(211, 0, 6);
 
 // Breaks
-$tablet: 48rem;
-$desktop: 110rem;
+$mobile: 360px;
+$tablet: 480px;
+$desktop: 1100px;
 
 // Spacing
 $xxxxs-size: 0.2rem;
@@ -44,6 +45,7 @@ $xxl-size: 4.8rem;
 }
 
 // Icon Size
+$xxxxs-icon: 0.4rem;
 $xxxs-icon: 0.6rem;
 $xxs-icon: 0.8rem;
 $xs-icon: 1.2rem;
@@ -54,6 +56,8 @@ $xl-icon: 2.8rem;
 $xxl-icon: 3.0rem;
 
 // Font Size
+$xxxxs-font: 0.6rem;
+$xxxs-font: 0.8rem;
 $xxs-font: 1.0rem;
 $xs-font: 1.2rem;
 $s-font: 1.4rem;
@@ -64,6 +68,6 @@ $xl-font: 2.8rem;
 $xxl-font: 3.2rem;
 
 // Map Size
-$s-map: 20rem;
-$m-map: 30rem;
-$l-map: 40rem;
+$s-map: 20em;
+$m-map: 30em;
+$l-map: 40em;

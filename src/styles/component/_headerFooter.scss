@@ -43,3 +43,22 @@
     padding: $s-size;
     text-transform: uppercase;
 }
+
+@media only screen and (min-width: $mobile) {
+    .header__content {
+        padding: $m-size 0;
+
+        h1 {
+            font-size: $l-font;
+        }
+    }
+
+    .footer {
+        margin: $m-size 0 0;
+    }
+
+    .footer__content {
+        font-size: $xs-font;
+        padding: $m-size;
+    }
+}
