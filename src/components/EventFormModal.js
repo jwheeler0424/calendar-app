@@ -10,6 +10,7 @@ const EventFormModal = (props) => {
             contentLabel="Error!"
             closeTimeoutMS={200}
             className="modal"
+            overlayClassName="overlay"
             ariaHideApp={false}
         >
             <h3 className="modal__title">Error!</h3>
@@ -19,7 +20,7 @@ const EventFormModal = (props) => {
                     <li key={index}>{message}</li>
                 ))}
             </ul>
-            <button className="button" onClick={props.handleClearMessages}>Okay</button>
+            <button className="button button--modal" onClick={props.handleClearMessages}>Okay</button>
         </Modal>
     )
 };

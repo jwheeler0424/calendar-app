@@ -10,10 +10,16 @@ import getRoundedMinute from '../utils/getRoundedMinute';
 export const EventForm = (props) => {    
     const [title, setTitle] = useState(props.event ? props.event.title : '');
     const [startDate, setStartDate] = useState(
-        props.event ? props.event.startDate : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).startOf('minute').valueOf()
+        props.event ? moment(props.event.startDate) : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).hour(moment().hour()).startOf('minute')
+    );
+    const [startTime, setStartTime] = useState(
+        props.event ? moment(props.event.startDate) : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).hour(moment().hour()).startOf('minute')
     );
     const [endDate, setEndDate] = useState(
-        props.event ? props.event.endDate : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf()
+        props.event ? moment(props.event.endDate) : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).hour(moment().hour()).startOf('minute').add(1, 'hour')
+    );
+    const [endTime, setEndTime] = useState(
+        props.event ? moment(props.event.endDate) : moment(props.currentDate.valueOf()).minute(getRoundedMinute()).hour(moment().hour()).startOf('minute').add(1, 'hour')
     );
     const [color, setColor] = useState(
         props.event ? props.event.color : 'peacock'
@@ -30,22 +36,64 @@ export const EventForm = (props) => {
 
     const resetEventForm = () => {
         setTitle('');
-        setStartDate(props.currentDate.minute(getRoundedMinute()).startOf('minute').valueOf());
-        setEndDate(props.currentDate.minute(getRoundedMinute()).startOf('minute').add(1, 'hour').valueOf());
+        setStartDate(props.currentDate.minute(getRoundedMinute()).hour(moment().hour()).startOf('minute'));
+        setStartTime(props.currentDate.minute(getRoundedMinute()).hour(moment().hour()).startOf('minute'));
+        setEndDate(props.currentDate.minute(getRoundedMinute()).hour(moment().hour()).startOf('minute').add(1, 'hour'));
+        setEndTime(props.currentDate.minute(getRoundedMinute()).hour(moment().hour()).startOf('minute').add(1, 'hour'));
         setColor('peacock');
         setDuration('time');
         setLocation('');
         setNotes('');
     }
 
-    const onTimeChange = (time) => {
-        setStartDate(time.valueOf());
-        setEndDate(time.add(1, 'hour').valueOf());
+    const onStartDateChange = (date) => {
+        if (date) {
+            setStartDate(date);
+            if(date > endDate) {
+                setEndDate(date);
+            }
+        } else {
+            setStartDate(null);
+        }
     }
 
-    const onDateChange = (date) => {
-        setStartDate(date.valueOf())
-        setEndDate(date.add(1, 'hour').valueOf())
+    const onStartTimeChange = (time) => {
+        if (time) {
+            setStartTime(time);
+            setEndTime(time.add(1, 'hour'));
+        } else {
+            setStartTime(null);
+        }
+    };
+
+    const onEndDateChange = (date) => {
+        if (date) {
+            setEndDate(date);
+            if (date < startDate) {
+                if (startDate) {
+                    setEndDate(startDate);
+                } else {
+                    setEndDate(null)
+                }
+            }
+        } else {
+            setEndDate(null);
+        }
+    };
+
+    const onEndTimeChange = (time) => {
+        if (time) {
+            setEndTime(time);
+            if (time < startTime) {
+                if (startTime) {
+                    setEndTime(startTime.add(5, 'minutes'));
+                } else {
+                    setEndTime(null);
+                }
+            }
+        } else {
+            setEndTime(null)
+        }
     }
     
     const onSubmit = (e) => {
@@ -60,11 +108,11 @@ export const EventForm = (props) => {
         if (eventFormMessages.length <= 0) {
             let start, end
             if (duration === 'day') {
-                start = moment(startDate).startOf('day').valueOf();
-                end = moment(endDate).endOf('day').valueOf();
+                start = moment(startDate.valueOf()).startOf('day').valueOf();
+                end = moment(endDate.valueOf()).endOf('day').valueOf();
             } else {
-                start = startDate;
-                end = endDate;
+                start = startDate.valueOf();
+                end = endDate.valueOf();
             }
             const event = {
                 title,
@@ -99,22 +147,22 @@ export const EventForm = (props) => {
             <div className="calendar-form__start">
                 <div>
                     {duration === 'time' && <TimePicker
-                        defaultValue={moment(startDate)}
-                        value={moment(startDate)}
+                        defaultValue={startTime}
+                        value={startTime}
                         className="time"
                         showNow={false}
                         format="h:mm a"
                         minuteStep={5}
-                        onChange={time => onTimeChange(time)}
+                        onChange={time => onStartTimeChange(time)}
                         id="event-start-time"
                     />}
                     <DatePicker
-                        defaultValue={moment(startDate)}
-                        value={moment(startDate)}
+                        defaultValue={startDate}
+                        value={startDate}
                         className="date"
                         format={"MMM Do"}
                         showToday={false}
-                        onChange={date => onDateChange(date)}
+                        onChange={date => onStartDateChange(date)}
                         id="event-start-date"
                     />
                 </div>
@@ -123,22 +171,22 @@ export const EventForm = (props) => {
             <div className="calendar-form__end">
                 <div>
                     {duration === 'time' && <TimePicker
-                        defaultValue={moment(endDate)}
-                        value={moment(endDate)}
+                        defaultValue={endTime}
+                        value={endTime}
                         className="time"
                         showNow={false}
                         format="h:mm a"
                         minuteStep={5}
-                        onChange={time => setEndDate(time.valueOf())}
+                        onChange={time => onEndTimeChange(time)}
                         id="event-end-time"
                     />}
                     <DatePicker
-                        defaultValue={moment(endDate)}
-                        value={moment(endDate)}
+                        defaultValue={endDate}
+                        value={endDate}
                         className="date"
                         format={"MMM Do"}
                         showToday={false}
-                        onChange={date => setEndDate(date.valueOf())}
+                        onChange={date => onEndDateChange(date)}
                         id="event-end-date"
                     />
                 </div>
@@ -201,6 +249,7 @@ export const EventForm = (props) => {
 }
 
 const mapStateToProps = (state) => ({
+    calendarDate: state.views.calendarDate,
     currentDate: state.views.currentDate
 });
 
