@@ -1,0 +1,32 @@
+.box-layout {
+    align-items: center;
+    background: url(../../images/dusk.jpg);
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-layout__box {
+    align-items: center;
+    background: white;
+    border: solid 1px $grey;
+    border-radius: $xxxs-size;
+    display: flex;
+    flex-direction: column;
+    padding: $l-size $m-size;
+    text-align: center;
+    width: 25rem;
+
+    p {
+        margin: 0 0 $l-size;
+    }
+}
+
+.box-layout__title {
+    color: $flamingo;
+    font-weight: 200;
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+}

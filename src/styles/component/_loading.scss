@@ -1,0 +1,35 @@
+.loading-page__wrapper {
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .footer {
+        position: absolute;
+        bottom: $s-size;
+        left: 0;
+    }
+}
+.loader {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.loader__image {
+    margin: 0 auto;
+    width: 80%;
+}
+
+@media only screen and (min-width: $mobile) {
+    .loading-page__wrapper {
+        .footer {
+            position: absolute;
+            bottom: $m-size;
+            left: 0;
+        }
+    }
+}
