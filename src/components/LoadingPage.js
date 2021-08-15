@@ -8,7 +8,7 @@ const LoadingPage = () => {
         <div className="loading-page__wrapper">
             <Header />
             <div className="loader">
-                <img className="loader__image" src={loader} />
+                <img className="loader__image" src={loader} alt="loading" />
             </div>
             <Footer />
         </div>

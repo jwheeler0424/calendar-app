@@ -252,3 +252,31 @@
         background: none;
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    // Month Select Menu
+    .month-selector__selected {
+        padding: $xxs-size $xxxs-size $xxs-size $xs-size;
+    }
+
+    // Year Select Menu
+    .year-selector__selected {
+        padding: $xxs-size $xxxs-size $xxs-size $xs-size;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    // Month Select Menu
+    .month-selector__selected {
+        font-size: $m-font;
+        line-height: 1.7;
+        padding: $xs-size $xs-size $xs-size $m-size;
+    }
+
+    // Year Select Menu
+    .year-selector__selected {
+        font-size: $m-font;
+        line-height: 1.7;
+        padding: $xs-size $xs-size $xs-size $m-size;
+    }
+}

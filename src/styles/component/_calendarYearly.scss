@@ -160,3 +160,31 @@
         }
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    .calendar-yearly__title {
+        font-size: $l-font;
+        padding: $m-size 0;
+    }
+
+    .calendar-yearly__view {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 $m-size;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-yearly__title {
+        font-size: $xxl-font;
+        padding: $m-size 0;
+    }
+
+    .calendar-yearly__view {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 $m-size;
+    }
+}

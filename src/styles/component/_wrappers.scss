@@ -126,3 +126,59 @@
         margin-top: $m-size;
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    .calendar-form__wrapper {
+        width: calc(100% - $m-size * 2);
+        margin: 0 $m-size 0;
+        padding: $l-size 0 0;
+    
+        > div {
+            margin: 0 0 $l-size 0;
+        }
+    }
+
+    .calendar-selector__wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: $m-size;
+        margin: $l-size auto;
+        background-color: #eee;
+        border: solid 1px #e8e8e8;
+        color: #999;
+    }
+
+    .type-selector__wrapper {
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-form__wrapper {
+        width: calc(100% - $l-size * 2);
+        margin: 0 $l-size 0;
+        padding: $xxl-size 0 0;
+    
+        > div {
+            margin: 0 0 $l-size 0;
+        }
+    }
+
+    .calendar-selector__wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: $m-size;
+        margin: $l-size auto;
+        background-color: #eee;
+        border: solid 1px #e8e8e8;
+        color: #999;
+    }
+
+    .type-selector__wrapper {
+        margin-top: 0;
+    }
+}

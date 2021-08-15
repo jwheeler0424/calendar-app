@@ -115,7 +115,92 @@
 }
 
 @media only screen and (min-width: $mobile) {
+    .calendar-list__event-day {
+        margin: $s-size auto $l-size;
+        height: $xxl-size;
+        width: $xxl-size;
+        border: solid 1px $main;
+        border-radius: 50%;
+        color: $main;
+        font-size: $m-font;
+    }
+    
     .calendar-list__event-list {
         margin: 0 $m-size;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-list__title {
+        margin: 0 auto;
+        padding: $xl-size $m-size;
+        position: relative;
+        width: 80%;
+        font-size: $xxl-font;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .calendar-list__event-day {
+        margin: $s-size auto $xl-size;
+        height: $xxl-size;
+        width: $xxl-size;
+        padding: $xxl-size;
+        border: solid 1px $main;
+        border-radius: 50%;
+        color: $main;
+        font-size: $xl-font;
+    }
+    
+    .calendar-list__event-list {
+        margin: 0 $l-size;
+    }
+
+    .calendar-list__day-event {
+        font-size: $xxl-font;
+        margin: $l-size 0 $s-size;
+        padding: $l-size 0 0;
+        border-top: solid 1px $border;
+        .button {
+            padding: $s-size;
+            svg {
+                height: $xxl-icon;
+                width: $xxl-icon;
+            }
+        }
+
+        .event-title {
+            font-size: $xxl-font;
+            padding: $xs-size 0;
+        }
+        
+        .event-bullet {
+            width: $xxl-icon;
+            height: $xxl-icon;
+            margin: $m-size $s-size $s-size 0;
+        }
+    }
+
+    .calendar-list__no-event {
+        margin-top: $xl-size;
+        padding: $xl-size 0;
+        font-size: $xxl-font;
+    }
+
+    .event-time, .event-location {
+        font-size: $l-font;
+        justify-content: flex-start;
+        margin-top: $s-size;
+    
+        svg {
+            fill: #666;
+            height: $xxl-icon;
+            margin-right: $s-size;
+            width: $xxl-icon;
+        }
+    }
+    
+    .event-location {
+        margin: $s-size 0;
     }
 }

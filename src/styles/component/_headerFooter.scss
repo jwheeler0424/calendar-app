@@ -61,3 +61,22 @@
         padding: $m-size;
     }
 }
+
+@media only screen and (min-width: $tablet) {
+    .header__content {
+        padding: $m-size 0;
+
+        h1 {
+            font-size: $xxl-font;
+        }
+    }
+
+    .footer {
+        margin: $l-size 0 0;
+    }
+
+    .footer__content {
+        font-size: $s-font;
+        padding: $m-size;
+    }
+}

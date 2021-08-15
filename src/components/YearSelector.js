@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { NavigateBefore, NavigateNext, ExpandMore } from '../svg/Icons';
-import { setCurrentDate } from '../actions/views';
+import { setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 
 export const YearSelector = (props) => { 
     
     const [viewYear, setViewYear] = useState(
-        props.views ? Math.floor(moment(props.views.currentDate).year() / 10) * 10 : Math.floor(moment().year() / 10) * 10
+        props.views ? Math.floor(moment(props.views.calendarDate).year() / 10) * 10 : Math.floor(moment().year() / 10) * 10
     );
     const toggleYearSelectMenu = () => {
         props.yearMenuOpen === ' open' ? props.onYearMenuChange('') : props.onYearMenuChange(' open');
@@ -39,12 +39,11 @@ export const YearSelector = (props) => {
     const setNextYear = () => {
         setViewYear(viewYear + 10);
     }
-    const selectYear = (e) => {
-        const year = parseInt(e.target.attributes.year.value);
-        const currentDate = moment(props.views.currentDate).year(year);
-        const startDate = moment(props.views.currentDate).year(year).startOf('day');
-        const endDate = moment(props.views.currentDate).year(year).endOf('day');
-        props.setCurrentDate(currentDate);
+    const selectYear = (year) => {
+        const calendarDate = moment(props.views.calendarDate.valueOf()).year(year);
+        const startDate = moment(props.views.calendarDate.valueOf()).year(year).startOf('day');
+        const endDate = moment(props.views.calendarDate.valueOf()).year(year).endOf('day');
+        props.setCalendarDate(calendarDate);
         props.setStartDate(startDate);
         props.setEndDate(endDate);
         props.onYearMenuChange('');
@@ -52,7 +51,7 @@ export const YearSelector = (props) => {
     return (
         <div className="year-selector__wrapper">
             <div className="year-selector__selected" onClick={toggleYearSelectMenu}>
-                <span className="year-selector__title">{moment(props.views.currentDate).year()}</span>
+                <span className="year-selector__title">{moment(props.views.calendarDate).year()}</span>
                 <ExpandMore className="material-icons" />
             </div>
             <div className={'year-selector__selector' + props.yearMenuOpen}>
@@ -78,13 +77,13 @@ export const YearSelector = (props) => {
                             if (year.type !== 'current') {
                                 className = 'pre-next';
                             } else {
-                                className = year.number === moment(props.views.currentDate).year() ? 'selected' : '';
+                                className = year.number === moment(props.views.calendarDate).year() ? 'selected' : '';
                             }
 
                             return (
                                 <div
                                     className={className}
-                                    onClick={year.type === 'current' ? selectYear : () => {}}
+                                    onClick={() => selectYear(year.number)}
                                     year={year.number}
                                     key={year.number}
                                 >
@@ -104,7 +103,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });

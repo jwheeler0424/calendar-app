@@ -172,3 +172,108 @@
         font-size: $s-font;
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    .button--link {
+        font-size: $s-font;
+    }
+
+    .button--nav-prev {
+        padding: $s-size $m-icon $s-size $xxs-size;
+        font-size: $s-font;
+        svg {
+            height: $l-icon;
+            margin-right: $xxxxs-size;
+            width: $l-icon;
+        }
+    }
+    .button--nav-next {
+        padding: $s-size $xxs-size $s-size $m-icon;
+        font-size: $s-font;
+        svg {
+            height: $l-icon;
+            margin-left: $xxxxs-size;
+            width: $l-icon;
+        }
+    }
+
+    .button--today {
+        padding: $xxs-size;
+    
+        svg {
+            display: block;
+            margin: 0 $xs-size 0 $xxxxs-size;
+            fill: $main;
+            height: $l-icon;
+            width: $l-icon;
+        }
+        span {
+            margin-top: 4px;
+            font-size: $xxs-font;
+            margin-left: -$xl-icon;
+            margin-right: $xxxs-icon;
+            text-align: center;
+        }
+    }
+
+    .button--type {
+        line-height: 1.7;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .button {
+        padding: $s-size;
+
+        svg {
+            height: $xxxl-icon;
+            width: $xxxl-icon;
+        }
+    }
+
+    .button--nav-prev {
+        padding: $s-size $m-icon $s-size $xxs-size;
+        font-size: $m-font;
+        svg {
+            margin-right: $xxxxs-size;
+        }
+    }
+    .button--nav-next {
+        padding: $s-size $xxs-size $s-size $m-icon;
+        font-size: $m-font;
+        svg {
+            margin-left: $xxxxs-size;
+        }
+    }
+
+    .button--today {
+        padding: $xs-size;
+    
+        svg {
+            display: block;
+            margin: 0 $xs-size 0 $xxxxs-size;
+        }
+        span {
+            margin-top: 4px;
+            font-size: $s-font;
+            margin-left: -$xxxl-icon;
+            margin-right: $xs-icon;
+            text-align: center;
+        }
+    }
+
+    .button--type {
+        font-size: $m-font;
+        line-height: 1.7;
+        padding: 0 $m-size;
+    }
+
+    .button--type__active {
+        background-color: $main;
+        box-shadow: inset 0 0 5px rgba($darkgrey, .3);
+        color: white;
+        cursor: default;
+        font-size: $m-font;
+        margin-left: -1px;
+    }
+}

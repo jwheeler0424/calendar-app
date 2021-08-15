@@ -33,3 +33,18 @@
         }
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    .loading-page__wrapper {
+        .footer {
+            position: absolute;
+            bottom: $l-size;
+            left: 0;
+        }
+    }
+
+    .loader__image {
+        margin: 0 auto;
+        width: 60rem;
+    }
+}

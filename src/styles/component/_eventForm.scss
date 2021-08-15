@@ -146,3 +146,153 @@ label {
     display: flex;
     justify-content: flex-end;
 }
+
+@media only screen and (min-width: $mobile) {
+    .calendar-form__color-duration > divn {
+        width: 50%;
+    }
+
+    .calendar-form__color-duration div.duration > div {
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+    }
+
+    .calendar-form__start > div, .calendar-form__end > div {
+        display: flex;
+        flex-direction: row-reverse;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .date {
+        flex: 1.25;
+    }
+    .time {
+        flex: 1;
+        margin-left: $m-size;
+    }
+}
+
+@media only screen and (min-width: $tabletSmall) {
+    .calendar-add__title {
+        font-size: $l-font;
+    }
+    
+    .calendar-edit__title {
+        font-size: $l-font;
+    }
+
+    label {
+        display: block;
+        width: fit-content;
+        margin: $xxxxs-size $m-size 0 0;
+        font-size: $m-font;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .calendar-form__title,
+    .calendar-form__start,
+    .calendar-form__end,
+    .calendar-form__color-duration > div,
+    .calendar-form__location,
+    .calendar-form__notes {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .calendar-form__start > div, .calendar-form__end > div {
+        flex: unset;
+        width: 70%;
+    }
+    .calendar-form__start > label, .calendar-form__end > label {
+        justify-content: flex-start;
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-add__title {
+        font-size: $xxl-font;
+    }
+    
+    .calendar-edit__title {
+        font-size: $xxl-font;
+    }
+
+    input:active,
+    input:focus,
+    textarea:active,
+    textarea:focus {
+        border: solid 1px $main;
+        box-shadow: 0 0 0 1px $main;
+        outline: none;
+    }
+
+    label {
+        display: block;
+        width: fit-content;
+        margin: $xs-size $l-size 0 0;
+        font-size: $l-font;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .calendar-form__title,
+    .calendar-form__start,
+    .calendar-form__end,
+    .calendar-form__color-duration > div,
+    .calendar-form__location,
+    .calendar-form__notes {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .calendar-form__start > div, .calendar-form__end > div {
+        flex: unset;
+        width: 70%;
+    }
+    .calendar-form__start > label, .calendar-form__end > label {
+        justify-content: flex-start;
+        width: 30%;
+    }
+
+    .date, .time {
+        border: solid 1px $border;
+        box-shadow: none;
+        padding: $xs-size $m-size;
+
+        input, input:active, input:focus {
+            font-size: $l-font;
+        }
+
+        .ant-picker-suffix svg {
+            height: $l-icon;
+            width: $l-icon;
+        }
+        .ant-picker-clear svg {
+            height: $l-icon;
+            width: $l-icon;
+        }
+    }
+
+    .calendar-form__title input,
+    .calendar-form__location input {
+        width: 100%;
+        border: solid 1px $border;
+        border-radius: $xxxs-size;
+        font-size: $l-font;
+        padding: $xs-size $m-size;
+    }
+
+    .calendar-form__notes textarea {
+        color: #999;
+        width: 100%;
+        border: solid 1px $border;
+        border-radius: $xxxs-size;
+        font-size: $l-font;
+        padding: $xs-size $m-size;
+        resize: none;
+    }
+}

@@ -143,3 +143,107 @@
         }
     }
 }
+
+@media only screen and (min-width: $tablet) {
+    .calendar-view__title {
+        padding: $xxl-size $m-size;
+        font-size: $xxl-font;
+    }
+    
+    .calendar-view__event-details {
+        margin: $l-size $l-size 0;
+        width: calc(100% - $l-size * 2);
+    }
+
+    .event-title {
+        font-size: $xxl-font;
+        font-weight: 400;
+    }
+
+    .event-bullet {
+        height: $xl-icon;
+        margin-right: $m-size;
+        width: $xl-icon;
+    }
+
+    .event-date__view, .event-location__view, .event-notes__view {
+        font-size: $l-font;
+        margin-top: $s-size;
+    
+        svg {
+            padding: 0;
+            fill: $grey;
+            height: $xxl-icon;
+            margin: $xs-size $s-size $s-size 0;
+            width: $xxl-icon;
+        }
+    }
+
+    .event-date__text {
+        margin-bottom: $m-size;
+    
+        svg {
+            fill: $main;
+            height: $xxl-icon;
+            margin: 0 $l-size;
+            width: $xxl-icon;
+        }
+    }
+    .start-date, .end-date {
+        .date {
+            font-size: $xl-font;
+            font-weight: bold;
+        }
+        .time {
+            all: unset;
+            font-size: $l-font;
+        }
+    }
+
+    .event-location__text {
+        margin-bottom: $xxl-size;
+    
+        .description {
+            all: unset;
+            font-size: $xl-font;
+            font-weight: bold;
+        }
+        .address {
+            all: unset;
+            font-size: $l-font;
+        }
+    }
+
+    .event-location__map {
+        border: solid 1px $lightgrey;
+        border-radius: $xxxs-size;
+        height: $s-map;
+        width: 100%;
+    }
+    
+    .event-notes__view {
+        margin-top: $l-size;
+        svg {
+            height: $xxl-size;
+            margin: 0 $xs-size 0 0;
+            width: $xxl-size;
+        }
+    }
+    .event-notes__text {
+        align-items: flex-start;
+        color: $grey;
+        display: flex;
+        flex-direction: column;
+    
+        .title {
+            all: unset;
+            font-size: $xxl-font;
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .notes {
+            all: unset;
+            font-size: $l-font;
+        }
+    }
+}

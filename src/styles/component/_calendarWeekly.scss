@@ -106,3 +106,115 @@
         }
     }
 }
+
+@media only screen and (min-width: $tabletSmall) {
+    .calendar-weekly__title {
+        font-size: $l-font;
+        padding: $m-size 0;
+    }
+
+    .calender-weekly__view {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 $m-size;
+    }
+
+    .calendar-weekly__weekday {
+        margin-bottom: $m-size;
+
+        .weekday-title {
+            font-size: $s-font;
+            padding: $s-size $m-size 0 0;
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-weekly__title {
+        font-size: $xxl-font;
+        padding: $m-size 0;
+    }
+
+    .calender-weekly__view {
+        display: grid;
+        grid-gap: 0;
+        grid-template-columns: repeat(4, 1fr);
+        margin-left: -1px;
+        padding: 0 $m-size;
+    }
+
+    .calendar-weekly__weekday {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: $s-size;
+    
+        .weekday-title {
+            color: #999;
+            font-size: $m-font;
+            line-height: $m-font;
+            letter-spacing: 0;
+            padding: $s-size 0;
+            writing-mode: horizontal-tb;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+        }
+        .current-date {
+            color: $main;
+            font-weight: bold;
+        }
+    
+        .calendar-day {
+            align-items: center;
+            border: solid 1px $border;
+            display: flex;
+            font-size: $xxs-font;
+            padding-top: 100%;
+            position: relative;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .content {
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+    
+            svg {
+                fill: $grey;
+                position: absolute;
+                bottom: 0;
+                right: $xxs-size;
+            }
+        }
+        
+        .day-num {
+            position: relative;
+            padding: $xs-size;
+            font-size: $m-font;
+            margin-left: 2px;
+        }
+        
+        .day-event {
+            color: white;
+            font-size: $xs-font;
+            padding: $xxxs-size $s-size;
+            word-break: break-all;
+        }
+        
+        .current-day {
+            color: $main;
+            border-top: solid 4px $main;
+        
+            .day-num {
+                margin-top: -4px;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -48,7 +48,18 @@ export const CalendarDay = (props) => {
                 }
                 {events.map((event) => (
                     <div key={event.id} className={event.color}>
-                        <div className="day-event">{event.title}</div>
+                        {/* check if event is between days or starts on suday */
+                            (moment(event.startDate).startOf('day') !== moment(event.endDate).startOf('day')) ? (
+                                (props.date.format('dddd') !== 'Sunday' && props.date > moment(event.startDate)) ? (
+                                    <div className="day-event hidden">{event.title}</div>
+                                ) : (
+                                    <div className="day-event">{event.title}</div>
+                                )
+                            ) : (
+                                <div className="day-event">{event.title}</div>
+                            )
+                        }
+                        
                     </div>
                 ))}
                 {(holiday && events.length >= 2) || events.length >= 3 ? <MoreHorizontal /> : <></>}

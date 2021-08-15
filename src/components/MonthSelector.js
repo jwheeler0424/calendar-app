@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { ExpandMore } from '../svg/Icons';
-import { setCurrentDate } from '../actions/views';
+import { setCalendarDate } from '../actions/views';
 import { setStartDate, setEndDate } from '../actions/filters';
 
 export const MonthSelector = (props) => {
@@ -11,12 +11,11 @@ export const MonthSelector = (props) => {
         props.monthMenuOpen === ' open' ? props.onMonthMenuChange('') : props.onMonthMenuChange(' open');
     };
 
-    const selectMonth = (e) => {
-        const month = parseInt(e.target.attributes.month.value);
-        const currentDate = moment(props.views.currentDate).month(month);
-        const startDate = moment(props.views.currentDate).month(month).startOf('day');
-        const endDate = moment(props.views.currentDate).month(month).endOf('day');
-        props.setCurrentDate(currentDate);
+    const selectMonth = (month) => {
+        const calendarDate = moment(props.views.calendarDate.valueOf()).month(month);
+        const startDate = moment(props.views.calendarDate.valueOf()).month(month).startOf('day');
+        const endDate = moment(props.views.calendarDate.valueOf()).month(month).endOf('day');
+        props.setCalendarDate(calendarDate);
         props.setStartDate(startDate);
         props.setEndDate(endDate);
         props.onMonthMenuChange('');
@@ -33,7 +32,7 @@ export const MonthSelector = (props) => {
     return (
         <div className="month-selector__wrapper">
             <div className="month-selector__selected" onClick={toggleMonthSelectMenu}>
-                <span className="month-selector__title">{moment(props.views.currentDate).format('MMMM')}</span>
+                <span className="month-selector__title">{moment(props.views.calendarDate).format('MMMM')}</span>
                 <ExpandMore className="material-icons" />
             </div>
             <div className={'month-selector__selector' + props.monthMenuOpen}>
@@ -45,7 +44,7 @@ export const MonthSelector = (props) => {
                             return (
                                 <div
                                     className={monthDate.month() === moment(props.views.currentDate).month() ? 'selected' : ''}
-                                    onClick={selectMonth}
+                                    onClick={() => selectMonth(month)}
                                     month={month}
                                     key={monthDate.format('MMM')}
                                 >
@@ -65,7 +64,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setCurrentDate: (currentDate) => dispatch(setCurrentDate(currentDate)),
+    setCalendarDate: (calendarDate) => dispatch(setCalendarDate(calendarDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate))
 });
