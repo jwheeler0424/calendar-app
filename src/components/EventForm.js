@@ -28,7 +28,15 @@ export const EventForm = (props) => {
         props.event ? props.event.duration : 'time'
     );
     const [location, setLocation] = useState(
-        props.event ? props.event.location : ''
+        props.event ? props.event.location : {
+            description: '',
+            address: '',
+            placeId: '',
+            coordinates: {
+                lat: 0,
+                lng: 0
+            }
+        }
     );
     const [notes, setNotes] = useState(
         props.event ? props.event.notes : ''
@@ -42,7 +50,15 @@ export const EventForm = (props) => {
         setEndTime(props.currentDate.minute(getRoundedMinute()).hour(moment().hour()).startOf('minute').add(1, 'hour'));
         setColor('peacock');
         setDuration('time');
-        setLocation('');
+        setLocation({
+            description: '',
+            address: '',
+            placeId: '',
+            coordinates: {
+                lat: 0,
+                lng: 0
+            }
+        });
         setNotes('');
     }
 

@@ -2,10 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const LocationInput = (props) => {
     const [location, setLocation] = useState(
-        props.location ? props.location : ''
+        props.location ? props.location : {
+            description: '',
+            address: '',
+            placeId: '',
+            coordinates: {
+                lat: 0,
+                lng: 0
+            }
+        }
     );
     const [description, setDescription] = useState(
-        location ? location.description : ''
+        location.description ? location.description : ''
     );
     
     let map, autocomplete
@@ -25,11 +33,19 @@ const LocationInput = (props) => {
     }, []);
 
     useEffect(() => {
-        if (props.location) { 
+        if (props.location.description) { 
             setLocation(props.location);
             setDescription(props.location.description);
         } else {
-            setLocation('');
+            setLocation({
+                description: '',
+                address: '',
+                placeId: '',
+                coordinates: {
+                    lat: 0,
+                    lng: 0
+                }
+            });
             setDescription('');
         }; 
     }, [props.location]);
@@ -95,14 +111,25 @@ const LocationInput = (props) => {
                         description: this.value,
                         address: '',
                         placeId: '',
-                        coordinates: {}
+                        coordinates: {
+                            lat: 0,
+                            lng: 0
+                        }
                     }
                     setLocation(location);
                     setDescription(location.description);
                     props.onLocationChange(location);
                 }
             } else {
-                const location = '';
+                const location = {
+                    description: '',
+                    address: '',
+                    placeId: '',
+                    coordinates: {
+                        lat: 0,
+                        lng: 0
+                    }
+                };
                 setLocation(location);
                 setDescription('');
                 props.onLocationChange(location);

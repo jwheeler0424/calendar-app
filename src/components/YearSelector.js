@@ -83,7 +83,7 @@ export const YearSelector = (props) => {
                             return (
                                 <div
                                     className={className}
-                                    onClick={() => selectYear(year.number)}
+                                    onClick={year.type === 'current' ? () => selectYear(year.number) : ''}
                                     year={year.number}
                                     key={year.number}
                                 >

@@ -148,7 +148,7 @@ export const ViewEventPage = (props) => {
                         )
                     }</div>
                 </div>
-                {location && 
+                {location.description && 
                     <div className="event-location__view">
                         <Place />
                         <div className="event-location__text">

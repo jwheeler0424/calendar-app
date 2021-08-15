@@ -105,6 +105,7 @@
     font-size: $s-size;
     color: #999;
     margin: 0 0 0 -1px;
+    width: fit-content;
 }
 
 @media only screen and (min-width: $mobile) {

@@ -47,7 +47,7 @@ export const EventListItem = (props) => {
             </div>
             
             { // Showing event location if provided with map if address provided
-                location && 
+                location.description && 
                 <div className="event-location">
                     <Place /> {location.description}
                 </div>
