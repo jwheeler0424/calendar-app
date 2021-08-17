@@ -188,3 +188,12 @@
         padding: 0 $m-size;
     }
 }
+
+@media only screen and (min-width: $tabletLarge) {
+    .calendar-yearly__view {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 $m-size;
+    }
+}

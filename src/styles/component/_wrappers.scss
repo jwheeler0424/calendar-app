@@ -183,3 +183,23 @@
         margin-top: 0;
     }
 }
+
+@media only screen and (min-width: $desktop) {
+    .calendar-active__wrapper {
+        border: none;
+        border-top: solid 1px $border;
+        border-bottom: solid 1px $border;
+        border-left: solid 1px $border;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .hide-mobile {
+        display: block;
+    }
+    
+    .calendar-monthly__wrapper, .calendar-weekly__wrapper, .calendar-yearly__wrapper, .calendar-list__wrapper {
+        border-right: solid 1px $border;
+    }
+}

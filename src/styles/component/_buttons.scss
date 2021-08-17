@@ -14,7 +14,7 @@
         width: $m-icon;
     }
 }
-.button:active {
+.button:active, .button:hover {
     background: $main;
     color: white;
     svg {
@@ -90,7 +90,7 @@
     padding: 0;
     font-size: $xs-font;
 }
-.button--link:active {
+.button--link:active, .button--link:hover {
     background: none;
     color: #ccc;
 }
@@ -246,6 +246,11 @@
         }
     }
 
+    .button--save {
+        font-size: $l-font;
+        padding: $m-size $xl-size;
+    }
+
     .button--today {
         padding: $xxs-font;
     
@@ -274,6 +279,54 @@
         color: white;
         cursor: default;
         font-size: $m-font;
+        margin-left: -1px;
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    .button {
+        font-size: $s-font;
+        padding: $xs-size $m-size;
+        
+        svg {
+            height: $m-icon;
+            width: $m-icon;
+        }
+    }
+    
+    .button--today {
+        padding: $xxs-size;
+    
+        svg {
+            display: block;
+            margin-right: $xs-size;
+            fill: $main;
+            height: $l-icon;
+            width: $l-icon;
+        }
+        span {
+            color: $main;
+            display: block;
+            margin-top: 4px;
+            font-size: $xxs-font;
+            margin-left: -$xl-icon;
+            margin-right: $xxxs-icon;
+            width: $s-icon;
+            text-align: center;
+        }
+    }
+
+    .button--type {
+        margin-left: -1px;
+        font-size: $s-font;
+    }
+    
+    .button--type__active {
+        background-color: $main;
+        box-shadow: inset 0 0 5px rgba($darkgrey, .3);
+        color: white;
+        cursor: default;
+        font-size: $s-font;
         margin-left: -1px;
     }
 }

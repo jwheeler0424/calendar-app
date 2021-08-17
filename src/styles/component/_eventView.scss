@@ -152,6 +152,7 @@
     
     .calendar-view__event-details {
         margin: $l-size $l-size 0;
+        padding-bottom: $l-size;
         width: calc(100% - $l-size * 2);
     }
 
@@ -245,5 +246,12 @@
             all: unset;
             font-size: $l-font;
         }
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .calendar-view__title {
+        padding: $xxxl-size $m-size;
+        font-size: $xxl-font;
     }
 }

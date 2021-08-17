@@ -218,3 +218,26 @@
         }
     }
 }
+
+@media only screen and (min-width: $tabletLarge) {
+    .calendar-weekly__title {
+        font-size: $xxl-font;
+        padding: $m-size 0;
+    }
+
+    .calender-weekly__view {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendar-weekly__weekday {
+        margin-bottom: $m-size;
+
+        .calendar-day {
+            padding-top: 120%;
+        }
+
+        .hidden {
+            text-indent: -999px;
+        }
+    }
+}

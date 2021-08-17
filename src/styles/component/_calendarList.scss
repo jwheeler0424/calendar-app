@@ -204,3 +204,15 @@
         margin: $s-size 0;
     }
 }
+
+@media only screen and (min-width: $tablet) {
+    .calendar-list__title {
+        margin: 0 auto;
+        padding: $xxl-size $m-size $xl-size;
+        position: relative;
+        width: 80%;
+        font-size: $xxl-font;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
