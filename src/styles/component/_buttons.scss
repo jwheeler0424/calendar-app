@@ -46,7 +46,7 @@
         fill: $closer;
     }
 }
-.button--close:active {
+.button--close:active, .button--close:hover {
     background: $closer;
     
     svg {
@@ -66,7 +66,7 @@
         fill: $closer;
     }
 }
-.button--delete:active {
+.button--delete:active, .button--delete:hover {
     background: $closer;
     
     svg {
@@ -292,6 +292,52 @@
             height: $m-icon;
             width: $m-icon;
         }
+    }
+
+    .button--add {
+        padding: $xs-size $xs-size;
+    }
+    
+    .button--close {
+        padding: $xs-size $xs-size;
+    }
+
+    .button--delete {
+        padding: $xs-size $xs-size;
+    }
+    
+    .button--edit {
+        padding: $xs-size $xs-size;
+    }
+
+    .button--nav-prev {
+        padding: $xs-size $m-icon $xs-size $xxs-size;
+        font-size: $s-font;
+        top: -13px;
+        left: -13px;
+
+        svg {
+            height: $l-icon;
+            margin-right: $xxxxs-size;
+            width: $l-icon;
+        }
+    }
+    .button--nav-next {
+        padding: $xs-size $xxs-size $xs-size $m-icon;
+        font-size: $s-font;
+        top: -13px;
+        right: -13px;
+
+        svg {
+            height: $l-icon;
+            margin-left: $xxxxs-size;
+            width: $l-icon;
+        }
+    }
+
+    .button--save {
+        font-size: $m-font;
+        padding: $s-size $l-size;
     }
     
     .button--today {

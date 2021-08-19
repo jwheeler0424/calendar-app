@@ -16,7 +16,12 @@ export const CalendarAction = (props) => {
         case 'view':
             return (<ViewEventPage />);
         default:
-            return (<></>);
+            console.log(window.innerWidth)
+            if(window.innerWidth >= 1172) {
+                return (<EventListPage />)
+            } else {
+                return (<></>);
+            }
     }
 }
 

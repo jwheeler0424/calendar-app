@@ -249,9 +249,91 @@
     }
 }
 
-@media only screen and (min-width: $tablet) {
+@media only screen and (min-width: $desktop) {
     .calendar-view__title {
-        padding: $xxxl-size $m-size;
-        font-size: $xxl-font;
+        margin: $l-size auto 0;
+        padding: $xl-size $m-size 0;
+        font-size: $xl-font;
+    }
+
+    .calendar-view__event-details {
+        .event-title {
+            font-size: $xl-font;
+            font-weight: 400;
+        }
+    
+        .event-bullet {
+            height: $m-icon;
+            margin-right: $s-size;
+            width: $m-icon;
+        }
+    }
+
+    .event-date__view, .event-location__view, .event-notes__view {
+        margin-top: $s-size;
+    
+        svg {
+            padding: 0;
+            fill: $grey;
+            height: $l-icon;
+            margin: $xs-size $s-size $s-size 0;
+            width: $l-icon;
+        }
+    }
+
+    .event-date__text {
+        margin-bottom: $m-size;
+    
+        svg {
+            fill: $main;
+            height: $l-icon;
+            margin: 0 $l-size;
+            width: $l-icon;
+        }
+    }
+    .start-date, .end-date {
+        .date {
+            font-size: $l-font;
+            font-weight: bold;
+        }
+        .time {
+            all: unset;
+            font-size: $m-font;
+        }
+    }
+
+    .event-location__text {
+        margin-bottom: $l-size;
+    
+        .description {
+            all: unset;
+            font-size: $l-font;
+            font-weight: bold;
+        }
+        .address {
+            all: unset;
+            font-size: $m-font;
+        }
+    }
+
+    .event-notes__view {
+        margin-top: $l-size;
+        svg {
+            height: $l-size;
+            margin: 0 $xs-size 0 0;
+            width: $l-size;
+        }
+    }
+    .event-notes__text {
+        .title {
+            all: unset;
+            font-size: $l-font;
+            font-weight: bold;
+            margin-top: -$xxxs-size;
+        }
+        .notes {
+            all: unset;
+            font-size: $m-font;
+        }
     }
 }

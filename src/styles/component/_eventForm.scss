@@ -326,3 +326,64 @@ label {
         flex: unset;
     }
 }
+
+@media only screen and (min-width: $desktop) {
+    .calendar-add__title, .calendar-edit__title {
+        margin: $l-size auto $xl-size;
+        padding: $xl-size $m-size 0;
+        font-size: $xl-font;
+    }
+
+    label {
+        margin: $xs-size $m-size 0 0;
+        font-size: $m-font;
+    }
+
+    .calendar-form__title input,
+    .calendar-form__location input {
+        font-size: $m-font;
+        padding: $xxs-size $s-size;
+    }
+
+    .calendar-form__notes textarea {
+       font-size: $m-font;
+        padding: $xxs-size $s-size;
+        resize: none;
+    }
+
+    .date, .time {
+        padding: $xxs-size $s-size;
+
+        input, input:active, input:focus {
+            font-size: $m-font;
+        }
+
+        .ant-picker-suffix svg {
+            height: $m-icon;
+            width: $m-icon;
+        }
+        .ant-picker-clear svg {
+            height: $m-icon;
+            width: $m-icon;
+        }
+    }
+
+    .calendar-form__color-duration div.duration > div {
+        label {
+            font-size: $m-font;
+            padding: $xxs-size $m-size;
+        }
+        input#event-duration-hourly + label {
+            border-radius: $xxxs-size 0 0 $xxxs-size;
+        }
+        input#event-duration-daily + label {
+            border-radius: 0 $xxxs-size $xxxs-size 0;
+        }
+        input[type=radio]:checked + label {
+            background-color: $main;
+            color: white;
+            cursor: default;
+            box-shadow: inset 0 0 5px rgba(97, 97, 97, .3);
+        }
+    }
+}

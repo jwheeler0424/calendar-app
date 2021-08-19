@@ -10,7 +10,7 @@ const CalendarDashboardPage = (props) => {
             <CalendarSelector />
             <div className ="calendar-active__wrapper content-container">
                 <CalendarView />
-                {props.views.activeView && <CalendarAction />}
+                <CalendarAction />
             </div>
         </main>
     );

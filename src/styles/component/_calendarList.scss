@@ -216,3 +216,109 @@
         text-transform: uppercase;
     }
 }
+
+@media only screen and (min-width: $desktop) {
+    .calendar-list__title {
+        margin: $l-size auto 0;
+        padding: $xl-size $m-size $xl-size;
+        font-size: $xl-font;
+    }
+    
+    .calendar-list__event-day {
+        margin: 0 auto $m-size;
+        height: $s-size;
+        width: $s-size;
+        border: solid 1px $main;
+        border-radius: 50%;
+        color: $main;
+        font-size: $l-font;
+        padding: $xl-size;
+    }
+    
+    .calendar-list__event-list {
+        display: flex;
+        flex-direction: column;
+        margin: 0 $l-size;
+        padding: 0 0 $m-size;
+        width: calc(100% - $s-size * 2);
+    }
+    
+    .calendar-list__day-event {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: $l-size;
+        padding: $l-size 0 0;
+        border-top: solid 1px $border;
+        .button {
+            padding: $xs-size;
+            svg {
+                height: $m-icon;
+                width: $m-icon;
+            }
+        }
+
+        .event-bullet {
+            width: $m-icon;
+            height: $m-icon;
+            margin: auto $xs-size auto $xxxxs-size;
+        }
+
+        .event-title {
+            font-size: $l-font;
+            justify-content: flex-start;
+            padding: $xxxs-size 0;
+            cursor: pointer;
+        }
+    }
+    
+    .calendar-list__no-event {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: $l-size;
+        padding: $l-size 0;
+        border-top: solid 1px $border;
+        color: #ccc;
+        font-style: italic;
+        font-size: $m-font;
+        text-align: center;
+        font-weight: 300;
+    }
+    
+    .event-buttons-time {
+        align-items: center;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    
+    .event-buttons {
+        display: flex;
+        justify-content: flex-end;
+    
+        .button {
+            top: -$xs-size;
+        }
+    }
+    
+    .event-time, .event-location {
+        align-items: center;
+        color: #666;
+        display: flex;
+        font-size: $reg-font;
+        justify-content: flex-start;
+        margin: $m-size 0 $xs-size 0;
+    
+        svg {
+            fill: #666;
+            height: $l-icon;
+            margin-right: $xxs-size;
+            width: $l-icon;
+        }
+    }
+    
+    .event-location {
+        margin: $xxs-size 0;
+    }
+}

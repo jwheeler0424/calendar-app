@@ -269,6 +269,7 @@
     // Color Select Menu
     .color-selector__selected {
         padding: 1px $xxxs-size 0 $s-size;
+
         svg {
             height: $xxl-icon;
             width: $xxl-icon;
@@ -281,6 +282,14 @@
         height: $l-icon;
         width: $xxxl-icon;
         border-radius: $s-size;
+    }
+
+    .color-selector__select {
+        
+        div {
+            height: $l-icon;
+            width: $xxxl-icon;
+        }
     }
 
     // Month Select Menu
@@ -385,7 +394,7 @@
         position: relative;
         display: flex;
         width: fit-content;
-        padding: 1px $xxxs-size 0 $s-size;
+        padding: $xxs-size $xxxs-size $xxs-size $s-size;
         justify-content: space-between;
         align-items: center;
         border: solid 1px #e8e8e8;
@@ -401,9 +410,9 @@
 
     .color-selector__title {
         display: block;
-        margin: $xs-size $xxs-size $xs-size 0;
-        height: $s-icon;
-        width: $l-icon;
+        margin: $xxs-size $xxs-size $xxs-size 0;
+        height: $m-icon;
+        width: $xxl-icon;
         border-radius: $s-size;
     }
 

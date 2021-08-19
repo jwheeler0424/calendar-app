@@ -50,6 +50,7 @@
         bottom: 0;
         left: 0;
         overflow: hidden;
+        cursor: pointer;
 
         svg {
             display: none;
@@ -206,6 +207,19 @@
             font-size: $xxs-font;
             line-height: 1;
             padding: $xxxs-size $xxs-size $xxs-size;
+        }
+    }
+}
+@media only screen and (min-width: $desktop) {
+    .calendar-monthly__title {
+        font-size: $xl-font;
+        padding: $m-size 0 $xl-size;
+    }
+    
+    .calendar-monthly__month {
+        .calendar-day {
+            font-size: $s-font;
+            padding-top: 120%;
         }
     }
 }

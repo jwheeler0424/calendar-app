@@ -23,6 +23,7 @@
 
     .month-title {
         color: #999;
+        cursor: default;
         font-size: $xxs-font;
         line-height: $xs-font;
         letter-spacing: 0;
@@ -37,6 +38,7 @@
         align-items: center;
         border-top: solid 1px $border;
         border-left: solid 1px $border;
+        cursor: pointer;
         display: flex;
         font-size: $xxs-font;
         height: fit-content;
@@ -195,5 +197,12 @@
         grid-gap: $m-size;
         grid-template-columns: repeat(3, 1fr);
         padding: 0 $m-size;
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    .calendar-yearly__title {
+        font-size: $xl-font;
+        padding: $m-size 0 $xl-size;
     }
 }

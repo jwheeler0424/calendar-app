@@ -199,7 +199,16 @@
         display: block;
     }
     
-    .calendar-monthly__wrapper, .calendar-weekly__wrapper, .calendar-yearly__wrapper, .calendar-list__wrapper {
+    .calendar-monthly__wrapper, .calendar-weekly__wrapper, .calendar-yearly__wrapper, .calendar-list__wrapper, .calendar-add, .calendar-edit, .calendar-view {
         border-right: solid 1px $border;
+        width: 100%;
+    }
+    .calendar-monthly__wrapper, .calendar-weekly__wrapper, .calendar-yearly__wrapper {
+        flex: 1.5;
+        padding: $s-size;
+    }
+
+    .calendar-list__wrapper, .calendar-add, .calendar-edit, .calendar-view {
+        flex: 1;
     }
 }

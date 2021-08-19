@@ -54,6 +54,7 @@
         right: 0;
         bottom: 0;
         left: 0;
+        cursor: pointer;
 
         svg {
             fill: $grey;
@@ -151,16 +152,10 @@
         margin-bottom: $s-size;
     
         .weekday-title {
-            color: #999;
             font-size: $m-font;
-            line-height: $m-font;
-            letter-spacing: 0;
             padding: $s-size 0;
-            writing-mode: horizontal-tb;
-            text-align: center;
-            text-transform: uppercase;
-            width: 100%;
         }
+
         .current-date {
             color: $main;
             font-weight: bold;
@@ -231,13 +226,52 @@
 
     .calendar-weekly__weekday {
         margin-bottom: $m-size;
-
+        
         .calendar-day {
+            border: none;
+            border: solid 1px $border;
             padding-top: 120%;
+        }
+
+        .day-event {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .hidden {
             text-indent: -999px;
+        }
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    .calendar-weekly__title {
+        font-size: $xl-font;
+        padding: $m-size 0 $xl-size;
+    }
+
+    .calendar-weekly__weekday {
+        margin-bottom: $m-size;
+
+        .weekday-title {
+            font-size: $s-font;
+            padding: $s-size 0;
+            writing-mode: horizontal-tb;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .current-date {
+            color: $main;
+            font-weight: bold;
+        }
+
+        .day-num {
+            padding: $xxxs-size;
+            font-size: $s-font;
+            margin-left: $xxxs-size;
         }
     }
 }
