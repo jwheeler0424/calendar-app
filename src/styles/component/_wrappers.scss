@@ -6,7 +6,7 @@
 .calendar-form__wrapper {
     display: flex;
     flex-direction: column;
-    width: calc(100% - $s-size * 2);
+    width: calc(100% - 24px);
     margin: 0 $s-size 0;
     padding: $m-size 0 0;
     border-top: solid 1px $border;
@@ -110,7 +110,7 @@
 
 @media only screen and (min-width: $mobile) {
     .calendar-form__wrapper {
-        width: calc(100% - $m-size * 2);
+        width: calc(100% - 32px);
         margin: 0 $m-size 0;
         padding: $m-size 0 0;
     
@@ -130,7 +130,7 @@
 
 @media only screen and (min-width: $tabletSmall) {
     .calendar-form__wrapper {
-        width: calc(100% - $m-size * 2);
+        width: calc(100% - 32px);
         margin: 0 $m-size 0;
         padding: $l-size 0 0;
     
@@ -158,7 +158,7 @@
 
 @media only screen and (min-width: $tablet) {
     .calendar-form__wrapper {
-        width: calc(100% - $l-size * 2);
+        width: calc(100% - 64px);
         margin: 0 $l-size 0;
         padding: $xxl-size 0 0;
     

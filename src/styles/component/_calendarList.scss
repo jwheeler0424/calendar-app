@@ -27,7 +27,7 @@
     flex-direction: column;
     margin: 0 $s-size;
     padding: 0 0 $m-size;
-    width: calc(100% - $s-size * 2);
+    width: calc(100% - 24px);
 }
 
 .calendar-list__day-event {
@@ -240,7 +240,7 @@
         flex-direction: column;
         margin: 0 $l-size;
         padding: 0 0 $m-size;
-        width: calc(100% - $s-size * 2);
+        width: calc(100% - 24px);
     }
     
     .calendar-list__day-event {

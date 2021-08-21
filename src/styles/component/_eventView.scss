@@ -13,7 +13,7 @@
     flex-direction: column;
     margin: $xxxs-size $s-size 0;
     padding: 0 0 $m-size;
-    width: calc(100% - $s-size * 2);
+    width: calc(100% - 24px);
 }
 .event-title {
     font-size: $m-font;
@@ -118,7 +118,7 @@
 @media only screen and (min-width: $mobile) {
     .calendar-view__event-details {
         margin: $xxxs-size $m-size 0;
-        width: calc(100% - $m-size * 2);
+        width: calc(100% - 32px);
     }
 
     .event-date__text {
@@ -153,7 +153,7 @@
     .calendar-view__event-details {
         margin: $l-size $l-size 0;
         padding-bottom: $l-size;
-        width: calc(100% - $l-size * 2);
+        width: calc(100% - 64px);
     }
 
     .event-title {
