@@ -240,7 +240,7 @@
         flex-direction: column;
         margin: 0 $l-size;
         padding: 0 0 $m-size;
-        width: calc(100% - 24px);
+        width: calc(100% - 64px);
     }
     
     .calendar-list__day-event {
@@ -298,7 +298,8 @@
         justify-content: flex-end;
     
         .button {
-            top: -$xs-size;
+            top: -$xxs-size;
+            right: 0;
         }
     }
     
