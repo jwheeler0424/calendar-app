@@ -32,8 +32,9 @@
 
     .calendar-day {
         align-items: center;
-        border-bottom: solid 1px $border;
-        border-right: solid 1px $border;
+        box-shadow: 1px 1px 1px 0px $border;
+        // border-bottom: solid 1px $border;
+        // border-right: solid 1px $border;
         display: flex;
         font-size: $xxs-font;
         padding-top: 125%;
@@ -220,6 +221,13 @@
         .calendar-day {
             font-size: $s-font;
             padding-top: 120%;
+            z-index: 0;
+        }
+
+        .day-event {
+            border-right: 1px solid;
+            width: calc(100% + 1px);
+            z-index: 9999;
         }
     }
 }

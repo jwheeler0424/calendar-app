@@ -89,6 +89,8 @@ export const ViewEventPage = (props) => {
 
     const deleteEvent = () => {
         props.startRemoveEvent({ id });
+        props.setLastView('');
+        props.setActiveView('list');
     }
 
     const editEvent = () => {
