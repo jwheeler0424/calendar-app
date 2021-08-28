@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.16.8",
+    "babel-polyfill": "^6.26.0",
     "bufferutil": "^4.0.3",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
