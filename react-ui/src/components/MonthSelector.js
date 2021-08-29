@@ -31,7 +31,7 @@ export const MonthSelector = (props) => {
 
     return (
         <div className="month-selector__wrapper">
-            <div className="month-selector__selected" onClick={toggleMonthSelectMenu}>
+            <div className="month-selector__selected" onClick={toggleMonthSelectMenu} onTouchStart={toggleMonthSelectMenu}>
                 <span className="month-selector__title">{moment(props.views.calendarDate).format('MMMM')}</span>
                 <ExpandMore className="material-icons" />
             </div>
