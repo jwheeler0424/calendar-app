@@ -84,6 +84,7 @@ export const YearSelector = (props) => {
                                 <div
                                     className={className}
                                     onClick={year.type === 'current' ? () => selectYear(year.number) : () => {}}
+                                    onTouchStart={year.type === 'current' ? () => selectYear(year.number) : () => {}}
                                     year={year.number}
                                     key={year.number}
                                 >

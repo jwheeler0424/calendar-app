@@ -45,6 +45,7 @@ export const MonthSelector = (props) => {
                                 <div
                                     className={monthDate.month() === moment(props.views.currentDate).month() ? 'selected' : ''}
                                     onClick={() => selectMonth(month)}
+                                    onTouchStart={() => selectMonth(month)}
                                     month={month}
                                     key={monthDate.format('MMM')}
                                 >
