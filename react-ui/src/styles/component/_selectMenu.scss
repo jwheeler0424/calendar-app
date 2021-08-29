@@ -257,11 +257,13 @@
     // Month Select Menu
     .month-selector__selected {
         padding: $xxs-size $xxxs-size $xxs-size $xs-size;
+        cursor: pointer;
     }
 
     // Year Select Menu
     .year-selector__selected {
         padding: $xxs-size $xxxs-size $xxs-size $xs-size;
+        cursor: pointer;
     }
 }
 
@@ -269,6 +271,7 @@
     // Color Select Menu
     .color-selector__selected {
         padding: 1px $xxxs-size 0 $s-size;
+        cursor: pointer;
 
         svg {
             height: $xxl-icon;
@@ -297,6 +300,7 @@
         font-size: $m-font;
         line-height: 1.9;
         padding: $xs-size $xs-size $xs-size $m-size;
+        cursor: pointer;
 
         svg {
             height: $xxl-icon;
@@ -326,6 +330,7 @@
         font-size: $m-font;
         line-height: 1.9;
         padding: $xs-size $xs-size $xs-size $m-size;
+        cursor: pointer;
 
         svg {
             height: $xxl-icon;
