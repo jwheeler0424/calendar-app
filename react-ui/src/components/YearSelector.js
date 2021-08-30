@@ -50,10 +50,10 @@ export const YearSelector = (props) => {
     }
     return (
         <div className="year-selector__wrapper">
-            <div className="year-selector__selected" onClick={toggleYearSelectMenu} onTouchStart={toggleYearSelectMenu} style={{cursor: 'pointer'}}>
+            <button className="year-selector__selected" onClick={toggleYearSelectMenu} onTouchStart={toggleYearSelectMenu}>
                 <span className="year-selector__title">{moment(props.views.calendarDate).year()}</span>
                 <ExpandMore className="material-icons" />
-            </div>
+            </button>
             <div className={'year-selector__selector' + props.yearMenuOpen}>
                 <div className="year-selector__nav">
                     <button className="year-selector__prev" onClick={setPrevYear} onTouchStart={setPrevYear}>
