@@ -26,10 +26,10 @@ const ColorPicker = (props) => {
     
     return (
         <div className="color-selector__wrapper">
-            <div className="color-selector__selected" onClick={toggleColorSelectMenu} title="Select Event Color">
+            <button className="color-selector__selected" onClick={toggleColorSelectMenu} title="Select Event Color">
                 <span className="color-selector__title" style={{background: color.value}}></span>
                 <ExpandMore className="material-icons" />
-            </div>
+            </button>
             <div className={'color-selector__selector' + colorMenuOpen}>
                 <div className="color-selector__select">
                     {colors.map(({ title, value }) => (

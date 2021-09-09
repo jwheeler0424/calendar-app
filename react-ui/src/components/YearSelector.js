@@ -50,13 +50,13 @@ export const YearSelector = (props) => {
     }
     return (
         <div className="year-selector__wrapper">
-            <button className="year-selector__selected" onClick={toggleYearSelectMenu} onTouchStart={toggleYearSelectMenu}>
+            <button className="year-selector__selected" onClick={toggleYearSelectMenu}>
                 <span className="year-selector__title">{moment(props.views.calendarDate).year()}</span>
                 <ExpandMore className="material-icons" />
             </button>
             <div className={'year-selector__selector' + props.yearMenuOpen}>
                 <div className="year-selector__nav">
-                    <button className="year-selector__prev" onClick={setPrevYear} onTouchStart={setPrevYear}>
+                    <button className="year-selector__prev" onClick={setPrevYear}>
                         <NavigateBefore className="material-icons" />
                     </button>
                     <div className="year-selector__range">
@@ -66,7 +66,7 @@ export const YearSelector = (props) => {
                             ${viewYear + 10}
                         `}
                     </div>
-                    <button className="year-selector__next" onClick={setNextYear} onTouchStart={setNextYear}>
+                    <button className="year-selector__next" onClick={setNextYear}>
                         <NavigateNext className="material-icons" />
                     </button>
                 </div>
@@ -84,7 +84,6 @@ export const YearSelector = (props) => {
                                 <div
                                     className={className}
                                     onClick={year.type === 'current' ? () => selectYear(year.number) : () => {}}
-                                    onTouchStart={year.type === 'current' ? () => selectYear(year.number) : () => {}}
                                     year={year.number}
                                     key={year.number}
                                 >
